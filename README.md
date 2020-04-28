@@ -18,7 +18,10 @@
  <img src ="https://user-images.githubusercontent.com/40654954/80394310-9f084480-88ec-11ea-8254-a50e0e6a8496.jpg" height = "300px" width = "250px"/><img src ="https://user-images.githubusercontent.com/40654954/80394316-a0d20800-88ec-11ea-8053-45881f22efdb.jpg" height = "300px" width = "600px"/>
 
 # Core
-- 
+ - 육각형 모양으로 되어있으며 안에는 6개의 각 다른색을 가진 삼각형으로 구성되어 있다.  
+ - 모든 삼각형이 사라지게 되면 게임은 끝난다.
+ - 
+<img src ="https://user-images.githubusercontent.com/40654954/80394266-96177300-88ec-11ea-9734-274b74784532.jpg" height = "300px" width = "150px"/>
 
  
  
