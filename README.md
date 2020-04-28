@@ -1,5 +1,5 @@
 # team_project  
-### 안드로이드 게임프로그래밍 팀프로젝트
+### :video_game: 안드로이드 게임프로그래밍 팀프로젝트
 
 # 메인게임화면  
  - 배경이외의 공간은 조이스틱을 사용할 수 있는 공간이다. 
@@ -7,7 +7,7 @@
  <img src ="https://user-images.githubusercontent.com/40654954/80394266-96177300-88ec-11ea-9734-274b74784532.jpg" height = "300px" width = "300px"/><img src = "https://user-images.githubusercontent.com/40654954/80394287-9c0d5400-88ec-11ea-87c3-a72d02fa42d5.jpg" height="535px" width="320px"/>
 
 # Player
- - 조이스틱으로 방향을 지정할 수 있다.
+ - :joystick:조이스틱으로 방향을 지정할 수 있다.
  - 플레이어는 원으로 생겼으며 내부에 획득한 stone 들이 회전하고 있다. 
  - 가장 최근에 획득한 stone 의 색으로 변경된다.
  - 모든 색의 stone 을 획득해야지만 코어 색 하나를 부술수 있다. 
