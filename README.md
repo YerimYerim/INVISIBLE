@@ -8,7 +8,7 @@
  - 배경이외의 공간은 조이스틱을 사용할 수 있는 공간이다. 
  
 
-<img src = "https://user-images.githubusercontent.com/40654954/80394287-9c0d5400-88ec-11ea-87c3-a72d02fa42d5.jpg" height="535px" width="320px" style="center"/>
+<img src = "https://user-images.githubusercontent.com/40654954/80394287-9c0d5400-88ec-11ea-87c3-a72d02fa42d5.jpg" height="535px" width="320px" "center"/>
 
  
  
