@@ -12,6 +12,6 @@
 
 # Player
 
- <img src ="https://user-images.githubusercontent.com/40654954/80394310-9f084480-88ec-11ea-8254-a50e0e6a8496.jpg" height = "300px" width = "300px"/>
+ <img src ="https://user-images.githubusercontent.com/40654954/80394310-9f084480-88ec-11ea-8254-a50e0e6a8496.jpg" height = "350px" width = "300px"/>
  
  
