@@ -10,6 +10,8 @@
 
 <img src = "https://user-images.githubusercontent.com/40654954/80394287-9c0d5400-88ec-11ea-87c3-a72d02fa42d5.jpg" height="535px" width="320px"/>
 
- 
+# Player
+
+ <img src ="https://user-images.githubusercontent.com/40654954/80394310-9f084480-88ec-11ea-8254-a50e0e6a8496.jpg" height = "100px" width = "300px"/>
  
  
