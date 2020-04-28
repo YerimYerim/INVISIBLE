@@ -4,8 +4,7 @@
 # 메인게임화면  
  - 배경이외의 공간은 조이스틱을 사용할 수 있는 공간이다. 
  - PLAYER 은 원 내부에서만 움직일 수 있다.  
- <img src ="https://user-images.githubusercontent.com/40654954/80394266-96177300-88ec-11ea-9734-274b74784532.jpg" height = "300px" width = "300px"/>  
-<img src = "https://user-images.githubusercontent.com/40654954/80394287-9c0d5400-88ec-11ea-87c3-a72d02fa42d5.jpg" height="535px" width="320px"/>
+ <img src ="https://user-images.githubusercontent.com/40654954/80394266-96177300-88ec-11ea-9734-274b74784532.jpg" height = "300px" width = "300px"/><img src = "https://user-images.githubusercontent.com/40654954/80394287-9c0d5400-88ec-11ea-87c3-a72d02fa42d5.jpg" height="535px" width="320px"/>
 
 # Player
  - 조이스틱으로 방향을 지정할 수 있다.
@@ -20,7 +19,7 @@
  - 모든 삼각형이 사라지게 되면 게임은 끝난다.
  - Light 는 60도 각도를 가진 부채꼴 모양이다.
  - Light 는 각 Core 가 보유중인 삼각형의 색상중 하나를 Light 색상으로 일정한 시간마다 지정할 수 있다.(바뀐다)
- - Core 는 자전하며 그에따라 Light도 같이 회전한다.
+ - Core 는 자전하며 그에따라 Light도 같이 회전한다.  
 <img src ="https://user-images.githubusercontent.com/40654954/80394266-96177300-88ec-11ea-9734-274b74784532.jpg" height = "300px" width = "300px"/><img src ="https://user-images.githubusercontent.com/40654954/80394270-97e13680-88ec-11ea-83a4-784a138d1edc.jpg" height = "300px" width = "150px"/>
 
 # Stone
