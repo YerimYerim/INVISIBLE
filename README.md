@@ -14,8 +14,8 @@
  - 플레이어는 원으로 생겼으며 내부에 획득한 stone 들이 회전하고 있다. 
  - 가장 최근에 획득한 stone 의 색으로 변경된다.
  - 모든 색의 stone 을 획득해야지만 코어 색 하나를 부술수 있다. 
- - 가속도가 붙을 경우 붙은 속도에 따라 꼬리의 길이가 달라진다.
- <img src ="https://user-images.githubusercontent.com/40654954/80394310-9f084480-88ec-11ea-8254-a50e0e6a8496.jpg" height = "350px" width = "300px"/><img src ="https://user-images.githubusercontent.com/40654954/80394316-a0d20800-88ec-11ea-8053-45881f22efdb.jpg" height = "350px" width = "400px"/>
+ - 가속도가 붙을 경우 붙은 속도에 따라 꼬리의 길이가 달라진다.  
+ <img src ="https://user-images.githubusercontent.com/40654954/80394310-9f084480-88ec-11ea-8254-a50e0e6a8496.jpg" height = "350px" width = "300px"/><img src ="https://user-images.githubusercontent.com/40654954/80394316-a0d20800-88ec-11ea-8053-45881f22efdb.jpg" height = "350px" width = "500px"/>
 
 # Core
 - 
