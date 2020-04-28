@@ -9,7 +9,7 @@
    
 <img src = "https://user-images.githubusercontent.com/40654954/80394287-9c0d5400-88ec-11ea-87c3-a72d02fa42d5.jpg" height="470px" width="280px"/> <img src ="https://user-images.githubusercontent.com/40654954/80394266-96177300-88ec-11ea-9734-274b74784532.jpg" height = "300px" width = "300px"/>
 
-# :grinning: 'Player'
+# :grinning: '(Player)'
  - :joystick:조이스틱으로 방향을 지정할 수 있다.
  - 'Player'는 원으로 생겼으며 내부에 획득한 'Stone' 들이 회전하고 있다. 
  - 가장 최근에 획득한 'Stone' 의 색으로 변경된다.
