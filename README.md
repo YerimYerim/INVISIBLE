@@ -21,7 +21,7 @@
  - Light 는 60도 각도를 가진 부채꼴 모양이다.
  - Light 는 각 Core 가 보유중인 삼각형의 색상중 하나를 Light 색상으로 일정한 시간마다 지정할 수 있다.(바뀐다)
  - Core 는 자전하며 그에따라 Light도 같이 회전한다.
-<img src ="https://user-images.githubusercontent.com/40654954/80394266-96177300-88ec-11ea-9734-274b74784532.jpg" height = "300px" width = "300px"/><img src ="(https://user-images.githubusercontent.com/40654954/80394269-97e13680-88ec-11ea-9fa4-971454fb72d2.jpg" height = "300px" width = "150px"/>
+<img src ="https://user-images.githubusercontent.com/40654954/80394266-96177300-88ec-11ea-9734-274b74784532.jpg" height = "300px" width = "300px"/><img src ="https://user-images.githubusercontent.com/40654954/80394270-97e13680-88ec-11ea-83a4-784a138d1edc.jpg" height = "300px" width = "150px"/>
 
 # Stone
  - 각 스톤은 6가지 색상을 가졌다. 
