@@ -21,7 +21,7 @@
  - 육각형 모양으로 되어있으며 안에는 6개의 각 다른색을 가진 삼각형으로 구성되어 있다.  
  - 모든 삼각형이 사라지게 되면 게임은 끝난다.
  - 
-<img src ="https://user-images.githubusercontent.com/40654954/80394266-96177300-88ec-11ea-9734-274b74784532.jpg" height = "300px" width = "150px"/>
+<img src ="https://user-images.githubusercontent.com/40654954/80394266-96177300-88ec-11ea-9734-274b74784532.jpg" height = "300px" width = "200px"/>
 
  
  
