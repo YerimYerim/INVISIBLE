@@ -35,5 +35,5 @@
  # :bar_chart: 순서도  
 - 플레이어를 기준으로 메인 게임루프에 대해 순서도를 작성한 결과
   
-<img src = "https://user-images.githubusercontent.com/40654954/80484602-f2cd6900-8992-11ea-8e50-01f5d886aa7d.png" height="500px" width="500px"/>
+<img src = "https://user-images.githubusercontent.com/40654954/80484602-f2cd6900-8992-11ea-8e50-01f5d886aa7d.png" height="600px" width="600px"/>
  
