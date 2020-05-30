@@ -1,14 +1,23 @@
 # :video_game: 스마트폰 게임프로그래밍 팀프로젝트
- - <a>__윤하늘 & 이예림__</a>팀
- - kpu 스마트폰 게임프로그래밍 팀프로젝트 
- 
-## :video_game: 메인게임화면  
- - 배경이외의 공간은 조이스틱을 사용할 수 있는 공간이다. 
- - `Player`은 원 내부에서만 움직일 수 있다.  
+
+## 프로젝트 개요
+ - 본 프로젝트는 KPU 스마트폰 게임 프로그래밍 과목의 텀프로젝트 일환으로 안드로이드 스튜디오 사용법과 자바 언어의 실력 향상 및 GitHub 를 이용한 공동작업에 따른 협업 능력 향상을 목적으로 한다.
+ - 본 프로젝트는 이예림 팀원이 제안한 핵심 컨셉에 따라 기획되었으며 해당 기획에 따라 진행된다.
+ - **윤하늘, 이예림**으로 팀을 구성한다.
+   > 윤하늘 : 플로우인터페이스, 특수효과 구현   
+   > 이예림 : 메인게임 로직, 메인게임 디자인
+
+## 게임 개요
+ - ~주어진 시간 내에 장애물을 피하며 아이템을 획득하여 상대를 무력화(제거)시켜야한다.~
+ - 본 게임은 1-Life-Long-Run 형태의 게임으로 최대한 죽지않고 오래버티면서 높은 점수를 얻는 것을 목표로 한다.
+
+## 메인게임화면
+ - 배경 이외의 공간은 조이스틱을 사용할 수 있는 공간이다. 
+ - `Player`는 원 내부에서만 움직일 수 있다.  
    
 <img src = "https://user-images.githubusercontent.com/40654954/80394287-9c0d5400-88ec-11ea-87c3-a72d02fa42d5.jpg" height="470px" width="280px"/> <img src ="https://user-images.githubusercontent.com/40654954/80394266-96177300-88ec-11ea-9734-274b74784532.jpg" height = "300px" width = "300px"/>
 
-## :grinning: `Player`
+## `Player`
  - :joystick:조이스틱으로 방향을 지정할 수 있다.
  - `Player`는 원으로 생겼으며 내부에 획득한 `Stone` 들이 회전하고 있다. 
  - 가장 최근에 획득한 `Stone` 의 색으로 변경된다.
@@ -17,7 +26,7 @@
    
  <img src ="https://user-images.githubusercontent.com/40654954/80394310-9f084480-88ec-11ea-8254-a50e0e6a8496.jpg" height = "300px" width = "250px"/><img src ="https://user-images.githubusercontent.com/40654954/80394316-a0d20800-88ec-11ea-8053-45881f22efdb.jpg" height = "300px" width = "600px"/>
 
-## :crystal_ball: `Core` & `Light`
+## `Core` & `Light`
  - 육각형 모양으로 되어있으며 안에는 6개의 각 다른색을 가진 삼각형으로 구성되어 있다.  
  - 모든 삼각형이 사라지게 되면 게임은 끝난다.
  - `Light` 는 60도 각도를 가진 부채꼴 모양이다.
@@ -26,12 +35,12 @@
    
 <img src ="https://user-images.githubusercontent.com/40654954/80394266-96177300-88ec-11ea-9734-274b74784532.jpg" height = "300px" width = "300px"/><img src ="https://user-images.githubusercontent.com/40654954/80394270-97e13680-88ec-11ea-83a4-784a138d1edc.jpg" height = "300px" width = "150px"/>
 
-## :crystal_ball: `Stone`
+## `Stone`
  - 각 스톤은 6가지 색상을 가졌다. 
  - 시간에 따라 생성되었다가 소멸된다.
  - `Player`와 충돌할 경우 소멸된다.
  
-## :bar_chart: 순서도  
+## 순서도  
 - 플레이어를 기준으로 메인 게임루프에 대해 순서도를 작성한 결과
   
 <p align="center"><img src = "https://user-images.githubusercontent.com/40654954/80484602-f2cd6900-8992-11ea-8e50-01f5d886aa7d.png" height="600px" width="600px"/>  
@@ -47,9 +56,14 @@
 >  - 메뉴 씬
 >  - 게임 씬
 >    > - 게임 월드 구성
->    >   > 게임월드 ~
+>    >   > 그라운드, 코어, 섹터, 라이팅섹터에 대해 개발을 진행한다.   
+>    >   > 책임자 : 이예림
 >    > - 플레이어 구성
->    > - 코어 구성
+>    >   > 플레이어, 스톤에 대해 개발을 진행한다.   
+>    >   > 책임자 : 윤하늘
+>    > - 게임 시스템 구현
+>    >   > 점수 시스템, 리플레이에 대해 개발을 진행한다.   
+>    >   > 책임자 : 윤하늘
 > ### 13주차 (6/8~6/14)
 >  - 사운드
 >  - 랭킹
