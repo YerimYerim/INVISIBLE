@@ -41,7 +41,6 @@ public class Joystick extends GameObject implements Touchable {
 
     @Override
     public void draw(Canvas canvas) {
-
         if(down){
             sbmp.draw(canvas, x, y);
             sbmp.draw(canvas, x + dx, y + dy);
