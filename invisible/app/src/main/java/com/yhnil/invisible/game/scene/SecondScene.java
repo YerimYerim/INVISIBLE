@@ -6,6 +6,7 @@ import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.BitmapObject;
+import com.yhnil.invisible.game.obj.Joystick;
 import com.yhnil.invisible.game.obj.Player;
 import com.yhnil.invisible.game.obj.HorzScrollBackground;
 
@@ -14,9 +15,10 @@ import java.util.Random;
 public class SecondScene extends GameScene {
     private static final String TAG = SecondScene.class.getSimpleName();
     private BitmapObject backgoundOval;
+    private Joystick joystick;
 
     public enum Layer {
-        bg, enemy, player, ui, COUNT
+        bg, enemy, player, ui, COUNT , joystick
     }
 
     private Player player;
@@ -62,6 +64,9 @@ public class SecondScene extends GameScene {
         int cy = UiBridge.metrics.center.y;
         player = new Player(mdpi_100, sh - mdpi_100);
         gameWorld.add(Layer.enemy.ordinal(), player);
+        joystick = new Joystick(300, 200, Joystick.Direction.normal, 100);
+        gameWorld.add(Layer.ui.ordinal(), joystick);
+//        plane.setJoystick(joystick);
         gameWorld.add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_1));
     }
 
