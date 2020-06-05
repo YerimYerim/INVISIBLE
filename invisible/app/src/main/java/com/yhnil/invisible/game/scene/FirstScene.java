@@ -61,20 +61,15 @@ public class FirstScene extends GameScene {
             gameWorld.add(Layer.enemy.ordinal(), ball);
         }
 
-        gameWorld.add(Layer.enemy.ordinal(), new Stone(UiBridge.metrics.size.x/2, UiBridge.metrics.size.y/2));
-        gameWorld.add(Layer.enemy.ordinal(), new PlayGround(UiBridge.metrics.size.x/2, UiBridge.metrics.size.y/2));
+        gameWorld.add(Layer.enemy.ordinal(), new PlayGround(0, 0));
+        gameWorld.add(Layer.enemy.ordinal(), new Stone(0, 0));
 
-        gameWorld.add(Layer.bg.ordinal(), new CityBackground());
         int screenWidth = UiBridge.metrics.size.x;
         RectF rbox = new RectF(UiBridge.x(-52), UiBridge.y(20), UiBridge.x(-20), UiBridge.y(62));
         scoreObject = new ScoreObject(R.mipmap.number_64x84, rbox);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
-        BitmapObject title = new BitmapObject(UiBridge.metrics.center.x, UiBridge.y(160), -150, -150, R.mipmap.slap_fight_title);
-        gameWorld.add(Layer.ui.ordinal(), title);
         timer = new GameTimer(2, 1);
 
-        //y += UiBridge.y(100);
-        //gameWorld.add(Layer.ui.ordinal(), new Button(cx, y, R.mipmap.btn_tutorial, R.mipmap.blue_round_btn, R.mipmap.red_round_btn));
         int cx = UiBridge.metrics.center.x;
         int y = UiBridge.metrics.center.y + UiBridge.y(100);
         Button button = new Button(cx, y, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
@@ -86,7 +81,5 @@ public class FirstScene extends GameScene {
             }
         });
         gameWorld.add(Layer.ui.ordinal(), button);
-        //y += UiBridge.y(100);
-        //gameWorld.add(Layer.ui.ordinal(), new Button(cx, y, R.mipmap.btn_highscore, R.mipmap.blue_round_btn, R.mipmap.red_round_btn));
     }
 }
