@@ -61,7 +61,7 @@ public class Player extends AnimObject implements Touchable {
             return false;
         }
         float tx = e.getX();
-//        Log.d(TAG, "TouchEvent:" + e.getAction() + " - " + tx + "/" + UiBridge.metrics.center.x);
+        Log.d(TAG, "TouchEvent:" + e.getAction() + " - " + tx + "/" + UiBridge.metrics.center.x);
         if (tx < UiBridge.metrics.center.x) {
             // jump
             if (!jumping) {
