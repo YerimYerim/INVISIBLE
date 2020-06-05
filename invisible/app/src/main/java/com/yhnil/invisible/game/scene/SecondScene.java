@@ -1,20 +1,12 @@
 package com.yhnil.invisible.game.scene;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Point;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
-import android.view.WindowManager;
-
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.input.sensor.GyroSensor;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.BitmapObject;
-import com.yhnil.invisible.game.obj.Cookie;
+import com.yhnil.invisible.game.obj.Player;
 import com.yhnil.invisible.game.obj.HorzScrollBackground;
 
 import java.util.Random;
@@ -27,7 +19,7 @@ public class SecondScene extends GameScene {
         bg, enemy, player, ui, COUNT
     }
 
-    private Cookie cookie;
+    private Player player;
 
     private GameTimer timer;
 
@@ -68,8 +60,8 @@ public class SecondScene extends GameScene {
         int sh = UiBridge.metrics.size.y;
         int cx = UiBridge.metrics.center.x;
         int cy = UiBridge.metrics.center.y;
-        cookie = new Cookie(mdpi_100, sh - mdpi_100);
-        gameWorld.add(Layer.enemy.ordinal(), cookie);
+        player = new Player(mdpi_100, sh - mdpi_100);
+        gameWorld.add(Layer.enemy.ordinal(), player);
         gameWorld.add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_1));
     }
 

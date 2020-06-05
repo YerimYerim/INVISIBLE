@@ -10,18 +10,18 @@ import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.AnimObject;
 import com.yhnil.invisible.framework.res.bitmap.FrameAnimationBitmap;
 
-public class Cookie extends AnimObject implements Touchable {
+public class Player extends AnimObject implements Touchable {
 
     private static final float JUMP_POWER = -1500;
     private static final float GRAVITY_SPEED = 4500;
-    private static final String TAG = Cookie.class.getSimpleName();
+    private static final String TAG = Player.class.getSimpleName();
     private final FrameAnimationBitmap fabNormal;
     private final FrameAnimationBitmap fabJump;
     private boolean jumping;
     private float speed;
     private float base;
 
-    public Cookie(float x, float y) {
+    public Player(float x, float y) {
         super(x, y, -50, -50, R.mipmap.cookie_run, 12, 0);
         base = y;
 
