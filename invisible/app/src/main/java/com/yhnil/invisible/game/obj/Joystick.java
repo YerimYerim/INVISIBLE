@@ -1,7 +1,6 @@
 package com.yhnil.invisible.game.obj;
 
 import android.graphics.Canvas;
-import android.nfc.Tag;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -9,6 +8,7 @@ import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.iface.Touchable;
 import com.yhnil.invisible.framework.main.GameObject;
 import com.yhnil.invisible.framework.res.bitmap.SharedBitmap;
+
 
 public class Joystick extends GameObject implements Touchable {
 
@@ -42,19 +42,21 @@ public class Joystick extends GameObject implements Touchable {
     public void draw(Canvas canvas) {
         sbmp.draw(canvas, x, y);
         if(down){
-            sbmp.draw(canvas, x + dx, y + dy);
+            sbmp.draw(canvas, x + dx*1000, y + dy*1000);
         }
     }
 
     public boolean onTouchEvent(MotionEvent event) {
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
+                Log.d( "down" , " " + down);
                 xDown = event.getX();
                 yDown = event.getY();
                 dx = dy = 0;
                 down = true;
                 break;
             case MotionEvent.ACTION_MOVE:
+                //og.d( "action move" , " " + down);
                 if (!down) {
                     return false;
                 }
@@ -62,10 +64,10 @@ public class Joystick extends GameObject implements Touchable {
                 float dy = event.getY() - yDown;
                 move(dx, dy);
                 break;
-            default:
+            case MotionEvent.ACTION_UP:
+                Log.d( "ACTION_UP" , " " + down);
                 down = false;
         }
-
         return false;
     }
 
