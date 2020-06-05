@@ -13,7 +13,8 @@ import com.yhnil.invisible.framework.res.bitmap.SharedBitmap;
 public class Joystick extends GameObject implements Touchable {
 
     private final SharedBitmap sbmp;
-    private final float x, y;
+    private float x;
+    private float y;
     private final int size;
     private final Direction direction;
     private boolean down;
@@ -42,26 +43,25 @@ public class Joystick extends GameObject implements Touchable {
     public void draw(Canvas canvas) {
         sbmp.draw(canvas, x, y);
         if(down){
-            sbmp.draw(canvas, x + dx*1000, y + dy*1000);
+            sbmp.draw(canvas, x + dx, y + dy);
         }
     }
 
     public boolean onTouchEvent(MotionEvent event) {
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                Log.d( "down" , " " + down);
-                xDown = event.getX();
-                yDown = event.getY();
+                this.x = event.getX();
+                this.y = event.getY();
                 dx = dy = 0;
                 down = true;
                 break;
             case MotionEvent.ACTION_MOVE:
-                //og.d( "action move" , " " + down);
+                Log.d( "action move" , " " + down);
                 if (!down) {
                     return false;
                 }
-                float dx = event.getX() - xDown;
-                float dy = event.getY() - yDown;
+                float dx = event.getX() - this.x;
+                float dy = event.getY() - this.y;
                 move(dx, dy);
                 break;
             case MotionEvent.ACTION_UP:
