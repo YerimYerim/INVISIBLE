@@ -23,7 +23,6 @@ public class GameActivity extends AppCompatActivity {
         setContentView(new GameView(this));
 
         new FirstScene().run();
-
     }
 
     private long lastBackPressedOn;
