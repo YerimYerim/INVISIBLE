@@ -1,6 +1,7 @@
 package com.yhnil.invisible.framework.obj;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 
@@ -14,8 +15,7 @@ public class ShapeObject extends GameObject {
     }
     MatUtil matUtil;
 
-
-    enum ShapeType{ShapeCircle, ShapePolygon, ShapeNone;};
+    enum ShapeType{ShapeCircle, ShapePolygon, ShapeSector, ShapeNone;};
     ShapeType shapeType;
 
     private int cnt;
@@ -37,7 +37,7 @@ public class ShapeObject extends GameObject {
         shapeType = ShapeType.ShapeCircle;
         this.radius = radius;
     }
-    public void setPentagon(float radius){
+    public void setPentagon(float radius) {
         shapeType = ShapeType.ShapePolygon;
         cnt = 6;
         pts = new float[cnt * 2];
@@ -46,6 +46,11 @@ public class ShapeObject extends GameObject {
             pts[i*2+0] = (float) Math.cos((float)i/cnt*2*Math.PI)*radius;
             pts[i*2+1] = (float) Math.sin((float)i/cnt*2*Math.PI)*radius;
         }
+    }
+    public void setSector(float radius) {
+        shapeType = ShapeType.ShapeSector;
+        this.radius = radius;
+        paint.setColor(Color.YELLOW);
     }
 
     public void setColor(int color){
@@ -61,23 +66,29 @@ public class ShapeObject extends GameObject {
     public void draw(Canvas canvas) {
         float x = this.x / matUtil.scale + matUtil.tx;
         float y = this.y / matUtil.scale + matUtil.ty;
+        float r = this.radius / matUtil.scale;
 
         Path path = new Path();
         for(int i = 0; i < cnt; ++i) {
-            if (i == 0)
+            if (i == 0) {
                 path.moveTo(this.x + this.pts[0] / matUtil.scale + matUtil.tx,
                         (this.y + this.pts[1]) / matUtil.scale + matUtil.ty);
-            else
+            }
+            else {
                 path.lineTo(this.x + this.pts[i * 2 + 0] / matUtil.scale + matUtil.tx,
                         (this.y + this.pts[i * 2 + 1]) / matUtil.scale + matUtil.ty);
+            }
         }
-        float r = this.radius / matUtil.scale;
         switch (shapeType) {
             case ShapeCircle:
                 canvas.drawCircle(x, y, r, paint);
                 break;
             case ShapePolygon:
                 canvas.drawPath(path, paint);
+                break;
+            case ShapeSector:
+                canvas.drawArc(x - r, y-r, x+r, y+r,
+                        0,60,true, paint);
                 break;
         }
     }

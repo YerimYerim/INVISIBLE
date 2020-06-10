@@ -7,8 +7,8 @@ import com.yhnil.invisible.framework.obj.ShapeObject;
 public class DangerZone extends ShapeObject {
     public DangerZone(float x, float y) {
         super(x, y);
-        //setSector();
-        setColor(Color.BLUE);
+        setColor(Color.MAGENTA);
+        setSector(100);
     }
 
     public void update() {

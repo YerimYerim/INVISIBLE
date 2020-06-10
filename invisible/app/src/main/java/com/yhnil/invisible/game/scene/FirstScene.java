@@ -10,6 +10,7 @@ import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Button;
 import com.yhnil.invisible.game.obj.Ball;
 import com.yhnil.invisible.game.obj.sobj.Core;
+import com.yhnil.invisible.game.obj.sobj.DangerZone;
 import com.yhnil.invisible.game.obj.sobj.PlayGround;
 import com.yhnil.invisible.game.obj.sobj.Stone;
 
@@ -49,6 +50,7 @@ public class FirstScene extends GameScene {
         gameWorld.add(Layer.enemy.ordinal(), new PlayGround(0, 0));
         gameWorld.add(Layer.enemy.ordinal(), new Core(0, 0));
         gameWorld.add(Layer.enemy.ordinal(), new Stone(0, 0));
+        gameWorld.add(Layer.enemy.ordinal(), new DangerZone(0, 0));
 
         RectF rbox = new RectF(UiBridge.x(-52), UiBridge.y(20), UiBridge.x(-20), UiBridge.y(62));
         scoreObject = new ScoreObject(R.mipmap.number_64x84, rbox);
