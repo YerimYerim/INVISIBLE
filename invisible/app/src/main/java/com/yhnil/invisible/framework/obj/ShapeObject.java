@@ -57,6 +57,9 @@ public class ShapeObject extends GameObject {
     public void setColor(int color){
         paint.setColor(color);
     }
+    public void setDegree(float degree){
+        this.degree = degree;
+    }
     public void setMatrix() {
         float scale = 200.0f / UiBridge.metrics.size.x;
         matUtil.scale = scale;
