@@ -12,6 +12,7 @@ import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Button;
 import com.yhnil.invisible.game.obj.Ball;
 import com.yhnil.invisible.game.obj.CityBackground;
+import com.yhnil.invisible.game.obj.Core;
 import com.yhnil.invisible.game.obj.PlayGround;
 import com.yhnil.invisible.game.obj.Stone;
 
@@ -50,21 +51,10 @@ public class FirstScene extends GameScene {
     }
 
     private void initObjects() {
-        Random rand = new Random();
-        int mdpi_100 = UiBridge.x(100);
-        for (int i = 0; i < 10; i++) {
-            int dx = rand.nextInt(2 * mdpi_100) - 1 * mdpi_100;
-            if (dx >= 0) dx++;
-            int dy = rand.nextInt(2 * mdpi_100) - 1 * mdpi_100;
-            if (dy >= 0) dy++;
-            ball = new Ball(mdpi_100, mdpi_100, dx, dy);
-            gameWorld.add(Layer.enemy.ordinal(), ball);
-        }
-
         gameWorld.add(Layer.enemy.ordinal(), new PlayGround(0, 0));
+        gameWorld.add(Layer.enemy.ordinal(), new Core(0, 0));
         gameWorld.add(Layer.enemy.ordinal(), new Stone(0, 0));
 
-        int screenWidth = UiBridge.metrics.size.x;
         RectF rbox = new RectF(UiBridge.x(-52), UiBridge.y(20), UiBridge.x(-20), UiBridge.y(62));
         scoreObject = new ScoreObject(R.mipmap.number_64x84, rbox);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
