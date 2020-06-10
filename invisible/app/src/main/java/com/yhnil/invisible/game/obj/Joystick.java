@@ -21,6 +21,7 @@ public class Joystick extends GameObject implements Touchable {
     private float xDown, yDown;
     private float dx, dy;
     private double angle;
+    private Runnable onClickRunnable;
 
     public enum Direction {
         normal, horizontal, vertical
@@ -102,5 +103,9 @@ public class Joystick extends GameObject implements Touchable {
         if (!down) return 0;
         if (dx == 0) return 0;
         return angle < Math.PI / 2 && angle > -Math.PI / 2 ? 1 : -1;
+    }
+
+    public void setOnClickRunnable(Runnable runnable) {
+        this.onClickRunnable = runnable;
     }
 }

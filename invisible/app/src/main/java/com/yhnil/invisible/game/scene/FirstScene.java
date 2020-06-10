@@ -71,7 +71,7 @@ public class FirstScene extends GameScene {
         timer = new GameTimer(2, 1);
 
         int cx = UiBridge.metrics.center.x;
-        int y = UiBridge.metrics.center.y + UiBridge.y(100);
+        int y = UiBridge.metrics.size.y - UiBridge.y(100);
         Button button = new Button(cx, y, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
             @Override
