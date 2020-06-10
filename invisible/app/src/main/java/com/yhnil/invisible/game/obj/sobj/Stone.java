@@ -1,4 +1,4 @@
-package com.yhnil.invisible.game.obj;
+package com.yhnil.invisible.game.obj.sobj;
 
 import android.graphics.Color;
 

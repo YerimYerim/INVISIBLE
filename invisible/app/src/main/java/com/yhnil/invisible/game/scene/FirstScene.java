@@ -5,18 +5,13 @@ import android.graphics.RectF;
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
-import com.yhnil.invisible.framework.main.GameWorld;
 import com.yhnil.invisible.framework.main.UiBridge;
-import com.yhnil.invisible.framework.obj.BitmapObject;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Button;
 import com.yhnil.invisible.game.obj.Ball;
-import com.yhnil.invisible.game.obj.CityBackground;
-import com.yhnil.invisible.game.obj.Core;
-import com.yhnil.invisible.game.obj.PlayGround;
-import com.yhnil.invisible.game.obj.Stone;
-
-import java.util.Random;
+import com.yhnil.invisible.game.obj.sobj.Core;
+import com.yhnil.invisible.game.obj.sobj.PlayGround;
+import com.yhnil.invisible.game.obj.sobj.Stone;
 
 public class FirstScene extends GameScene {
     private static final String TAG = FirstScene.class.getSimpleName();
