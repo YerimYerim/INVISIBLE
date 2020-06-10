@@ -14,7 +14,6 @@ import java.util.Random;
 
 public class SecondScene extends GameScene {
     private static final String TAG = SecondScene.class.getSimpleName();
-    private BitmapObject backgoundOval;
     private Joystick joystick;
 
     public enum Layer {
@@ -64,7 +63,7 @@ public class SecondScene extends GameScene {
         int cy = UiBridge.metrics.center.y;
         player = new Player(mdpi_100, sh - mdpi_100);
         gameWorld.add(Layer.enemy.ordinal(), player);
-        joystick = new Joystick(300, 200, Joystick.Direction.normal, 100);
+        joystick = new Joystick(Joystick.Direction.normal);
         gameWorld.add(Layer.ui.ordinal(), joystick);
 //        plane.setJoystick(joystick);
         gameWorld.add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_1));

@@ -8,31 +8,34 @@ import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.iface.Touchable;
 import com.yhnil.invisible.framework.main.GameObject;
 import com.yhnil.invisible.framework.res.bitmap.SharedBitmap;
+import com.yhnil.invisible.framework.util.Vector;
 
 
 public class Joystick extends GameObject implements Touchable {
 
-    private final SharedBitmap sbmp;
-    private float x;
-    private float y;
+    private final SharedBitmap back;
+    private final SharedBitmap center;
+    private Vector pos;
     private final int size;
     private final Direction direction;
     private boolean down;
-    private float xDown, yDown;
-    private float dx, dy;
+    private Vector Down;
+    private Vector dPos;
     private double angle;
     private Runnable onClickRunnable;
 
     public enum Direction {
         normal, horizontal, vertical
     }
-    public Joystick(float x, float y, Direction dir, int size) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
+    public Joystick(Direction dir) {
+        this.pos= new Vector(0.0f, 0.0f);
+        this.dPos = new Vector(0.0f , 0.0f);
+        this.Down = new Vector(0.0f , 0.0f);
         this.direction = dir;
-        this.sbmp = SharedBitmap.load(R.mipmap.joystick);
+        this.back = SharedBitmap.load(R.mipmap.joystickback);
+        this.center = SharedBitmap.load(R.mipmap.joystickcenter);
         this.down = false;
+        this.size = back.getWidth()/2  - center.getWidth()/2;
     }
 
     @Override
@@ -43,17 +46,18 @@ public class Joystick extends GameObject implements Touchable {
     @Override
     public void draw(Canvas canvas) {
         if(down){
-            sbmp.draw(canvas, x, y);
-            sbmp.draw(canvas, x + dx, y + dy);
+            back.draw(canvas, pos.x  - back.getWidth()/2 , pos.y  - back.getWidth()/2  );
+            center.draw(canvas, pos.x - center.getWidth() / 2+ dPos.x , pos.y + dPos.y -  center.getWidth()/2);
         }
     }
 
     public boolean onTouchEvent(MotionEvent event) {
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                this.x = event.getX();
-                this.y = event.getY();
-                dx = dy = 0;
+                Down.y = event.getY();
+                Down.x = event.getX();
+                pos = Down;
+                dPos.x = dPos.y = 0.0f;
                 down = true;
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -61,9 +65,8 @@ public class Joystick extends GameObject implements Touchable {
                 if (!down) {
                     return false;
                 }
-                float dx = event.getX() - this.x;
-                float dy = event.getY() - this.y;
-                move(dx, dy);
+                Vector tempDPos = new Vector (event.getX() - Down.x , event.getY() -  Down.y);
+                move(tempDPos);
                 break;
             case MotionEvent.ACTION_UP:
                 Log.d( "ACTION_UP" , " " + down);
@@ -72,37 +75,48 @@ public class Joystick extends GameObject implements Touchable {
         return false;
     }
 
-    private void move(float dx, float dy) {
+    private void move(Vector P) {
         if (direction == Direction.vertical) {
-            dx = 0;
-            if (dy < -size) {
-                dy = -size;
-            } else if (dy > size) {
-                dy = size;
+            P.x = 0;
+            if (P.y < -size) {
+                P.y = -size;
+            } else if (P.y > size) {
+                P.y = size;
             }
         } else if (direction == Direction.horizontal) {
-            dy = 0;
-            if (dx < -size) {
-                dx = -size;
-            } else if (dx > size) {
-                dx = size;
+            P.y = 0;
+            if (P.x < -size) {
+                P.x = -size;
+            } else if (P.x > size) {
+                P.x = size;
             }
         } else {
-            float dist = (float) Math.sqrt(dx * dx + dy * dy);
+            float dist = (float) Math.sqrt(P.x * P.x + P.y * P.y);
             if (dist > size) {
-                dx = dx * size / dist;
-                dy = dy * size / dist;
+                P.x = P.x * size / dist;
+                P.y = P.y * size / dist;
             }
         }
-        this.dx = dx;
-        this.dy = dy;
-        this.angle = Math.atan2(dy, dx);
+        this.dPos = P;
+        this.angle = Math.atan2(dPos.y, dPos.x);
     }
 
-    public int getHorzDirection() {
-        if (!down) return 0;
-        if (dx == 0) return 0;
-        return angle < Math.PI / 2 && angle > -Math.PI / 2 ? 1 : -1;
+    public Vector getDirection() {
+        Vector distVector = new Vector( dPos.x - pos.x , dPos.y - pos.y);
+        if (!down) {}
+        else
+        {
+            double Length = getLength();
+            distVector.x = (float) ((size * Math.cos(angle)) * getLength());
+            distVector.y = (float) ((size * Math.sin(angle)) * getLength());
+        }
+        return distVector;
+    }
+
+    public double getLength(){
+        Vector distVector = new Vector( dPos.x - pos.x , dPos.y - pos.y);
+        float dist = (float) Math.sqrt(distVector.x * distVector.x + distVector.y * distVector.y);
+        return dist;
     }
 
     public void setOnClickRunnable(Runnable runnable) {
