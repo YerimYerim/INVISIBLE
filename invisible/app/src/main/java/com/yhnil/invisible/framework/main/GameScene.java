@@ -77,12 +77,16 @@ public abstract class GameScene {
 
     public void update() { gameWorld.update(); }
     public void draw(Canvas canvas) { gameWorld.draw(canvas); }
-    public void enter() { Log.v(TAG, "enter()"); }
-    public void exit() { Log.v(TAG, "exit()"); }
-    public void pause() { Log.v(TAG, "pause()"); }
-    public void resume() { Log.v(TAG, "resume()"); }
+    public void enter() { Log.v(TAG, "enter() - " + getClass().getSimpleName()); }
+    public void exit() { Log.v(TAG, "exit() - " + getClass().getSimpleName()); }
+    public void pause() { Log.v(TAG, "pause() - " + getClass().getSimpleName()); }
+    public void resume() { Log.v(TAG, "resume() - " + getClass().getSimpleName()); }
 
     public boolean onTouchEvent(MotionEvent event) {
         return gameWorld.onTouchEvent(event);
+    }
+
+    public void onBackPressed() {
+        pop();
     }
 }

@@ -5,12 +5,15 @@ import android.graphics.RectF;
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
+import com.yhnil.invisible.framework.main.GameWorld;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.BitmapObject;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Button;
 import com.yhnil.invisible.game.obj.Ball;
 import com.yhnil.invisible.game.obj.CityBackground;
+import com.yhnil.invisible.game.obj.PlayGround;
+import com.yhnil.invisible.game.obj.Stone;
 
 import java.util.Random;
 
@@ -42,6 +45,7 @@ public class FirstScene extends GameScene {
 
     @Override
     public void enter() {
+        super.enter();
         initObjects();
     }
 
@@ -56,22 +60,26 @@ public class FirstScene extends GameScene {
             ball = new Ball(mdpi_100, mdpi_100, dx, dy);
             gameWorld.add(Layer.enemy.ordinal(), ball);
         }
-        gameWorld.add(Layer.bg.ordinal(), new CityBackground());
+
+        gameWorld.add(Layer.enemy.ordinal(), new PlayGround(0, 0));
+        gameWorld.add(Layer.enemy.ordinal(), new Stone(0, 0));
+
         int screenWidth = UiBridge.metrics.size.x;
         RectF rbox = new RectF(UiBridge.x(-52), UiBridge.y(20), UiBridge.x(-20), UiBridge.y(62));
         scoreObject = new ScoreObject(R.mipmap.number_64x84, rbox);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
-        BitmapObject title = new BitmapObject(UiBridge.metrics.center.x, UiBridge.y(160), -150, -150, R.mipmap.slap_fight_title);
-        gameWorld.add(Layer.ui.ordinal(), title);
         timer = new GameTimer(2, 1);
 
         int cx = UiBridge.metrics.center.x;
-        int y = UiBridge.metrics.center.y;
-//        y += UiBridge.y(100);
-        gameWorld.add(Layer.ui.ordinal(), new Button(cx, y, R.mipmap.btn_tutorial, R.mipmap.blue_round_btn, R.mipmap.red_round_btn));
-        y += UiBridge.y(100);
-        gameWorld.add(Layer.ui.ordinal(), new Button(cx, y, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn));
-        y += UiBridge.y(100);
-        gameWorld.add(Layer.ui.ordinal(), new Button(cx, y, R.mipmap.btn_highscore, R.mipmap.blue_round_btn, R.mipmap.red_round_btn));
+        int y = UiBridge.metrics.center.y + UiBridge.y(100);
+        Button button = new Button(cx, y, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        button.setOnClickRunnable(new Runnable() {
+            @Override
+            public void run() {
+                SecondScene scene = new SecondScene();
+                scene.push();
+            }
+        });
+        gameWorld.add(Layer.ui.ordinal(), button);
     }
 }

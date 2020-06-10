@@ -14,6 +14,7 @@ public class Button extends BitmapObject implements Touchable {
     private final NinePatchDrawable bgNormal;
     private final NinePatchDrawable bgPress;
     private boolean capturing, pressed;
+    private Runnable onClickRunnable;
 
     public Button(float x, float y, int resId, int bgNormalResId, int bgPressResId) {
         super(x, y, 0, 0, resId);
@@ -54,9 +55,16 @@ public class Button extends BitmapObject implements Touchable {
                 pressed = false;
                 if (this.bgNormal.getBounds().contains((int)e.getX(), (int)e.getY())) {
                     Log.d(TAG, "TouchUp Inside");
+                    if (onClickRunnable != null) {
+                        onClickRunnable.run();
+                    }
                 }
                 return true;
         }
         return false;
+    }
+
+    public void setOnClickRunnable(Runnable runnable) {
+        this.onClickRunnable = runnable;
     }
 }

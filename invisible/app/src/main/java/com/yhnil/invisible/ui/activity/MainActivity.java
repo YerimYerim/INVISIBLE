@@ -1,10 +1,10 @@
 package com.yhnil.invisible.ui.activity;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.yhnil.invisible.R;
 

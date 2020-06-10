@@ -57,7 +57,15 @@ public class UiBridge {
     }
 
     private static Activity activity;
+    public static Activity getActivity() {
+        return activity;
+    }
+
     private static View view;
+    public static View getView() {
+        return view;
+    }
+
 
     public static Resources getResources() {
         return resources;
