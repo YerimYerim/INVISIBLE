@@ -5,6 +5,8 @@ import android.graphics.Color;
 import com.yhnil.invisible.framework.obj.ShapeObject;
 
 public class Core extends ShapeObject {
+    float dps; // rotate degree per second
+
     public Core(float x, float y) {
         super(x, y);
         setPentagon(10);

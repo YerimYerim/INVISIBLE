@@ -22,7 +22,8 @@ public class ShapeObject extends GameObject {
     float[] pts;
 
     Paint paint;
-    float radius;
+    float degree;
+    float radius = 0;
 
     public ShapeObject(float x, float y) {
         this.x = x;
@@ -43,8 +44,8 @@ public class ShapeObject extends GameObject {
         pts = new float[cnt * 2];
         for(int i = 0; i < cnt; ++i)
         {
-            pts[i*2+0] = (float) Math.cos((float)i/cnt*2*Math.PI)*radius;
-            pts[i*2+1] = (float) Math.sin((float)i/cnt*2*Math.PI)*radius;
+            pts[i*2+0] = (float) Math.cos((float)(i+0.5)/cnt*2*Math.PI)*radius;
+            pts[i*2+1] = (float) Math.sin((float)(i+0.5)/cnt*2*Math.PI)*radius;
         }
     }
     public void setSector(float radius) {
@@ -70,13 +71,17 @@ public class ShapeObject extends GameObject {
 
         Path path = new Path();
         for(int i = 0; i < cnt; ++i) {
+            float tx = (float) (this.pts[i * 2 + 0] * Math.cos(Math.toRadians(degree)) -
+                                this.pts[i * 2 + 1] * Math.sin(Math.toRadians(degree)));
+            float ty = (float) (this.pts[i * 2 + 0] * Math.sin(Math.toRadians(degree)) +
+                                this.pts[i * 2 + 1] * Math.cos(Math.toRadians(degree)));
             if (i == 0) {
-                path.moveTo(this.x + this.pts[0] / matUtil.scale + matUtil.tx,
-                        (this.y + this.pts[1]) / matUtil.scale + matUtil.ty);
+                path.moveTo(this.x + tx / matUtil.scale + matUtil.tx,
+                        this.y + ty / matUtil.scale + matUtil.ty);
             }
             else {
-                path.lineTo(this.x + this.pts[i * 2 + 0] / matUtil.scale + matUtil.tx,
-                        (this.y + this.pts[i * 2 + 1]) / matUtil.scale + matUtil.ty);
+                path.lineTo(this.x + tx / matUtil.scale + matUtil.tx,
+                        this.y + ty / matUtil.scale + matUtil.ty);
             }
         }
         switch (shapeType) {
@@ -88,7 +93,7 @@ public class ShapeObject extends GameObject {
                 break;
             case ShapeSector:
                 canvas.drawArc(x - r, y-r, x+r, y+r,
-                        0,60,true, paint);
+                        degree - 30,60,true, paint);
                 break;
         }
     }
