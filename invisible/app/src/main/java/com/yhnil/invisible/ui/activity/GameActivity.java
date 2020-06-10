@@ -16,13 +16,15 @@ import com.yhnil.invisible.game.scene.FirstScene;
 public class GameActivity extends AppCompatActivity {
 
     private static final long BACKKEY_INTERVAL_MSEC = 1000;
+    private GameView gameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         UiBridge.setActivity(this);
         super.onCreate(savedInstanceState);
        // setContentView(new GameView(this));
-        setContentView(new GameView(this));
+        gameView = new GameView(this);
+        setContentView(gameView);
         new FirstScene().run();
     }
 
@@ -61,5 +63,12 @@ public class GameActivity extends AppCompatActivity {
 
     public void handleBackPressed() {
         GameScene.getTop().onBackPressed();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction()!=MotionEvent.ACTION_DOWN)
+            gameView.onTouchEvent(event);
+        return super.onTouchEvent(event);
     }
 }
