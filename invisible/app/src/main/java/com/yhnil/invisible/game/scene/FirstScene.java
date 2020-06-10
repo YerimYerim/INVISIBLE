@@ -48,9 +48,13 @@ public class FirstScene extends GameScene {
 
     private void initObjects() {
         gameWorld.add(Layer.enemy.ordinal(), new PlayGround(0, 0));
-        gameWorld.add(Layer.enemy.ordinal(), new Core(0, 0));
+        Core core = new Core(0, 0);
+        gameWorld.add(Layer.enemy.ordinal(), core);
         gameWorld.add(Layer.enemy.ordinal(), new Stone(0, 0));
-        gameWorld.add(Layer.enemy.ordinal(), new DangerZone(0, 0));
+        DangerZone dangerZone = new DangerZone(0, 0);
+        gameWorld.add(Layer.enemy.ordinal(), dangerZone);
+
+        core.connectDangerZone(dangerZone);
 
         RectF rbox = new RectF(UiBridge.x(-52), UiBridge.y(20), UiBridge.x(-20), UiBridge.y(62));
         scoreObject = new ScoreObject(R.mipmap.number_64x84, rbox);
