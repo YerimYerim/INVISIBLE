@@ -29,6 +29,10 @@ public class StoneSpawner {
             if(getDistFromCenter(stone))
             {
             }
+            else
+            {
+
+            }
         }
     }
 }
