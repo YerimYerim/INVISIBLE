@@ -60,12 +60,12 @@ public class SecondScene extends GameScene {
         int sh = UiBridge.metrics.size.y;
         int cx = UiBridge.metrics.center.x;
         int cy = UiBridge.metrics.center.y;
-        player = new Player(mdpi_100, sh - mdpi_100);
-        gameWorld.add(Layer.enemy.ordinal(), player);
-        joystick = new Joystick(Joystick.Direction.normal);
-        gameWorld.add(Layer.ui.ordinal(), joystick);
-//        plane.setJoystick(joystick);
-        gameWorld.add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.cookie_run_bg_1));
+        joystick = new Joystick();
+
+        player = new Player(0, 0);
+        player.connectJoystick(joystick);
+        gameWorld.add(SecondScene.Layer.player.ordinal(), player);
+        gameWorld.add(SecondScene.Layer.ui.ordinal(), joystick);
     }
 
 }

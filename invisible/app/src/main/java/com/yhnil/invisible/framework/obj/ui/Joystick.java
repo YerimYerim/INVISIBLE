@@ -16,21 +16,16 @@ public class Joystick extends GameObject implements Touchable {
     private final SharedBitmap center;
     private Vector pos;
     private final int size;
-    private final Direction direction;
     private boolean down;
     private Vector Down;
     private Vector dPos;
     private double angle;
     private Runnable onClickRunnable;
 
-    public enum Direction {
-        normal, horizontal, vertical
-    }
-    public Joystick(Direction dir) {
+    public Joystick() {
         this.pos= new Vector(0.0f, 0.0f);
         this.dPos = new Vector(0.0f , 0.0f);
         this.Down = new Vector(0.0f , 0.0f);
-        this.direction = dir;
         this.back = SharedBitmap.load(R.mipmap.joystickback);
         this.center = SharedBitmap.load(R.mipmap.joystickcenter);
         this.down = false;
@@ -77,28 +72,12 @@ public class Joystick extends GameObject implements Touchable {
     }
 
     private void move(Vector P) {
-        if (direction == Direction.vertical) {
-            P.x = 0;
-            if (P.y < -size) {
-                P.y = -size;
-            } else if (P.y > size) {
-                P.y = size;
-            }
-        } else if (direction == Direction.horizontal) {
-            P.y = 0;
-            if (P.x < -size) {
-                P.x = -size;
-            } else if (P.x > size) {
-                P.x = size;
-            }
-        } else {
-            float dist = (float) Math.sqrt(P.x * P.x + P.y * P.y);
-            if (dist > size) {
-                P.x = P.x * size / dist;
-                P.y = P.y * size / dist;
-            }
-        }
-        this.dPos = P;
+         float dist = (float) Math.sqrt(P.x * P.x + P.y * P.y);
+         if (dist > size) {
+             P.x = P.x * size / dist;
+             P.y = P.y * size / dist;
+         }
+                this.dPos = P;
         this.angle = Math.atan2(dPos.y, dPos.x);
     }
 
