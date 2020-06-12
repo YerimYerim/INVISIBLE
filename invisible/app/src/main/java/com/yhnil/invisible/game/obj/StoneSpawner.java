@@ -7,18 +7,28 @@ import java.util.Random;
 
 public class StoneSpawner {
 
-    float degree = 0;
-    float speed  = 0;
-   // float distanceFromCenter; // rotate degree per second
-    Stone stones[] = new Stone[10];
-    StoneSpawner(){
+    Stone stones[];
+    float MaxDistance ;
+    StoneSpawner(Stone stones[] , float maxDistance){
+        this.stones = new Stone[10];
+        this.stones = stones;
+        this.MaxDistance = maxDistance;
 
     }
+    boolean getDistFromCenter(Stone stone){
+        float dist = (float) Math.sqrt(stone.getX() * stone.getX() + stone.getY() * stone.getY() );
+
+        if (dist > MaxDistance )
+            return false;
+        else
+            return true;
+    }
     public void update() {
-        for (int i = 0; i < 10; ++i)
+        for (Stone stone: stones)
         {
-            float x = (float) (stones[i].getX() + speed * Math.cos(Math.toRadians(degree)));
-            float y = (float) (stones[i].getY() + speed * Math.sin(Math.toRadians(degree)));
+            if(getDistFromCenter(stone))
+            {
+            }
         }
     }
 }
