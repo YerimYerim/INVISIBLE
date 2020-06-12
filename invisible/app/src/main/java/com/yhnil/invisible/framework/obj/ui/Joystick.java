@@ -66,6 +66,8 @@ public class Joystick extends GameObject implements Touchable {
             case MotionEvent.ACTION_UP:
                 Log.d( "ACTION_UP" , " " + down);
                 down = false;
+                dPos.x = 0;
+                dPos.y = 0;
                 return true;
         }
         return false;
@@ -82,21 +84,23 @@ public class Joystick extends GameObject implements Touchable {
     }
 
     public Vector getDirection() {
-        Vector distVector = new Vector( dPos.x - pos.x , dPos.y - pos.y);
+        Vector distVector = new Vector( dPos.x  , dPos.y );
         if (!down) {}
         else
         {
             double Length = getLength();
-            distVector.x = (float) ((size * Math.cos(angle)) * getLength());
-            distVector.y = (float) ((size * Math.sin(angle)) * getLength());
+            distVector.x = (float) (( Math.cos(angle)) * getLength());
+            distVector.y = (float) (( Math.sin(angle)) * getLength());
         }
+        Log.d("" , "x : " +distVector.x +" y:"+distVector.y  );
         return distVector;
     }
 
     public double getLength(){
-        Vector distVector = new Vector( dPos.x - pos.x , dPos.y - pos.y);
+        Vector distVector = new Vector( dPos.x  , dPos.y );
         float dist = (float) Math.sqrt(distVector.x * distVector.x + distVector.y * distVector.y);
-        return dist;
+        Log.d(" ","Len" +dist);
+        return dist / size;
     }
 
     public void setOnClickRunnable(Runnable runnable) {
