@@ -1,4 +1,4 @@
-package com.yhnil.invisible.game.obj;
+package com.yhnil.invisible.framework.obj.ui;
 
 import android.graphics.Canvas;
 import android.util.Log;
@@ -12,7 +12,6 @@ import com.yhnil.invisible.framework.util.Vector;
 
 
 public class Joystick extends GameObject implements Touchable {
-
     private final SharedBitmap back;
     private final SharedBitmap center;
     private Vector pos;
@@ -51,6 +50,7 @@ public class Joystick extends GameObject implements Touchable {
         }
     }
 
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
@@ -59,7 +59,7 @@ public class Joystick extends GameObject implements Touchable {
                 pos = Down;
                 dPos.x = dPos.y = 0.0f;
                 down = true;
-                break;
+                return true;
             case MotionEvent.ACTION_MOVE:
                 Log.d( "action move" , " " + down);
                 if (!down) {
@@ -71,6 +71,7 @@ public class Joystick extends GameObject implements Touchable {
             case MotionEvent.ACTION_UP:
                 Log.d( "ACTION_UP" , " " + down);
                 down = false;
+                return true;
         }
         return false;
     }

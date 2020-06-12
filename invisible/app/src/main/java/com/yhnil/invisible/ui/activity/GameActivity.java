@@ -23,8 +23,7 @@ public class GameActivity extends AppCompatActivity {
         UiBridge.setActivity(this);
         super.onCreate(savedInstanceState);
        // setContentView(new GameView(this));
-        gameView = new GameView(this);
-        setContentView(gameView);
+        setContentView(new GameView(this));
         new FirstScene().run();
     }
 
@@ -63,12 +62,5 @@ public class GameActivity extends AppCompatActivity {
 
     public void handleBackPressed() {
         GameScene.getTop().onBackPressed();
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction()!=MotionEvent.ACTION_DOWN)
-            gameView.onTouchEvent(event);
-        return super.onTouchEvent(event);
     }
 }

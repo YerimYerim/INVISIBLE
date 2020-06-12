@@ -5,8 +5,7 @@ import com.yhnil.invisible.framework.input.sensor.GyroSensor;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
-import com.yhnil.invisible.framework.obj.BitmapObject;
-import com.yhnil.invisible.game.obj.Joystick;
+import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.game.obj.Player;
 import com.yhnil.invisible.game.obj.HorzScrollBackground;
 
