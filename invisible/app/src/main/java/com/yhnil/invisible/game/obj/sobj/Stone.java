@@ -20,10 +20,7 @@ public class Stone extends ShapeObject {
         Random rand = new Random(seed);
         degree = (float) ((rand.nextInt(bound)) * 0.1);
     }
-    public void setPos(float x , float y){
-        this.x = x;
-        this.y = y;
-    }
+
     public void update() {
         this.x = (float) (this.x + speed * Math.cos(Math.toRadians(degree)));
         this.y = (float) (this.y + speed * Math.sin(Math.toRadians(degree)));
