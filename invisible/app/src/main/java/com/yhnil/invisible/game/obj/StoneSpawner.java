@@ -1,14 +1,18 @@
 package com.yhnil.invisible.game.obj;
 
 import com.yhnil.invisible.framework.main.GameTimer;
+import com.yhnil.invisible.game.obj.sobj.State;
 import com.yhnil.invisible.game.obj.sobj.Stone;
 
 import java.util.Random;
 
+import static com.yhnil.invisible.game.obj.sobj.State.begin;
+import static com.yhnil.invisible.game.obj.sobj.State.end;
+
 public class StoneSpawner {
 
     Stone stones[];
-    float MaxDistance ;
+    float MaxDistance  = 100;
     StoneSpawner(Stone stones[] , float maxDistance){
         this.stones = new Stone[10];
         this.stones = stones;
@@ -26,13 +30,13 @@ public class StoneSpawner {
     public void update() {
         for (Stone stone: stones)
         {
-            if(getDistFromCenter(stone))
+            if(getDistFromCenter(stone) )
             {
-
+                stone.state = end;
             }
-            else
+            else if(stone.state == end)
             {
-
+                stone.state = begin;
             }
         }
     }
