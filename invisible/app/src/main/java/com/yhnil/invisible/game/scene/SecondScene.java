@@ -35,6 +35,12 @@ public class SecondScene extends GameScene {
     @Override
     public void update() {
         super.update();
+        if (timer.done()) {
+            gameWorld.add(FirstScene.Layer.enemy.ordinal(), new Stone(0, 0));
+
+            timer.reset();
+        }
+
     }
 
     @Override
@@ -49,12 +55,12 @@ public class SecondScene extends GameScene {
     }
 
     private void initObjects() {
-        timer = new GameTimer(60, 1);
+        timer = new GameTimer(4, 1);
 
         gameWorld.add(FirstScene.Layer.enemy.ordinal(), new PlayGround(0, 0));
         Core core = new Core(0, 0);
         gameWorld.add(FirstScene.Layer.enemy.ordinal(), core);
-        gameWorld.add(FirstScene.Layer.enemy.ordinal(), new Stone(0, 0));
+       // gameWorld.add(FirstScene.Layer.enemy.ordinal(), new Stone(0, 0));
         DangerZone dangerZone = new DangerZone(0, 0);
         gameWorld.add(FirstScene.Layer.enemy.ordinal(), dangerZone);
 

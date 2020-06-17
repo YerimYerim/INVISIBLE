@@ -17,11 +17,9 @@ public class StoneSpawner {
         this.stones = new Stone[10];
         this.stones = stones;
         this.MaxDistance = maxDistance;
-
     }
     boolean getDistFromCenter(Stone stone){
         float dist = (float) Math.sqrt(stone.getX() * stone.getX() + stone.getY() * stone.getY() );
-
         if (dist > MaxDistance - stone.getRadius())
             return false;
         else

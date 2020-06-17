@@ -23,6 +23,5 @@ public class Player extends ShapeObject {
    //     if(joystick.onTouchEvent()
          x = x+joystick.getDirection().x;
          y = y+joystick.getDirection().y;
-
     }
 }

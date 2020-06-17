@@ -21,7 +21,6 @@ public class FirstScene extends GameScene {
         bg, enemy, player, ui, COUNT
     }
 
-    private Ball ball;
     private ScoreObject scoreObject;
     private GameTimer timer;
 

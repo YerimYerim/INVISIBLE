@@ -1,6 +1,7 @@
 package com.yhnil.invisible.framework.obj.ui;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -21,6 +22,7 @@ public class Joystick extends GameObject implements Touchable {
     private Vector dPos;
     private double angle;
     private Runnable onClickRunnable;
+    private Paint paint;
 
     public Joystick() {
         this.pos= new Vector(0.0f, 0.0f);
@@ -30,6 +32,8 @@ public class Joystick extends GameObject implements Touchable {
         this.center = SharedBitmap.load(R.mipmap.joystickcenter);
         this.down = false;
         this.size = back.getWidth()/2  - center.getWidth()/2;
+        this.paint = new Paint();
+        this.paint.setAlpha((int) (255*0.5));
     }
 
     @Override
@@ -40,8 +44,8 @@ public class Joystick extends GameObject implements Touchable {
     @Override
     public void draw(Canvas canvas) {
         if(down){
-            back.draw(canvas, pos.x  - back.getWidth()/2 , pos.y  - back.getWidth()/2  );
-            center.draw(canvas, pos.x - center.getWidth() / 2+ dPos.x , pos.y + dPos.y -  center.getWidth()/2);
+            back.draw(canvas, pos.x  - back.getWidth()/2 , pos.y  - back.getWidth()/2, paint );
+            center.draw(canvas, pos.x - center.getWidth() / 2+ dPos.x , pos.y + dPos.y -  center.getWidth()/2, paint);
         }
     }
 
