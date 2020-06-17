@@ -31,10 +31,15 @@ public class Core extends ShapeObject {
     }
 
     public void update() {
-        if(dangerZone != null)
-            dangerZone.setDegree(degree);
         float dt = GameTimer.getTimeDiffSeconds();
         degree += dps * dt;
+
         setDegree(degree);
+        if(dangerZone != null)
+            dangerZone.setDegree(degree);
+        int index = 0;
+        for(CoreStone coreStone : coreStones)
+            if(coreStone != null)
+                coreStone.setDegree(degree + 60 * index++);
     }
 }

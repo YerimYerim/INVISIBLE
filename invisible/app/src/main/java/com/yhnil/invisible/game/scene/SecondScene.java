@@ -84,9 +84,8 @@ public class SecondScene extends GameScene {
         for(int color : colors)
         {
             CoreStone coreStone = new CoreStone(0, 0, color);
-            core.connectCoreStone(coreStone, index);
+            core.connectCoreStone(coreStone, index++);
             gameWorld.add(FirstScene.Layer.enemy.ordinal(), coreStone);
-            index += 1;
         }
     }
 
