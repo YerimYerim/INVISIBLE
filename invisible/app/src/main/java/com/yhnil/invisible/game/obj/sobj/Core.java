@@ -10,7 +10,7 @@ public class Core extends ShapeObject {
     float dps; // rotate degree per second
 
     private DangerZone dangerZone = null;
-    private CoreStone coreStones[] = null;
+    private CoreStone coreStones[] = new CoreStone[6];
 
     public Core(float x, float y) {
         super(x, y);
@@ -23,6 +23,11 @@ public class Core extends ShapeObject {
     public void connectDangerZone(DangerZone dangerZone)
     {
         this.dangerZone = dangerZone;
+    }
+
+    public void connectCoreStone(CoreStone coreStone, int index)
+    {
+        this.coreStones[index] = coreStone;
     }
 
     public void update() {

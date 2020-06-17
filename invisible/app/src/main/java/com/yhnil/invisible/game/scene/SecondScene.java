@@ -1,5 +1,7 @@
 package com.yhnil.invisible.game.scene;
 
+import android.graphics.Color;
+
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.input.sensor.GyroSensor;
 import com.yhnil.invisible.framework.main.GameScene;
@@ -69,8 +71,23 @@ public class SecondScene extends GameScene {
         gameWorld.add(SecondScene.Layer.ui.ordinal(), joystick);
 
 
+        int colors[] = {
+                Color.RED,
+                Color.GREEN,
+                Color.BLUE,
+                Color.CYAN,
+                Color.MAGENTA,
+                Color.YELLOW
+        };
 
-        gameWorld.add(FirstScene.Layer.enemy.ordinal(), new CoreStone(0, 0));
+        int index = 0;
+        for(int color : colors)
+        {
+            CoreStone coreStone = new CoreStone(0, 0, color);
+            core.connectCoreStone(coreStone, index);
+            gameWorld.add(FirstScene.Layer.enemy.ordinal(), coreStone);
+            index += 1;
+        }
     }
 
 }
