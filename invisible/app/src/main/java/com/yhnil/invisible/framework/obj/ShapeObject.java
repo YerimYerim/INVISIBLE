@@ -48,6 +48,17 @@ public class ShapeObject extends GameObject {
             pts[i*2+1] = (float) Math.sin((float)(i+0.5)/cnt*2*Math.PI)*radius;
         }
     }
+    public void setPentagonUnit(float radius) {
+        shapeType = ShapeType.ShapePolygon;
+        cnt = 3;
+        pts = new float[cnt * 2];
+        pts[0] = 0;
+        pts[1] = 0;
+        pts[2] = (float) Math.cos(Math.PI / +6.0f)*radius;
+        pts[3] = (float) Math.sin(Math.PI / +6.0f)*radius;
+        pts[4] = (float) Math.cos(Math.PI / -6.0f)*radius;
+        pts[5] = (float) Math.sin(Math.PI / -6.0f)*radius;
+    }
     public void setSector(float radius) {
         shapeType = ShapeType.ShapeSector;
         this.radius = radius;

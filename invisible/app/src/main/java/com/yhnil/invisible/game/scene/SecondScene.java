@@ -9,6 +9,7 @@ import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.game.obj.Player;
 import com.yhnil.invisible.game.obj.HorzScrollBackground;
 import com.yhnil.invisible.game.obj.sobj.Core;
+import com.yhnil.invisible.game.obj.sobj.CoreStone;
 import com.yhnil.invisible.game.obj.sobj.DangerZone;
 import com.yhnil.invisible.game.obj.sobj.PlayGround;
 import com.yhnil.invisible.game.obj.sobj.Stone;
@@ -66,6 +67,10 @@ public class SecondScene extends GameScene {
         player.connectJoystick(joystick);
         gameWorld.add(SecondScene.Layer.player.ordinal(), player);
         gameWorld.add(SecondScene.Layer.ui.ordinal(), joystick);
+
+
+
+        gameWorld.add(FirstScene.Layer.enemy.ordinal(), new CoreStone(0, 0));
     }
 
 }
