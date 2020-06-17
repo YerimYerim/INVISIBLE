@@ -8,6 +8,10 @@ import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.game.obj.Player;
 import com.yhnil.invisible.game.obj.HorzScrollBackground;
+import com.yhnil.invisible.game.obj.sobj.Core;
+import com.yhnil.invisible.game.obj.sobj.DangerZone;
+import com.yhnil.invisible.game.obj.sobj.PlayGround;
+import com.yhnil.invisible.game.obj.sobj.Stone;
 
 import java.util.Random;
 
@@ -31,35 +35,31 @@ public class SecondScene extends GameScene {
     @Override
     public void update() {
         super.update();
-//        Log.d(TAG, "Score: " + timer.getRawIndex());
-        if (timer.done()) {
-            pop();
-        }
-
     }
 
     @Override
     public void enter() {
         super.enter();
-        GyroSensor.get();
         initObjects();
     }
 
     @Override
     public void exit() {
-        GyroSensor.get().destroy();
         super.exit();
     }
 
     private void initObjects() {
-
         timer = new GameTimer(60, 1);
-        Random rand = new Random();
-        int mdpi_100 = UiBridge.x(100);
-        int sw = UiBridge.metrics.size.x;
-        int sh = UiBridge.metrics.size.y;
-        int cx = UiBridge.metrics.center.x;
-        int cy = UiBridge.metrics.center.y;
+
+        gameWorld.add(FirstScene.Layer.enemy.ordinal(), new PlayGround(0, 0));
+        Core core = new Core(0, 0);
+        gameWorld.add(FirstScene.Layer.enemy.ordinal(), core);
+        gameWorld.add(FirstScene.Layer.enemy.ordinal(), new Stone(0, 0));
+        DangerZone dangerZone = new DangerZone(0, 0);
+        gameWorld.add(FirstScene.Layer.enemy.ordinal(), dangerZone);
+
+        core.connectDangerZone(dangerZone);
+
         joystick = new Joystick();
 
         player = new Player(0, 0);
