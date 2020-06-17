@@ -13,7 +13,7 @@ public class Core extends ShapeObject {
 
     public Core(float x, float y) {
         super(x, y);
-        setPentagon(10);
+        setPentagon(20);
         setColor(Color.BLUE);
 
         dps = 45;
