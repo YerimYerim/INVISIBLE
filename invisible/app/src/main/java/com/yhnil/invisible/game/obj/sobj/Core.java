@@ -10,10 +10,11 @@ public class Core extends ShapeObject {
     float dps; // rotate degree per second
 
     private DangerZone dangerZone = null;
+    private CoreStone coreStones[] = new CoreStone[6];
 
     public Core(float x, float y) {
         super(x, y);
-        setPentagon(10);
+        setPentagon(20);
         setColor(Color.BLUE);
 
         dps = 45;
@@ -24,11 +25,21 @@ public class Core extends ShapeObject {
         this.dangerZone = dangerZone;
     }
 
+    public void connectCoreStone(CoreStone coreStone, int index)
+    {
+        this.coreStones[index] = coreStone;
+    }
+
     public void update() {
-        if(dangerZone != null)
-            dangerZone.setDegree(degree);
         float dt = GameTimer.getTimeDiffSeconds();
         degree += dps * dt;
+
         setDegree(degree);
+        if(dangerZone != null)
+            dangerZone.setDegree(degree);
+        int index = 0;
+        for(CoreStone coreStone : coreStones)
+            if(coreStone != null)
+                coreStone.setDegree(degree + 60 * index++);
     }
 }
