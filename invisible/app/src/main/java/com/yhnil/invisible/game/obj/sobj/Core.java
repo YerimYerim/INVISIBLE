@@ -10,6 +10,7 @@ public class Core extends ShapeObject {
     float dps; // rotate degree per second
 
     private DangerZone dangerZone = null;
+    private CoreStone coreStones[] = null;
 
     public Core(float x, float y) {
         super(x, y);
