@@ -20,19 +20,17 @@ public class Core extends ShapeObject {
         dps = 45;
     }
 
-    public void connectDangerZone(DangerZone dangerZone)
-    {
+    public void connectDangerZone(DangerZone dangerZone) {
         this.dangerZone = dangerZone;
     }
 
-    public void connectCoreStone(CoreStone coreStone, int index)
-    {
+    public void connectCoreStone(CoreStone coreStone, int index) {
         this.coreStones[index] = coreStone;
     }
 
     public void update() {
         float dt = GameTimer.getTimeDiffSeconds();
-        degree += dps * dt;
+        degree += (dps * dt) % 360;
 
         setDegree(degree);
         if(dangerZone != null)
