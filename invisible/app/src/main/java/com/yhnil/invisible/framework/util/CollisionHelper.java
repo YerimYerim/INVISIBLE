@@ -3,11 +3,15 @@ package com.yhnil.invisible.framework.util;
 import android.graphics.RectF;
 
 import com.yhnil.invisible.framework.iface.BoxCollidable;
+import com.yhnil.invisible.framework.iface.CircleCollidable;
 import com.yhnil.invisible.framework.main.GameObject;
 
 public class CollisionHelper {
     private static RectF rect1 = new RectF();
     private static RectF rect2 = new RectF();
+    public static boolean collide(GameObject o1, GameObject o2){
+
+    }
     public static boolean collides(BoxCollidable o1, BoxCollidable o2) {
         o1.getBox(rect1);
         o2.getBox(rect2);
