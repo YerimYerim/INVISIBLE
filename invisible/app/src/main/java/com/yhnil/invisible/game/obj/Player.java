@@ -33,10 +33,10 @@ public class Player extends ShapeObject implements CircleCollidable{
 
     public void update() {
    //     if(joystick.onTouchEvent()
-         x = x+joystick.getDirection().x;
-         y = y+joystick.getDirection().y;
-
+        x = x+joystick.getDirection().x;
+        y = y+joystick.getDirection().y;
         checkItemCollision();
+        checkPlayGroundCollision();
     }
 
     private void checkItemCollision() {
@@ -53,7 +53,21 @@ public class Player extends ShapeObject implements CircleCollidable{
             }
         }
     }
+    private void checkPlayGroundCollision() {
+        ArrayList<GameObject> items = SecondScene.get().getGameWorld().objectsAtLayer(SecondScene.Layer.bg.ordinal());
 
+        for (GameObject obj : items) {
+            if (!(obj instanceof CircleCollidable))
+            {
+                continue;
+            }
+            if (!CollisionHelper.collides(this, (CircleCollidable) obj))
+            {
+                x = x-joystick.getDirection().x;
+                y = y-joystick.getDirection().y;
+            }
+        }
+    }
     @Override
     public float getCircle(Vector position) {
         position.x = x;
