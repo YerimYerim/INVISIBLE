@@ -1,12 +1,14 @@
 package com.yhnil.invisible.game.scene;
 
 import android.graphics.Color;
+import android.graphics.RectF;
 
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.input.sensor.GyroSensor;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
+import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.game.obj.Player;
 import com.yhnil.invisible.game.obj.HorzScrollBackground;
@@ -21,6 +23,7 @@ import java.util.Random;
 public class SecondScene extends GameScene {
     private static final String TAG = SecondScene.class.getSimpleName();
     private Joystick joystick;
+    private ScoreObject scoreObject;
 
     public enum Layer {
         bg, corestone, light, stone, player, ui, joystick, COUNT
@@ -41,7 +44,7 @@ public class SecondScene extends GameScene {
         super.update();
         if (timer.done()) {
             gameWorld.add(Layer.stone.ordinal(), new Stone(0, 0));
-
+            scoreObject.add(10);
             timer.reset();
         }
 
@@ -60,6 +63,9 @@ public class SecondScene extends GameScene {
     }
 
     private void initObjects() {
+        RectF rbox = new RectF(UiBridge.x(-52), UiBridge.y(20), UiBridge.x(-20), UiBridge.y(62));
+        scoreObject = new ScoreObject(R.mipmap.number_64x84, rbox);
+        gameWorld.add(Layer.ui.ordinal(), scoreObject);
         timer = new GameTimer(4, 1);
 
         gameWorld.add(SecondScene.Layer.bg.ordinal(), new PlayGround(0, 0));
