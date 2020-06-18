@@ -21,7 +21,7 @@ public class SecondScene extends GameScene {
     private Joystick joystick;
     public ScoreObject scoreObject;
     public DangerZone dangerZone;
-
+    public Core core;
     public enum Layer {
         bg, corestone, light, stone, player, ui, joystick, COUNT
     }
@@ -65,7 +65,7 @@ public class SecondScene extends GameScene {
 
         gameWorld.add(SecondScene.Layer.bg.ordinal(), new PlayGround(0, 0));
 
-        Core core = new Core(0, 0);
+        core = new Core(0, 0);
         gameWorld.add(Layer.corestone.ordinal(), core);
 
         dangerZone = new DangerZone(0, 0);

@@ -44,7 +44,8 @@ public class OverScene extends GameScene {
         button.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
-               OverScene.pop();
+               SecondScene secondScene = new SecondScene();
+               secondScene.push();
             }
         });
         gameWorld.add(Layer.ui.ordinal(), button);
