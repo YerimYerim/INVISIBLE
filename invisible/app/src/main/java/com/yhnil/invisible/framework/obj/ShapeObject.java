@@ -103,6 +103,7 @@ public class ShapeObject extends GameObject {
                 canvas.drawCircle(x, y, r, paint);
                 break;
             case ShapePolygon:
+                canvas.drawCircle(x, y, r, paint);
                 canvas.drawPath(path, paint);
                 break;
             case ShapeSector:
