@@ -1,6 +1,7 @@
 package com.yhnil.invisible.game.obj;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import com.yhnil.invisible.framework.iface.CircleCollidable;
 import com.yhnil.invisible.framework.main.GameObject;
