@@ -1,18 +1,13 @@
 package com.yhnil.invisible.game.obj;
 
 import android.graphics.Color;
-import android.util.Log;
 
-import com.yhnil.invisible.framework.iface.BoxCollidable;
 import com.yhnil.invisible.framework.iface.CircleCollidable;
 import com.yhnil.invisible.framework.main.GameObject;
-import com.yhnil.invisible.framework.main.GameScene;
-import com.yhnil.invisible.framework.main.GameWorld;
 import com.yhnil.invisible.framework.obj.ShapeObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.framework.util.CollisionHelper;
 import com.yhnil.invisible.framework.util.Vector;
-import com.yhnil.invisible.game.obj.sobj.Stone;
 import com.yhnil.invisible.game.scene.SecondScene;
 
 import java.util.ArrayList;

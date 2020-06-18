@@ -1,7 +1,5 @@
 package com.yhnil.invisible.game.scene;
 
-import android.graphics.RectF;
-
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
