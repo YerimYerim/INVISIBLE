@@ -9,7 +9,6 @@ import com.yhnil.invisible.framework.obj.ui.Button;
 
 public class OverScene extends GameScene {
     private static final String TAG = OverScene.class.getSimpleName();
-
     public enum Layer {
         bg, enemy, player, ui, COUNT
     }
