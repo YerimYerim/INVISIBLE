@@ -23,7 +23,7 @@ public class SecondScene extends GameScene {
     private Joystick joystick;
 
     public enum Layer {
-        bg, enemy, player, ui, COUNT , joystick
+        bg, corestone, light, stone, player, ui, joystick, COUNT
     }
 
     private Player player;
@@ -39,7 +39,7 @@ public class SecondScene extends GameScene {
     public void update() {
         super.update();
         if (timer.done()) {
-            gameWorld.add(FirstScene.Layer.enemy.ordinal(), new Stone(0, 0));
+            gameWorld.add(Layer.stone.ordinal(), new Stone(0, 0));
 
             timer.reset();
         }
@@ -60,22 +60,22 @@ public class SecondScene extends GameScene {
     private void initObjects() {
         timer = new GameTimer(4, 1);
 
-        gameWorld.add(FirstScene.Layer.enemy.ordinal(), new PlayGround(0, 0));
+        gameWorld.add(SecondScene.Layer.bg.ordinal(), new PlayGround(0, 0));
+
         Core core = new Core(0, 0);
-        gameWorld.add(FirstScene.Layer.enemy.ordinal(), core);
-       // gameWorld.add(FirstScene.Layer.enemy.ordinal(), new Stone(0, 0));
+        gameWorld.add(Layer.corestone.ordinal(), core);
+
         DangerZone dangerZone = new DangerZone(0, 0);
-        gameWorld.add(FirstScene.Layer.enemy.ordinal(), dangerZone);
-
         core.connectDangerZone(dangerZone);
+        gameWorld.add(Layer.light.ordinal(), dangerZone);
 
-        joystick = new Joystick();
 
         player = new Player(0, 0);
-        player.connectJoystick(joystick);
-        gameWorld.add(SecondScene.Layer.player.ordinal(), player);
-        gameWorld.add(SecondScene.Layer.ui.ordinal(), joystick);
+        gameWorld.add(Layer.player.ordinal(), player);
 
+        joystick = new Joystick();
+        player.connectJoystick(joystick);
+        gameWorld.add(Layer.joystick.ordinal(), joystick);
 
         int colors[] = {
                 Color.RED,
@@ -91,7 +91,7 @@ public class SecondScene extends GameScene {
         {
             CoreStone coreStone = new CoreStone(0, 0, color);
             core.connectCoreStone(coreStone, index++);
-            gameWorld.add(FirstScene.Layer.enemy.ordinal(), coreStone);
+            gameWorld.add(SecondScene.Layer.corestone.ordinal(), coreStone);
         }
     }
 
