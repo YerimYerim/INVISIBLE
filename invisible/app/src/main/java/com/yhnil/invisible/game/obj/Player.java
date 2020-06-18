@@ -46,7 +46,10 @@ public class Player extends ShapeObject implements CircleCollidable{
             if (!(obj instanceof CircleCollidable))
                 continue;
             if (CollisionHelper.collides(this, (CircleCollidable) obj))
+            {
+                setColor(((ShapeObject)obj).getColor());
                 obj.remove();
+            }
         }
     }
 

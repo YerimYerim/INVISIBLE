@@ -29,6 +29,9 @@ public class ShapeObject extends GameObject {
     public float getRadius() {
         return radius;
     }
+    public int getColor(){
+        return paint.getColor();
+    }
 
     public ShapeObject(float x, float y) {
         this.x = x;
