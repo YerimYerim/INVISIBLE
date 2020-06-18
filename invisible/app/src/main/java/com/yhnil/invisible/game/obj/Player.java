@@ -55,9 +55,11 @@ public class Player extends ShapeObject implements CircleCollidable{
         myDegree = (myDegree + 360) % 360;
 
         float gap = Math.abs(other - myDegree) % 360;
-        if(gap < 30 || gap > 330) {
-            OverScene scene = new OverScene();
-            scene.push();
+        if(getColor() != SecondScene.get().dangerZone.getColor()){
+            if(gap < 30 || gap > 330) {
+                OverScene scene = new OverScene();
+                scene.push();
+            }
         }
     }
     private void checkPlayGroundCollision() {
