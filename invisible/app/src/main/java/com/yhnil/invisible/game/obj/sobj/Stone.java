@@ -3,13 +3,15 @@ package com.yhnil.invisible.game.obj.sobj;
 import android.graphics.Color;
 import android.util.Log;
 
+import com.yhnil.invisible.framework.iface.CircleCollidable;
 import com.yhnil.invisible.framework.obj.ShapeObject;
+import com.yhnil.invisible.framework.util.Vector;
 
 import java.util.Random;
 
 import static com.yhnil.invisible.game.obj.sobj.State.begin;
 
-public class Stone extends ShapeObject {
+public class Stone extends ShapeObject implements CircleCollidable {
     public float degree;
     public float speed = 1.f;
     public float timecount = 0;
@@ -58,5 +60,12 @@ public class Stone extends ShapeObject {
             this.remove();
             // 여기서 없애주면 됩니다.
         }
+    }
+
+    @Override
+    public float getCircle(Vector position) {
+        position.x = x;
+        position.y = y;
+        return getRadius();
     }
 }

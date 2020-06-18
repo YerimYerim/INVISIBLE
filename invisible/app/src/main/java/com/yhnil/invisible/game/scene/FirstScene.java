@@ -1,7 +1,6 @@
 package com.yhnil.invisible.game.scene;
 
 import android.graphics.RectF;
-import android.util.Log;
 
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.main.GameScene;
@@ -9,11 +8,6 @@ import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Button;
-import com.yhnil.invisible.game.obj.Ball;
-import com.yhnil.invisible.game.obj.sobj.Core;
-import com.yhnil.invisible.game.obj.sobj.DangerZone;
-import com.yhnil.invisible.game.obj.sobj.PlayGround;
-import com.yhnil.invisible.game.obj.sobj.Stone;
 
 public class FirstScene extends GameScene {
     private static final String TAG = FirstScene.class.getSimpleName();
@@ -33,7 +27,6 @@ public class FirstScene extends GameScene {
     @Override
     public void update() {
         super.update();
-        Log.d(TAG, "Score: " + timer.getRawIndex());
         if (timer.done()) {
             scoreObject.add(100);
             timer.reset();

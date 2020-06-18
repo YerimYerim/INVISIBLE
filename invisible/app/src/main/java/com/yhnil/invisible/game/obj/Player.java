@@ -1,6 +1,7 @@
 package com.yhnil.invisible.game.obj;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import com.yhnil.invisible.framework.iface.BoxCollidable;
 import com.yhnil.invisible.framework.iface.CircleCollidable;
@@ -39,16 +40,13 @@ public class Player extends ShapeObject implements CircleCollidable{
     }
 
     private void checkItemCollision() {
-
         ArrayList<GameObject> items = SecondScene.get().getGameWorld().objectsAtLayer(SecondScene.Layer.stone.ordinal());
+
         for (GameObject obj : items) {
-            if (!(obj instanceof CircleCollidable)) {
+            if (!(obj instanceof CircleCollidable))
                 continue;
-            }
-            if (CollisionHelper.collides(this, (CircleCollidable) obj)) {
-                GameWorld gw = GameScene.getTop().getGameWorld();
-                gw.removeObject(obj);
-            }
+            if (CollisionHelper.collides(this, (CircleCollidable) obj))
+                obj.remove();
         }
     }
 

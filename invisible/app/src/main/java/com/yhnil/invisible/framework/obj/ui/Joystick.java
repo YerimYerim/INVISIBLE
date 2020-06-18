@@ -2,7 +2,6 @@ package com.yhnil.invisible.framework.obj.ui;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import com.yhnil.invisible.R;
@@ -60,7 +59,6 @@ public class Joystick extends GameObject implements Touchable {
                 down = true;
                 return true;
             case MotionEvent.ACTION_MOVE:
-                Log.d( "action move" , " " + down);
                 if (!down) {
                     return false;
                 }
@@ -68,7 +66,6 @@ public class Joystick extends GameObject implements Touchable {
                 move(tempDPos);
                 break;
             case MotionEvent.ACTION_UP:
-                Log.d( "ACTION_UP" , " " + down);
                 down = false;
                 dPos.x = 0;
                 dPos.y = 0;
@@ -83,7 +80,7 @@ public class Joystick extends GameObject implements Touchable {
              P.x = P.x * size / dist;
              P.y = P.y * size / dist;
          }
-                this.dPos = P;
+         this.dPos = P;
         this.angle = Math.atan2(dPos.y, dPos.x);
     }
 
@@ -101,7 +98,6 @@ public class Joystick extends GameObject implements Touchable {
     public double getLength(){
         Vector distVector = new Vector( dPos.x  , dPos.y );
         float dist = (float) Math.sqrt(distVector.x * distVector.x + distVector.y * distVector.y);
-        Log.d(" ","Len" +dist);
         return dist / size;
     }
 
