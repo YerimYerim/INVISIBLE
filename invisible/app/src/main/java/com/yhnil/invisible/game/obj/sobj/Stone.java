@@ -13,7 +13,7 @@ import static com.yhnil.invisible.game.obj.sobj.State.begin;
 
 public class Stone extends ShapeObject implements CircleCollidable {
     public float degree;
-    public float speed = 1.f;
+    public float speed = .5f;
     public float timecount = 0;
     public float starttime;
     public State state = begin;
@@ -33,7 +33,6 @@ public class Stone extends ShapeObject implements CircleCollidable {
         long seed = System.currentTimeMillis();
         Random rand = new Random(seed);
         setPentagon(5);
-
         int colorindex = 6;
         setColor(color[rand.nextInt(colorindex)]);
         int bound = 3600;
@@ -45,8 +44,7 @@ public class Stone extends ShapeObject implements CircleCollidable {
         float distX = this.x;
         float distY = this.y;
         float dist = (float) Math.sqrt(distX * distX + distY * distY );
-        Log.d("", "x "+x+ "y"+y);
-        if (dist > MaxDistance)
+        if (dist > MaxDistance - 5)
             return true;
         else
             return false;
@@ -54,11 +52,8 @@ public class Stone extends ShapeObject implements CircleCollidable {
     public void update() {
         this.x = (float) (this.x + speed * Math.cos(Math.toRadians(degree)));
         this.y = (float) (this.y + speed * Math.sin(Math.toRadians(degree)));
-        if(IsFarDistFromCenter())
-        {
-            Log.d("", "리무브됨");
+        if(IsFarDistFromCenter()){
             this.remove();
-            // 여기서 없애주면 됩니다.
         }
     }
 
