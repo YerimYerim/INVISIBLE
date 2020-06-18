@@ -52,6 +52,14 @@ public class Player extends ShapeObject implements CircleCollidable{
                 obj.remove();
             }
         }
+        float myDegree = (float) (Math.atan2(y, x) / Math.PI * 180.f);
+        float other = SecondScene.get().dangerZone.getDegree();
+
+        myDegree = (myDegree + 360) % 360;
+
+        float gap = Math.abs(other - myDegree) % 360;
+        if(gap < 30 || gap > 330)
+            Log.d("Degree", "" + gap);
     }
 
     @Override

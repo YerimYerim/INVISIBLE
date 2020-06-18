@@ -24,6 +24,7 @@ public class SecondScene extends GameScene {
     private static final String TAG = SecondScene.class.getSimpleName();
     private Joystick joystick;
     public ScoreObject scoreObject;
+    public DangerZone dangerZone;
 
     public enum Layer {
         bg, corestone, light, stone, player, ui, joystick, COUNT
@@ -73,7 +74,7 @@ public class SecondScene extends GameScene {
         Core core = new Core(0, 0);
         gameWorld.add(Layer.corestone.ordinal(), core);
 
-        DangerZone dangerZone = new DangerZone(0, 0);
+        dangerZone = new DangerZone(0, 0);
         core.connectDangerZone(dangerZone);
         gameWorld.add(Layer.light.ordinal(), dangerZone);
 
