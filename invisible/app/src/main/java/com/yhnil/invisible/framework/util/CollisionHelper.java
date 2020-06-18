@@ -54,9 +54,8 @@ public class CollisionHelper {
         return true;
     }
     public static boolean collides(CircleCollidable o1, CircleCollidable o2) {
-        float radius1 = 0, radius2 = 0;
-        o1.getCircle(pos1, radius1);
-        o2.getCircle(pos2, radius2);
+        float radius1 = o1.getCircle(pos1);
+        float radius2 = o2.getCircle(pos2);
 
         if(getDistance((GameObject)o1, (GameObject)o2) > radius1 + radius2)
             return false;

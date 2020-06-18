@@ -29,6 +29,7 @@ public class SecondScene extends GameScene {
     private Player player;
 
     private GameTimer timer;
+    private static SecondScene instance;
 
     @Override
     protected int getLayerCount() {
@@ -49,6 +50,7 @@ public class SecondScene extends GameScene {
     @Override
     public void enter() {
         super.enter();
+        instance = this;
         initObjects();
     }
 
@@ -95,4 +97,7 @@ public class SecondScene extends GameScene {
         }
     }
 
+    public static SecondScene get() {
+        return instance;
+    }
 }

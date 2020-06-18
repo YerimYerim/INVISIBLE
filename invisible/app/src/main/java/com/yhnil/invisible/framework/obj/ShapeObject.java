@@ -25,9 +25,14 @@ public class ShapeObject extends GameObject {
     float degree;
     float radius = 0;
 
+    @Override
+    public float getRadius() {
+        return radius;
+    }
+
     public ShapeObject(float x, float y) {
-        this.x = x;
-        this.y = y;
+        this.x = 50;
+        this.y = 50;
         matUtil = new MatUtil();
         paint = new Paint();
 
@@ -90,12 +95,12 @@ public class ShapeObject extends GameObject {
             float ty = (float) (this.pts[i * 2 + 0] * Math.sin(Math.toRadians(degree)) +
                                 this.pts[i * 2 + 1] * Math.cos(Math.toRadians(degree)));
             if (i == 0) {
-                path.moveTo(this.x + tx / matUtil.scale + matUtil.tx,
-                        this.y + ty / matUtil.scale + matUtil.ty);
+                path.moveTo((this.x + tx) / matUtil.scale + matUtil.tx,
+                        (this.y + ty) / matUtil.scale + matUtil.ty);
             }
             else {
-                path.lineTo(this.x + tx / matUtil.scale + matUtil.tx,
-                        this.y + ty / matUtil.scale + matUtil.ty);
+                path.lineTo((this.x + tx) / matUtil.scale + matUtil.tx,
+                        (this.y + ty) / matUtil.scale + matUtil.ty);
             }
         }
         switch (shapeType) {

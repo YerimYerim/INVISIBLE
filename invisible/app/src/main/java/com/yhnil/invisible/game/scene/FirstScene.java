@@ -1,6 +1,7 @@
 package com.yhnil.invisible.game.scene;
 
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.main.GameScene;
@@ -32,7 +33,7 @@ public class FirstScene extends GameScene {
     @Override
     public void update() {
         super.update();
-//        Log.d(TAG, "Score: " + timer.getRawIndex());
+        Log.d(TAG, "Score: " + timer.getRawIndex());
         if (timer.done()) {
             scoreObject.add(100);
             timer.reset();
