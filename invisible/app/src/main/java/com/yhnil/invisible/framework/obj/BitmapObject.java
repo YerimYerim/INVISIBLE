@@ -3,15 +3,17 @@ package com.yhnil.invisible.framework.obj;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
+import com.yhnil.invisible.framework.iface.BoxCollidable;
 import com.yhnil.invisible.framework.main.GameObject;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.res.bitmap.SharedBitmap;
 
-public class BitmapObject extends GameObject {
+public class BitmapObject extends GameObject implements BoxCollidable {
     private static final String TAG = BitmapObject.class.getSimpleName();
-    protected final SharedBitmap sbmp;
+    protected SharedBitmap sbmp;
     protected final RectF dstRect;
-    protected final int width, height;
+    protected int width;
+    protected int height;
 
     public BitmapObject(float x, float y, int width, int height, int resId) {
         sbmp = SharedBitmap.load(resId);
@@ -45,5 +47,15 @@ public class BitmapObject extends GameObject {
         dstRect.right = x + halfWidth;
         dstRect.bottom = y + halfHeight;
         canvas.drawBitmap(sbmp.getBitmap(), null, dstRect, null);
+    }
+
+    @Override
+    public void getBox(RectF rect) {
+        int hw = width / 2;
+        int hh = height / 2;
+        rect.left = x - hw;
+        rect.top = y - hh;
+        rect.right = x + hw;
+        rect.bottom = y + hh;
     }
 }

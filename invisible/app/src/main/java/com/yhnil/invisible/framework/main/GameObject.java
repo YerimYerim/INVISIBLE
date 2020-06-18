@@ -34,4 +34,12 @@ public class GameObject {
     public void releaseTouch() {
         GameScene.getTop().getGameWorld().releaseTouch();
     }
+    public void move(float dx, float dy) {
+        x += dx;
+        y += dy;
+    }
+    public void remove() {
+        GameWorld gw = GameScene.getTop().getGameWorld();
+        gw.removeObject(this);
+    }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class GameWorld {
     private static final String TAG = GameWorld.class.getSimpleName();
-    protected RecyclePool recyclePool;
+    protected RecyclePool recyclePool = new RecyclePool();
     protected ArrayList<ArrayList<GameObject>> layers;
     protected ArrayList<GameObject> trash = new ArrayList<>();
     protected Touchable capturingObject;
@@ -22,6 +22,10 @@ public class GameWorld {
             Log.d(TAG, "Adding layer " + i);
             layers.add(new ArrayList<GameObject>());
         }
+    }
+
+    public ArrayList<GameObject> objectsAtLayer(int layer) {
+        return layers.get(layer);
     }
 
     public void draw(Canvas canvas) {
@@ -44,6 +48,13 @@ public class GameWorld {
     }
 
     public void add(final int layerIndex, final GameObject obj) {
+        ArrayList<GameObject> objects = layers.get(layerIndex);
+        int index = objects.indexOf(obj);
+        if (index >= 0) {
+            Log.e(TAG, "Duplicated: " + index + " / " + objects.size() + " : " + obj);
+            return;
+        }
+
         UiBridge.post(new Runnable() {
             @Override
             public void run() {
@@ -53,26 +64,21 @@ public class GameWorld {
         });
     }
     private void clearTrash() {
-        UiBridge.post(new Runnable() {
-            @Override
-            public void run() {
-                for (int ti = trash.size() - 1; ti >= 0; ti--) {
-                    GameObject o = trash.get(ti);
-                    for (ArrayList<GameObject> objects: layers) {
-                        int i = objects.indexOf(o);
-                        if (i >= 0) {
-                            objects.remove((i));
-                            break;
-                        }
-                    }
-                    trash.remove(ti);
-                    if (o instanceof Recyclable) {
-                        ((Recyclable) o).recycle();
-                        recyclePool.add(o);
-                    }
+        for (int ti = trash.size() - 1; ti >= 0; ti--) {
+            GameObject o = trash.get(ti);
+            for (ArrayList<GameObject> objects : layers) {
+                int i = objects.indexOf(o);
+                if (i >= 0) {
+                    objects.remove((i));
+                    break;
                 }
             }
-        });
+            trash.remove(ti);
+            if (o instanceof Recyclable) {
+                ((Recyclable) o).recycle();
+                recyclePool.add(o);
+            }
+        }
     }
 
     public RecyclePool getRecyclePool() {
@@ -102,5 +108,8 @@ public class GameWorld {
             }
         }
         return false;
+    }
+    public void removeObject(GameObject gameObject) {
+        trash.add(gameObject);
     }
 }
