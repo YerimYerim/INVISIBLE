@@ -11,7 +11,7 @@ import static com.yhnil.invisible.game.obj.sobj.State.begin;
 
 public class Stone extends ShapeObject {
     public float degree;
-    public float speed = 1;
+    public float speed = 0.5f;
     public float timecount = 0;
     public float starttime;
     public State state = begin;
@@ -30,7 +30,7 @@ public class Stone extends ShapeObject {
         Log.d("" ,"스톤 생성" );
         long seed = System.currentTimeMillis();
         Random rand = new Random(seed);
-        setPentagon(5);
+        setCircle(5);
 
         int colorindex = 6;
         setColor(color[rand.nextInt(colorindex)]);
