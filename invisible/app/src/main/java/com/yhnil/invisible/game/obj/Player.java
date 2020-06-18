@@ -9,6 +9,7 @@ import com.yhnil.invisible.framework.obj.ShapeObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.framework.util.CollisionHelper;
 import com.yhnil.invisible.framework.util.Vector;
+import com.yhnil.invisible.game.scene.OverScene;
 import com.yhnil.invisible.game.scene.SecondScene;
 
 import java.util.ArrayList;
@@ -54,8 +55,10 @@ public class Player extends ShapeObject implements CircleCollidable{
         myDegree = (myDegree + 360) % 360;
 
         float gap = Math.abs(other - myDegree) % 360;
-        if(gap < 30 || gap > 330)
-            Log.d("Degree", "" + gap);
+        if(gap < 30 || gap > 330) {
+            OverScene scene = new OverScene();
+            scene.push();
+        }
     }
     private void checkPlayGroundCollision() {
         ArrayList<GameObject> items = SecondScene.get().getGameWorld().objectsAtLayer(SecondScene.Layer.bg.ordinal());

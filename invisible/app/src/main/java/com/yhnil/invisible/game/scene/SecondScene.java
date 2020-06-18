@@ -73,7 +73,7 @@ public class SecondScene extends GameScene {
         gameWorld.add(Layer.light.ordinal(), dangerZone);
 
 
-        player = new Player(0, 0);
+        player = new Player(0, 50);
         gameWorld.add(Layer.player.ordinal(), player);
 
         joystick = new Joystick();
