@@ -27,7 +27,6 @@ public class RecyclePool {
             }
         }
         if (obj != null) {
-//            Log.d(TAG, "Reusing obj " + obj);
             return obj;
         }
 
