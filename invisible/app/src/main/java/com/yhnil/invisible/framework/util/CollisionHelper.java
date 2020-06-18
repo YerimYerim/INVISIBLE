@@ -10,8 +10,8 @@ public class CollisionHelper {
     private static RectF rect1 = new RectF();
     private static RectF rect2 = new RectF();
     public static boolean collide(GameObject o1, GameObject o2){
-
-    }
+            return false;
+    };
     public static boolean collides(BoxCollidable o1, BoxCollidable o2) {
         o1.getBox(rect1);
         o2.getBox(rect2);

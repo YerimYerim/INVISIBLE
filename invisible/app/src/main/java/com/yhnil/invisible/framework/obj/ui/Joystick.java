@@ -90,13 +90,11 @@ public class Joystick extends GameObject implements Touchable {
     public Vector getDirection() {
         Vector distVector = new Vector( dPos.x  , dPos.y );
         if (!down) {}
-        else
-        {
+        else {
             double Length = getLength();
-            distVector.x = (float) (( Math.cos(angle)) * getLength());
-            distVector.y = (float) (( Math.sin(angle)) * getLength());
+            distVector.x = (float) ((Math.cos(angle)) * getLength());
+            distVector.y = (float) ((Math.sin(angle)) * getLength());
         }
-        Log.d("" , "x : " +distVector.x +" y:"+distVector.y  );
         return distVector;
     }
 
