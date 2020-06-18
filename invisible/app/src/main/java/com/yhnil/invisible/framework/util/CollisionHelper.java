@@ -9,8 +9,32 @@ import com.yhnil.invisible.framework.main.GameObject;
 public class CollisionHelper {
     private static RectF rect1 = new RectF();
     private static RectF rect2 = new RectF();
+    private static Vector pos1 = new Vector();
+    private static Vector pos2 = new Vector();
     public static boolean collide(GameObject o1, GameObject o2){
+        BoxCollidable bc1 = null, bc2 = null;
+        CircleCollidable cc1 = null, cc2 = null;
 
+        if(o1 instanceof BoxCollidable)
+            bc1 = (BoxCollidable) o1;
+        if(o2 instanceof BoxCollidable)
+            bc2 = (BoxCollidable) o1;
+        if(o1 instanceof CircleCollidable)
+            cc1 = (CircleCollidable) o1;
+        if(o2 instanceof CircleCollidable)
+            cc2 = (CircleCollidable) o1;
+
+        if(bc1 != null) {
+            if(bc2 != null)
+                collides(bc1, bc2);
+        }
+        else if(cc1 != null) {
+            if(cc2 != null)
+                collides(cc1, cc2);
+        }
+        else
+            return false;
+        return false;
     }
     public static boolean collides(BoxCollidable o1, BoxCollidable o2) {
         o1.getBox(rect1);
@@ -27,6 +51,15 @@ public class CollisionHelper {
         if (rect1.bottom < rect2.top) {
             return false;
         }
+        return true;
+    }
+    public static boolean collides(CircleCollidable o1, CircleCollidable o2) {
+        float radius1 = 0, radius2 = 0;
+        o1.getCircle(pos1, radius1);
+        o2.getCircle(pos2, radius2);
+
+        if(getDistance((GameObject)o1, (GameObject)o2) > radius1 + radius2)
+            return false;
         return true;
     }
 
