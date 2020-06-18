@@ -23,7 +23,7 @@ import java.util.Random;
 public class SecondScene extends GameScene {
     private static final String TAG = SecondScene.class.getSimpleName();
     private Joystick joystick;
-    private ScoreObject scoreObject;
+    public ScoreObject scoreObject;
 
     public enum Layer {
         bg, corestone, light, stone, player, ui, joystick, COUNT
@@ -42,9 +42,9 @@ public class SecondScene extends GameScene {
     @Override
     public void update() {
         super.update();
+
         if (timer.done()) {
             gameWorld.add(Layer.stone.ordinal(), new Stone(0, 0));
-            scoreObject.add(10);
             timer.reset();
         }
 
