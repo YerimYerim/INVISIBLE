@@ -4,21 +4,17 @@ import android.graphics.Color;
 import android.graphics.RectF;
 
 import com.yhnil.invisible.R;
-import com.yhnil.invisible.framework.input.sensor.GyroSensor;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.game.obj.Player;
-import com.yhnil.invisible.game.obj.HorzScrollBackground;
 import com.yhnil.invisible.game.obj.sobj.Core;
 import com.yhnil.invisible.game.obj.sobj.CoreStone;
 import com.yhnil.invisible.game.obj.sobj.DangerZone;
 import com.yhnil.invisible.game.obj.sobj.PlayGround;
 import com.yhnil.invisible.game.obj.sobj.Stone;
-
-import java.util.Random;
 
 public class SecondScene extends GameScene {
     private static final String TAG = SecondScene.class.getSimpleName();
@@ -43,12 +39,10 @@ public class SecondScene extends GameScene {
     @Override
     public void update() {
         super.update();
-
         if (timer.done()) {
             gameWorld.add(Layer.stone.ordinal(), new Stone(0, 0));
             timer.reset();
         }
-
     }
 
     @Override
