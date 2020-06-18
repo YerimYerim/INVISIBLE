@@ -31,8 +31,8 @@ public class ShapeObject extends GameObject {
     }
 
     public ShapeObject(float x, float y) {
-        this.x = 50;
-        this.y = 50;
+        this.x = x;
+        this.y = y;
         matUtil = new MatUtil();
         paint = new Paint();
 
