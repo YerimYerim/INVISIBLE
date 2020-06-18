@@ -59,13 +59,15 @@ public class Player extends ShapeObject implements CircleCollidable{
             OverScene scene = new OverScene();
             scene.push();
         }
-        GameObject corecolide = SecondScene.get().core;
-        if(CollisionHelper.collides(this,(CircleCollidable) corecolide))
-        {
-            x -= joystick.getDirection().x;
-            y -= joystick.getDirection().y;
+        ArrayList<GameObject> core = SecondScene.get().getGameWorld().objectsAtLayer(SecondScene.Layer.corestone.ordinal());
+        for (GameObject obj : core) {
+            if (!(obj instanceof CircleCollidable))
+                continue;
+            if (CollisionHelper.collides(this, (CircleCollidable) obj)) {
+                x -= joystick.getDirection().x;
+                y -= joystick.getDirection().y;
+            }
         }
-
     }
     private void checkPlayGroundCollision() {
         ArrayList<GameObject> items = SecondScene.get().getGameWorld().objectsAtLayer(SecondScene.Layer.bg.ordinal());

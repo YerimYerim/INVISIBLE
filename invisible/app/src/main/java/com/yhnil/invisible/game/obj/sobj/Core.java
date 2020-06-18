@@ -48,6 +48,6 @@ public class Core extends ShapeObject implements CircleCollidable {
         position.x = x;
         position.y = y;
 
-        return getRadius() - 5;
+        return 20-2;
     }
 }
