@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.yhnil.invisible.framework.iface.CircleCollidable;
 import com.yhnil.invisible.framework.main.GameObject;
+import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.obj.ShapeObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.framework.util.CollisionHelper;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class Player extends ShapeObject implements CircleCollidable{
     private Joystick joystick = null;
     public ArrayList<Stone> stones = new ArrayList<>();
+    private float dps = 45;
 
     public Player(float x, float y) {
         super(x, y);
@@ -32,7 +34,10 @@ public class Player extends ShapeObject implements CircleCollidable{
     }
 
     public void update() {
-   //     if(joystick.onTouchEvent()
+        // degree update
+        float dt = GameTimer.getTimeDiffSeconds();
+        degree += (dps * dt) % 360;
+
         x = x+joystick.getDirection().x;
         y = y+joystick.getDirection().y;
 
@@ -40,10 +45,10 @@ public class Player extends ShapeObject implements CircleCollidable{
         checkStoneCollision();
         checkPlayGroundCollision();
 
-        float r = 15;
+        float r = 12;
         int index = 0;
         for(Stone stone : stones) {
-            float theta = (float) (60.0f * index++ / 180 * Math.PI);
+            float theta = (float) ((60 * index++ + degree) / 180 * Math.PI);
             stone.setX((float) (x+r*Math.cos(theta)));
             stone.setY((float) (y+r*Math.sin(theta)));
 
@@ -58,10 +63,17 @@ public class Player extends ShapeObject implements CircleCollidable{
         myDegree = (myDegree + 360) % 360;
 
         float gap = Math.abs(other - myDegree) % 360;
-        if(getColor() != dangerZone.getColor() && dangerZone.lightState == DangerZone.LightState.Stay) {
+        if(dangerZone.lightState == DangerZone.LightState.Stay) {
             if(gap < 30 || gap > 330) {
-                OverScene scene = new OverScene();
-                scene.push();
+                if(getColor() != dangerZone.getColor()){
+                    OverScene scene = new OverScene();
+                    scene.push();
+                }
+                else if (stones.size() == 6) {
+                    for(Stone stone : stones)
+                        stone.remove();
+                    stones.clear();
+                }
             }
         }
 
@@ -88,9 +100,20 @@ public class Player extends ShapeObject implements CircleCollidable{
                     SecondScene.get().scoreObject.add(5);
                     setColor(((ShapeObject) obj).getColor());
 
-                    ((Stone) obj).state = Stone.StoneState.Contain;
-                    stones.add((Stone) obj);
-                    //obj.remove();
+                    boolean isContain = false;
+                    for(Stone stone : stones)
+                        if(stone.getColor() == ((Stone) obj).getColor()){
+                            isContain = true;
+                            break;
+                        }
+
+                    if(isContain){
+                        obj.remove();
+                    }
+                    else{
+                        ((Stone) obj).state = Stone.StoneState.Contain;
+                        stones.add((Stone) obj);
+                    }
                 }
             }
         }
