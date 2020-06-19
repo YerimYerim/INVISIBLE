@@ -2,12 +2,14 @@ package com.yhnil.invisible.game.obj.sobj;
 
 import android.graphics.Color;
 
+import com.yhnil.invisible.framework.iface.CircleCollidable;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.obj.ShapeObject;
+import com.yhnil.invisible.framework.util.Vector;
 
 import java.util.Random;
 
-public class Core extends ShapeObject {
+public class Core extends ShapeObject implements CircleCollidable{
     Random random = new Random();
 
     float degree = 0;
@@ -55,5 +57,13 @@ public class Core extends ShapeObject {
             }
             dangerZone.setDegree(degree + 60 * dangerZoneIndex);
         }
+    }
+
+    @Override
+    public float getCircle(Vector position) {
+        position.x = x;
+        position.y = y;
+
+        return 20-2;
     }
 }

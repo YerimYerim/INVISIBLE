@@ -53,6 +53,16 @@ public class Player extends ShapeObject implements CircleCollidable{
                 scene.push();
             }
         }
+
+        ArrayList<GameObject> core = SecondScene.get().getGameWorld().objectsAtLayer(SecondScene.Layer.corestone.ordinal());
+        for (GameObject obj : core) {
+            if (!(obj instanceof CircleCollidable))
+                continue;
+            if (CollisionHelper.collides(this, (CircleCollidable) obj)) {
+                x -= joystick.getDirection().x;
+                y -= joystick.getDirection().y;
+            }
+        }
     }
 
     private void checkItemCollision() {
@@ -66,6 +76,25 @@ public class Player extends ShapeObject implements CircleCollidable{
                 SecondScene.get().scoreObject.add(5);
                 setColor(((ShapeObject)obj).getColor());
                 obj.remove();
+            }
+        }
+        float myDegree = (float) (Math.atan2(y, x) / Math.PI * 180.f);
+        float other = SecondScene.get().dangerZone.getDegree();
+
+        myDegree = (myDegree + 360) % 360;
+
+        float gap = Math.abs(other - myDegree) % 360;
+        if(gap < 30 || gap > 330) {
+            OverScene scene = new OverScene();
+            scene.push();
+        }
+        ArrayList<GameObject> core = SecondScene.get().getGameWorld().objectsAtLayer(SecondScene.Layer.corestone.ordinal());
+        for (GameObject obj : core) {
+            if (!(obj instanceof CircleCollidable))
+                continue;
+            if (CollisionHelper.collides(this, (CircleCollidable) obj)) {
+                x -= joystick.getDirection().x;
+                y -= joystick.getDirection().y;
             }
         }
     }

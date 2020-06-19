@@ -3,9 +3,11 @@ package com.yhnil.invisible.game.scene;
 import android.graphics.RectF;
 
 import com.yhnil.invisible.R;
+import com.yhnil.invisible.framework.main.GameObject;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
+import com.yhnil.invisible.framework.obj.BitmapObject;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Button;
 
@@ -18,7 +20,8 @@ public class FirstScene extends GameScene {
 
     private ScoreObject scoreObject;
     private GameTimer timer;
-
+    private  int x;
+    BitmapObject Logo;
     @Override
     protected int getLayerCount() {
         return Layer.COUNT.ordinal();
@@ -28,7 +31,10 @@ public class FirstScene extends GameScene {
     public void update() {
         super.update();
         if (timer.done()) {
-            scoreObject.add(100);
+            if(x < 255)
+            {x+=17;}
+            Logo.setPaintAlpha(x);
+
             timer.reset();
         }
     }
@@ -40,11 +46,8 @@ public class FirstScene extends GameScene {
     }
 
     private void initObjects() {
-        RectF rbox = new RectF(UiBridge.x(-52), UiBridge.y(20), UiBridge.x(-20), UiBridge.y(62));
-        scoreObject = new ScoreObject(R.mipmap.number_64x84, rbox);
-        gameWorld.add(Layer.ui.ordinal(), scoreObject);
-        timer = new GameTimer(2, 1);
-
+        x = 0;
+        timer = new GameTimer(1, 1);
         int cx = UiBridge.metrics.center.x;
         int y = UiBridge.metrics.size.y - UiBridge.y(100);
         Button button = new Button(cx, y, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
@@ -55,8 +58,10 @@ public class FirstScene extends GameScene {
                 scene.push();
             }
         });
+        int y2 = UiBridge.metrics.size.y - UiBridge.y(500);
+        Logo = new BitmapObject(cx,y2, 1000, 400, R.mipmap.logo);
+        Logo.setPaintAlpha(x);
+        gameWorld.add(Layer.ui.ordinal(),Logo);
         gameWorld.add(Layer.ui.ordinal(), button);
-
-
     }
 }
