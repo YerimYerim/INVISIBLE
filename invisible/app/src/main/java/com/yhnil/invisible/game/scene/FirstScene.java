@@ -1,6 +1,7 @@
 package com.yhnil.invisible.game.scene;
 
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.main.GameObject;
@@ -19,7 +20,7 @@ public class FirstScene extends GameScene {
     }
 
     private ScoreObject scoreObject;
-    private GameTimer timer;
+    private GameTimer timer = null;
     private  int x;
     BitmapObject Logo;
     @Override
@@ -30,13 +31,12 @@ public class FirstScene extends GameScene {
     @Override
     public void update() {
         super.update();
-        if (timer.done()) {
-            if(x < 255)
-            {x+=17;}
-            Logo.setPaintAlpha(x);
-
-            timer.reset();
-        }
+        Log.d("z", ""+timer.getRawIndex());
+        //if(timer.getRawIndex() < 256)
+            Logo.setPaintAlpha(Math.min(timer.getIndex(), 255));
+        //if (timer.done()) {
+        //    //timer.reset();
+        //}
     }
 
     @Override
@@ -47,7 +47,8 @@ public class FirstScene extends GameScene {
 
     private void initObjects() {
         x = 0;
-        timer = new GameTimer(1, 1);
+        timer = new GameTimer(255, (int) (255/5.0f));
+        timer.reset();
         int cx = UiBridge.metrics.center.x;
         int y = UiBridge.metrics.size.y - UiBridge.y(100);
         Button button = new Button(cx, y, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
