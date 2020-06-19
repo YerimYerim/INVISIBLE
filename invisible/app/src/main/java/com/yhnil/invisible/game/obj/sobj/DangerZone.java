@@ -25,34 +25,37 @@ public class DangerZone extends ShapeObject {
     }
 
     public void update() {
+        int index = Math.min(timer.getIndex(), 255);
         switch (lightState){
             case None:
-                setAlpha(0);
                 break;
             case Enter:
-                setAlpha(Math.min(timer.getIndex(), 255));
+                setAlpha(index);
                 if(timer.done()) {
                     lightState = LightState.Stay;
                     timer.set(255, (int) (255 / lifeTime));
+                    setAlpha(255);
                 }
                 break;
             case Stay:
-                setAlpha(255);
                 if(timer.done()) {
                     lightState = LightState.Exit;
                     timer.set(255, (int) (255 / endingTime));
                 }
                 break;
             case Exit:
-                setAlpha(Math.max(255 - timer.getIndex(), 0));
+                setAlpha(255 - index);
                 if(timer.done()) {
                     lightState = LightState.None;
+                    setAlpha(0);
                 }
                 break;
             case Count:
                 // Exception
                 break;
         }
+        //Log.d("alpha", ""+timer.getIndex());
+        //setAlpha(timer.getIndex());
     }
 
     public void turnOn() {
