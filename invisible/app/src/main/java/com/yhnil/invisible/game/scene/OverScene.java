@@ -42,6 +42,7 @@ public class OverScene extends GameScene {
             @Override
             public void run() {
                SecondScene secondScene = new SecondScene();
+               pop();
                secondScene.push();
             }
         });

@@ -2,6 +2,7 @@ package com.yhnil.invisible.game.scene;
 
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.main.GameScene;
@@ -54,11 +55,13 @@ public class SecondScene extends GameScene {
 
     @Override
     public void exit() {
+        Log.d("",""+"나가진다");
         super.exit();
+
     }
 
     private void initObjects() {
-        RectF rbox = new RectF(UiBridge.x(-52), UiBridge.y(20), UiBridge.x(-20), UiBridge.y(62));
+        RectF rbox = new RectF(UiBridge.x(-52), UiBridge.y(0), UiBridge.x(-20), UiBridge.y(62));
         scoreObject = new ScoreObject(R.mipmap.number_64x84, rbox);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
         timer = new GameTimer(4, 1);
