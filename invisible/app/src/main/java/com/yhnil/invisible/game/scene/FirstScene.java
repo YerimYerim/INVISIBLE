@@ -32,8 +32,9 @@ public class FirstScene extends GameScene {
         super.update();
         if (timer.done()) {
             if(x < 255)
-            {x+=20;}
+            {x+=17;}
             Logo.setPaintAlpha(x);
+
             timer.reset();
         }
     }
@@ -57,8 +58,8 @@ public class FirstScene extends GameScene {
                 scene.push();
             }
         });
-
-        Logo = new BitmapObject(cx,y - 600, 1000, 400, R.mipmap.logo);
+        int y2 = UiBridge.metrics.size.y - UiBridge.y(500);
+        Logo = new BitmapObject(cx,y2, 1000, 400, R.mipmap.logo);
         Logo.setPaintAlpha(x);
         gameWorld.add(Layer.ui.ordinal(),Logo);
         gameWorld.add(Layer.ui.ordinal(), button);
