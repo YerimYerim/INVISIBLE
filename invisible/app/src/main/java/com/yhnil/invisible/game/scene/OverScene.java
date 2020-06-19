@@ -12,8 +12,6 @@ public class OverScene extends GameScene {
     public enum Layer {
         bg, enemy, player, ui, COUNT
     }
-
-    private ScoreObject scoreObject;
     private GameTimer timer;
 
     @Override
@@ -25,7 +23,6 @@ public class OverScene extends GameScene {
     public void update() {
         super.update();
         if (timer.done()) {
-            scoreObject.add(100);
             timer.reset();
         }
     }
