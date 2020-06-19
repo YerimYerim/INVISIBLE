@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.util.Log;
 
 import com.yhnil.invisible.framework.iface.CircleCollidable;
+import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.obj.ShapeObject;
 import com.yhnil.invisible.framework.util.Vector;
 
@@ -11,7 +12,7 @@ import java.util.Random;
 
 public class Stone extends ShapeObject implements CircleCollidable {
     public float degree;
-    public float speed = .5f;
+    public float speed = 10f;
 
     public enum StoneState { Normal, Contain, Count}
     public StoneState state = StoneState.Normal;
@@ -49,8 +50,8 @@ public class Stone extends ShapeObject implements CircleCollidable {
     }
     public void update() {
         if(state == StoneState.Normal) {
-            this.x = (float) (this.x + speed * Math.cos(Math.toRadians(degree)));
-            this.y = (float) (this.y + speed * Math.sin(Math.toRadians(degree)));
+            this.x += speed * GameTimer.getTimeDiffSeconds() * Math.cos(Math.toRadians(degree));
+            this.y += speed * GameTimer.getTimeDiffSeconds() * Math.sin(Math.toRadians(degree));
             if (IsFarDistFromCenter()) {
                 this.remove();
             }

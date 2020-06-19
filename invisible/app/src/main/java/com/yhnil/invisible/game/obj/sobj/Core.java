@@ -16,8 +16,8 @@ public class Core extends ShapeObject implements CircleCollidable{
     float dps; // rotate degree per second
 
     private DangerZone dangerZone = null;
-    private CoreStone coreStones[] = new CoreStone[6];
-    private int dangerZoneIndex;
+    public CoreStone coreStones[] = new CoreStone[6];
+    public int dangerZoneIndex;
 
     public Core(float x, float y) {
         super(x, y);
