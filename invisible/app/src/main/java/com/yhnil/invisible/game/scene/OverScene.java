@@ -37,15 +37,26 @@ public class OverScene extends GameScene {
         timer = new GameTimer(2, 1);
         int cx = UiBridge.metrics.center.x;
         int y = UiBridge.metrics.size.y - UiBridge.y(100);
+        int y2 = UiBridge.metrics.size.y - UiBridge.y(300);
         Button button = new Button(cx, y, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button Manu = new Button(cx, y2, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
                SecondScene secondScene = new SecondScene();
                pop();
+               pop();
                secondScene.push();
             }
         });
+        Manu.setOnClickRunnable(new Runnable() {
+            @Override
+            public void run() {
+                pop();
+                pop();
+            }
+        });
+        gameWorld.add(Layer.ui.ordinal(), Manu);
         gameWorld.add(Layer.ui.ordinal(), button);
     }
 }
