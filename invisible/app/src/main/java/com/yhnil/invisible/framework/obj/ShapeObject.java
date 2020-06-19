@@ -79,6 +79,9 @@ public class ShapeObject extends GameObject {
     public void setColor(int color){
         paint.setColor(color);
     }
+    public void setAlpha(int alpha){
+        paint.setAlpha(alpha);
+    }
     public void setDegree(float degree){
         this.degree = degree;
     }

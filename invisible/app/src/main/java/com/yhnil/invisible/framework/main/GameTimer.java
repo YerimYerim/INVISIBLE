@@ -20,8 +20,8 @@ public class GameTimer {
         return diffNanos / NANOS_IN_ONE_SECOND_FLOAT;
     }
 
-    protected final int count;
-    protected final int fps;
+    protected int count;
+    protected int fps;
     protected long time;
 
     public GameTimer(int count, int framesPerSecond) {
@@ -44,6 +44,12 @@ public class GameTimer {
     }
 
     public void reset() {
+        this.time = currentTimeNanos;
+    }
+
+    public void set(int count, int framesPerSecond){
+        this.count = count;
+        this.fps = framesPerSecond;
         this.time = currentTimeNanos;
     }
 }
