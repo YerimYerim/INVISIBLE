@@ -55,7 +55,6 @@ public class Player extends ShapeObject implements CircleCollidable{
             float theta = (float) ((60 * index++ + degree) / 180 * Math.PI);
             stone.setX((float) (x+r*Math.cos(theta)));
             stone.setY((float) (y+r*Math.sin(theta)));
-
         }
     }
 
@@ -67,23 +66,29 @@ public class Player extends ShapeObject implements CircleCollidable{
         myDegree = (myDegree + 360) % 360;
 
         float gap = Math.abs(other - myDegree) % 360;
+
+        boolean isInLight = false;
         if (dangerZone.lightState == DangerZone.LightState.Stay) {
             if (gap < 30 || gap > 330) {
                 if (getColor() != dangerZone.getColor()) {
                     OverScene scene = new OverScene();
                     scene.push();
                 } else if (stones.size() == 6) {
-
-                    for (Stone stone : stones)
-                        stone.remove();
-                    stones.clear();
+                    isInLight = true;
                 }
             }
         }
 
         if (CollisionHelper.collides(this, (CircleCollidable) core)) {
-            x -= joystick.getDirection().x;
-            y -= joystick.getDirection().y;
+            if(isInLight){
+                SecondScene.get().scoreObject.add(100);
+                for (Stone stone : stones)
+                    stone.remove();
+                stones.clear();
+            }else{
+                x -= joystick.getDirection().x;
+                y -= joystick.getDirection().y;
+            }
         }
     }
 
