@@ -26,7 +26,7 @@ public class Player extends ShapeObject implements CircleCollidable{
 
     public Player(float x, float y) {
         super(x, y);
-        setCircle(5);
+        setCircle(10);
         setColor(Color.GRAY);
     }
 
