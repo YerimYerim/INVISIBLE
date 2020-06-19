@@ -86,10 +86,12 @@ public class Player extends ShapeObject implements CircleCollidable{
                     stone.remove();
                 stones.clear();
             }else{
-
-                x -= joystick.getDirection().x;
-                y -= joystick.getDirection().y;
-
+                double distance = Math.sqrt(x * x + y * y);
+                distance -= 18;
+                Log.d("D", "dd"+ distance);
+                float radian = (float) (Math.atan2(y, x));
+                x += distance * Math.cos(radian);
+                y += distance * Math.sin(radian);
             }
         }
     }
