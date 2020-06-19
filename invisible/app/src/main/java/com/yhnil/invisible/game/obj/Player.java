@@ -6,6 +6,7 @@ import android.util.Log;
 import com.yhnil.invisible.framework.iface.CircleCollidable;
 import com.yhnil.invisible.framework.main.GameObject;
 import com.yhnil.invisible.framework.main.GameTimer;
+import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.obj.ShapeObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.framework.util.CollisionHelper;
@@ -88,8 +89,12 @@ public class Player extends ShapeObject implements CircleCollidable{
                     stone.remove();
                 stones.clear();
             }else{
-                x -= joystick.getDirection().x;
-                y -= joystick.getDirection().y;
+                double distance = Math.sqrt(x * x + y * y);
+                distance = 18+getRadius() - distance;
+                Log.d("D", "dd"+ distance);
+                float radian = (float) (Math.atan2(y, x));
+                x += distance * Math.cos(radian);
+                y += distance * Math.sin(radian);
             }
         }
     }
@@ -132,8 +137,14 @@ public class Player extends ShapeObject implements CircleCollidable{
                 continue;
             }
             if (!CollisionHelper.collides(this, (CircleCollidable) obj)) {
-                x = x-joystick.getDirection().x;
-                y = y-joystick.getDirection().y;
+               // x += joystick.getDirection().x;
+               // y += joystick.getDirection().y;
+                double distance = Math.sqrt(x * x + y * y);
+                distance -= obj.getRadius()-getRadius();
+                Log.d("D", "dd"+ distance);
+                float radian = (float) (Math.atan2(y, x));
+                x -= distance * Math.cos(radian);
+                y -= distance * Math.sin(radian);
             }
         }
     }
