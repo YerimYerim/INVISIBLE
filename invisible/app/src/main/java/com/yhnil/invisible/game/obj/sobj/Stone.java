@@ -9,14 +9,13 @@ import com.yhnil.invisible.framework.util.Vector;
 
 import java.util.Random;
 
-import static com.yhnil.invisible.game.obj.sobj.State.begin;
-
 public class Stone extends ShapeObject implements CircleCollidable {
     public float degree;
     public float speed = .5f;
-    public float timecount = 0;
-    public float starttime;
-    public State state = begin;
+
+    public enum StoneState { Normal, Contain, Count}
+    public StoneState state = StoneState.Normal;
+    int containIndex = 0;
 
     float MaxDistance  = 100;
     int[] color = {
@@ -32,13 +31,12 @@ public class Stone extends ShapeObject implements CircleCollidable {
         Log.d("" ,"스톤 생성" );
         long seed = System.currentTimeMillis();
         Random rand = new Random(seed);
+
         setPentagon(5);
         int colorindex = 6;
         setColor(color[rand.nextInt(colorindex)]);
-        int bound = 3600;
-        int timebound = 20;
-        degree = (float) ((rand.nextInt(bound)) * 0.1);
-        starttime = rand.nextInt(timebound);
+
+        degree = (float) ((rand.nextInt(3600)) * 0.1);
     }
     boolean IsFarDistFromCenter(){
         float distX = this.x;
@@ -50,10 +48,12 @@ public class Stone extends ShapeObject implements CircleCollidable {
             return false;
     }
     public void update() {
-        this.x = (float) (this.x + speed * Math.cos(Math.toRadians(degree)));
-        this.y = (float) (this.y + speed * Math.sin(Math.toRadians(degree)));
-        if(IsFarDistFromCenter()){
-            this.remove();
+        if(state == StoneState.Normal) {
+            this.x = (float) (this.x + speed * Math.cos(Math.toRadians(degree)));
+            this.y = (float) (this.y + speed * Math.sin(Math.toRadians(degree)));
+            if (IsFarDistFromCenter()) {
+                this.remove();
+            }
         }
     }
 

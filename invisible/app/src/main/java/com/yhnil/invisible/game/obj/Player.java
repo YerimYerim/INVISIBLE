@@ -10,17 +10,19 @@ import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.framework.util.CollisionHelper;
 import com.yhnil.invisible.framework.util.Vector;
 import com.yhnil.invisible.game.obj.sobj.DangerZone;
+import com.yhnil.invisible.game.obj.sobj.Stone;
 import com.yhnil.invisible.game.scene.OverScene;
 import com.yhnil.invisible.game.scene.SecondScene;
 
 import java.util.ArrayList;
 
 public class Player extends ShapeObject implements CircleCollidable{
+    private Joystick joystick = null;
+    public ArrayList<Stone> stones = new ArrayList<>();
 
-    private Joystick joystick = new Joystick();
     public Player(float x, float y) {
         super(x, y);
-        setCircle(10);
+        setCircle(5);
         setColor(Color.GRAY);
     }
 
@@ -35,8 +37,17 @@ public class Player extends ShapeObject implements CircleCollidable{
         y = y+joystick.getDirection().y;
 
         checkDangerZoneCollision();
-        checkItemCollision();
+        checkStoneCollision();
         checkPlayGroundCollision();
+
+        float r = 15;
+        int index = 0;
+        for(Stone stone : stones) {
+            float theta = (float) (60.0f * index++ / 180 * Math.PI);
+            stone.setX((float) (x+r*Math.cos(theta)));
+            stone.setY((float) (y+r*Math.sin(theta)));
+
+        }
     }
 
     private void checkDangerZoneCollision() {
@@ -65,7 +76,7 @@ public class Player extends ShapeObject implements CircleCollidable{
         }
     }
 
-    private void checkItemCollision() {
+    private void checkStoneCollision() {
         ArrayList<GameObject> items = SecondScene.get().getGameWorld().objectsAtLayer(SecondScene.Layer.stone.ordinal());
 
         for (GameObject obj : items) {
@@ -73,9 +84,14 @@ public class Player extends ShapeObject implements CircleCollidable{
                 continue;
             if (CollisionHelper.collides(this, (CircleCollidable) obj))
             {
-                SecondScene.get().scoreObject.add(5);
-                setColor(((ShapeObject)obj).getColor());
-                obj.remove();
+                if(((Stone) obj).state == Stone.StoneState.Normal) {
+                    SecondScene.get().scoreObject.add(5);
+                    setColor(((ShapeObject) obj).getColor());
+
+                    ((Stone) obj).state = Stone.StoneState.Contain;
+                    stones.add((Stone) obj);
+                    //obj.remove();
+                }
             }
         }
     }

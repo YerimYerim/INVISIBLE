@@ -1,13 +1,6 @@
 package com.yhnil.invisible.game.obj;
 
-import com.yhnil.invisible.framework.main.GameTimer;
-import com.yhnil.invisible.game.obj.sobj.State;
 import com.yhnil.invisible.game.obj.sobj.Stone;
-
-import java.util.Random;
-
-import static com.yhnil.invisible.game.obj.sobj.State.begin;
-import static com.yhnil.invisible.game.obj.sobj.State.end;
 
 public class StoneSpawner {
 
@@ -28,14 +21,6 @@ public class StoneSpawner {
     public void update() {
         for (Stone stone: stones)
         {
-            if(getDistFromCenter(stone) )
-            {
-                stone.state = end;
-            }
-            else if(stone.state == end)
-            {
-                stone.state = begin;
-            }
         }
     }
 }
