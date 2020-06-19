@@ -87,7 +87,7 @@ public class Player extends ShapeObject implements CircleCollidable{
                 stones.clear();
             }else{
                 double distance = Math.sqrt(x * x + y * y);
-                distance -= 18;
+                distance = 18+getRadius() - distance;
                 Log.d("D", "dd"+ distance);
                 float radian = (float) (Math.atan2(y, x));
                 x += distance * Math.cos(radian);
