@@ -9,6 +9,7 @@ import com.yhnil.invisible.framework.obj.ShapeObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.framework.util.CollisionHelper;
 import com.yhnil.invisible.framework.util.Vector;
+import com.yhnil.invisible.game.obj.sobj.DangerZone;
 import com.yhnil.invisible.game.scene.OverScene;
 import com.yhnil.invisible.game.scene.SecondScene;
 
@@ -32,8 +33,26 @@ public class Player extends ShapeObject implements CircleCollidable{
    //     if(joystick.onTouchEvent()
         x = x+joystick.getDirection().x;
         y = y+joystick.getDirection().y;
+
+        checkDangerZoneCollision();
         checkItemCollision();
         checkPlayGroundCollision();
+    }
+
+    private void checkDangerZoneCollision() {
+        DangerZone dangerZone = SecondScene.get().dangerZone;
+        float myDegree = (float) (Math.atan2(y, x) / Math.PI * 180.f);
+        float other = dangerZone.getDegree();
+
+        myDegree = (myDegree + 360) % 360;
+
+        float gap = Math.abs(other - myDegree) % 360;
+        if(getColor() != dangerZone.getColor() && dangerZone.lightState == DangerZone.LightState.Stay) {
+            if(gap < 30 || gap > 330) {
+                OverScene scene = new OverScene();
+                scene.push();
+            }
+        }
     }
 
     private void checkItemCollision() {
@@ -49,29 +68,15 @@ public class Player extends ShapeObject implements CircleCollidable{
                 obj.remove();
             }
         }
-        float myDegree = (float) (Math.atan2(y, x) / Math.PI * 180.f);
-        float other = SecondScene.get().dangerZone.getDegree();
-
-        myDegree = (myDegree + 360) % 360;
-
-        float gap = Math.abs(other - myDegree) % 360;
-        if(getColor() != SecondScene.get().dangerZone.getColor()){
-            if(gap < 30 || gap > 330) {
-                OverScene scene = new OverScene();
-                scene.push();
-            }
-        }
     }
     private void checkPlayGroundCollision() {
         ArrayList<GameObject> items = SecondScene.get().getGameWorld().objectsAtLayer(SecondScene.Layer.bg.ordinal());
 
         for (GameObject obj : items) {
-            if (!(obj instanceof CircleCollidable))
-            {
+            if (!(obj instanceof CircleCollidable)) {
                 continue;
             }
-            if (!CollisionHelper.collides(this, (CircleCollidable) obj))
-            {
+            if (!CollisionHelper.collides(this, (CircleCollidable) obj)) {
                 x = x-joystick.getDirection().x;
                 y = y-joystick.getDirection().y;
             }

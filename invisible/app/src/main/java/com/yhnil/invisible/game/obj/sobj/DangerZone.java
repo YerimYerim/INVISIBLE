@@ -13,8 +13,8 @@ public class DangerZone extends ShapeObject {
     public float lifeTime = 2;
     public float endingTime = 2;
 
-    enum LightState { None, Enter, Stay, Exit, Count };
-    LightState lightState = LightState.None;
+    public enum LightState { None, Enter, Stay, Exit, Count };
+    public LightState lightState = LightState.None;
 
     public DangerZone(float x, float y) {
         super(x, y);
