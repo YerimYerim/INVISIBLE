@@ -22,7 +22,7 @@ public class ShapeObject extends GameObject {
     float[] pts;
 
     Paint paint;
-    float degree;
+    public float degree;
     float radius = 0;
 
     @Override
