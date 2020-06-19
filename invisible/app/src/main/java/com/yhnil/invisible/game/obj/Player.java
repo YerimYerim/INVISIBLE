@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Player extends ShapeObject implements CircleCollidable{
 
-    private Joystick joystick = new Joystick();
+    private Joystick joystick = null;
     public Player(float x, float y) {
         super(x, y);
         setCircle(10);
