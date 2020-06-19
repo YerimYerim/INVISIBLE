@@ -13,16 +13,51 @@ public class DangerZone extends ShapeObject {
     public float lifeTime = 2;
     public float endingTime = 2;
 
+    enum LightState { None, Enter, Stay, Exit, Count };
+    LightState lightState = LightState.None;
+
     public DangerZone(float x, float y) {
         super(x, y);
         setColor(Color.MAGENTA);
         setSector(100);
 
-        timer = new GameTimer(200, 100);
+        timer = new GameTimer(255, (int) (255 / startingTime));
+
+        lightState = LightState.Enter;
     }
 
     public void update() {
-        Log.d("count", "" + timer.getIndex());
-        Log.d("rawIndex", "" + timer.getRawIndex());
+        switch (lightState){
+            case None:
+                setAlpha(0);
+                break;
+            case Enter:
+                setAlpha(Math.min(timer.getIndex(), 255));
+                if(timer.done()) {
+                    lightState = LightState.Stay;
+                    timer.set(255, (int) (255 / lifeTime));
+                }
+                break;
+            case Stay:
+                setAlpha(255);
+                if(timer.done()) {
+                    lightState = LightState.Exit;
+                    timer.set(255, (int) (255 / endingTime));
+                }
+                break;
+            case Exit:
+                setAlpha(Math.max(255 - timer.getIndex(), 0));
+                if(timer.done()) {
+                    lightState = LightState.None;
+                }
+                break;
+            case Count:
+                // Exception
+                break;
+        }
+    }
+
+    public void turnOn() {
+        timer = new GameTimer(255, (int) (255 / startingTime));
     }
 }
