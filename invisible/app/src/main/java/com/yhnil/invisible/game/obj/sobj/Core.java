@@ -5,12 +5,17 @@ import android.graphics.Color;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.obj.ShapeObject;
 
+import java.util.Random;
+
 public class Core extends ShapeObject {
+    Random random = new Random();
+
     float degree = 0;
     float dps; // rotate degree per second
 
     private DangerZone dangerZone = null;
     private CoreStone coreStones[] = new CoreStone[6];
+    private int dangerZoneIndex;
 
     public Core(float x, float y) {
         super(x, y);
@@ -29,15 +34,26 @@ public class Core extends ShapeObject {
     }
 
     public void update() {
+        // degree update
         float dt = GameTimer.getTimeDiffSeconds();
         degree += (dps * dt) % 360;
-
         setDegree(degree);
-        if(dangerZone != null)
-            dangerZone.setDegree(degree);
+
+        // coreStone update
         int index = 0;
         for(CoreStone coreStone : coreStones)
-            if(coreStone != null)
+            if(coreStone != null) {
                 coreStone.setDegree(degree + 60 * index++);
+            }
+
+        // dangerZone update
+        if(dangerZone != null) {
+            if(dangerZone.lightState == DangerZone.LightState.None) {
+                dangerZoneIndex = random.nextInt(6);
+                dangerZone.setColor(coreStones[dangerZoneIndex].getColor());
+                dangerZone.turnOn();
+            }
+            dangerZone.setDegree(degree + 60 * dangerZoneIndex);
+        }
     }
 }

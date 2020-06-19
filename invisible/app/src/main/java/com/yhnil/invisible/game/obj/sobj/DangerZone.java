@@ -22,8 +22,6 @@ public class DangerZone extends ShapeObject {
         setSector(100);
 
         timer = new GameTimer(255, (int) (255 / startingTime));
-
-        lightState = LightState.Enter;
     }
 
     public void update() {
@@ -58,6 +56,7 @@ public class DangerZone extends ShapeObject {
     }
 
     public void turnOn() {
+        lightState = LightState.Enter;
         timer = new GameTimer(255, (int) (255 / startingTime));
     }
 }
