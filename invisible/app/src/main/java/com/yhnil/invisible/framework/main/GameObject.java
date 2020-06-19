@@ -21,7 +21,7 @@ public class GameObject {
     public void setY(float y) {
         this.y = y;
     }
-    public float getRadius() { return 0; }
+    public float getRadius() { return getRadius(); }
     public void update() {}
     public void draw(Canvas canvas) {}
 
