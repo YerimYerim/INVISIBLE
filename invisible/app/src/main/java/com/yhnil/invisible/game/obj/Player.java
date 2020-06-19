@@ -74,7 +74,7 @@ public class Player extends ShapeObject implements CircleCollidable{
                 if (getColor() != dangerZone.getColor()) {
                     OverScene scene = new OverScene();
                     scene.push();
-                } else if (stones.size() == 6) {
+                } else if (stones.size() == 6 &&CollisionHelper.collides(this, (CircleCollidable) core) ) {
                     isInLight = true;
                     core.coreStones[core.dangerZoneIndex].setColor(Color.GRAY);
                 }
@@ -83,8 +83,10 @@ public class Player extends ShapeObject implements CircleCollidable{
 
         if (CollisionHelper.collides(this, (CircleCollidable) core)) {
             if(isInLight){
-                SecondScene.get().scoreObject.add(100);
-
+                {
+                    SecondScene.get().scoreObject.add(100);
+                    core.grayZoneIndex++;
+                }
                 for (Stone stone : stones)
                     stone.remove();
                 stones.clear();
