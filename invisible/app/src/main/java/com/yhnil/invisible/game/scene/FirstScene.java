@@ -46,9 +46,9 @@ public class FirstScene extends GameScene {
     private void initObjects() {
         x = 0;
         timer = new GameTimer(255, (int) (255/5.0f));
-        int cx = UiBridge.metrics.center.x;
+        int cx = UiBridge.metrics.center.x + UiBridge.metrics.center.x /2;
         int y = UiBridge.metrics.size.y - UiBridge.y(100);
-        Button button = new Button(cx, y, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button button = new Button(cx, y, R.mipmap.start18, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
@@ -56,8 +56,9 @@ public class FirstScene extends GameScene {
                 scene.push();
             }
         });
+        int logox = UiBridge.metrics.center.x;
         int y2 = UiBridge.metrics.size.y - UiBridge.y(500);
-        Logo = new BitmapObject(cx,y2, 1000, 400, R.mipmap.logo);
+        Logo = new BitmapObject(logox,y2, 1000, 400, R.mipmap.logo);
         Logo.setPaintAlpha(x);
         gameWorld.add(Layer.ui.ordinal(),Logo);
         gameWorld.add(Layer.ui.ordinal(), button);
