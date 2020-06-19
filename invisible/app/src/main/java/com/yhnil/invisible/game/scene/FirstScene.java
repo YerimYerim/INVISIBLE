@@ -20,7 +20,8 @@ public class FirstScene extends GameScene {
 
     private ScoreObject scoreObject;
     private GameTimer timer;
-
+    private  int x;
+    BitmapObject Logo;
     @Override
     protected int getLayerCount() {
         return Layer.COUNT.ordinal();
@@ -30,6 +31,9 @@ public class FirstScene extends GameScene {
     public void update() {
         super.update();
         if (timer.done()) {
+            if(x < 255)
+            {x+=20;}
+            Logo.setPaintAlpha(x);
             timer.reset();
         }
     }
@@ -41,12 +45,10 @@ public class FirstScene extends GameScene {
     }
 
     private void initObjects() {
-
-        timer = new GameTimer(2, 1);
-
+        x = 0;
+        timer = new GameTimer(1, 1);
         int cx = UiBridge.metrics.center.x;
         int y = UiBridge.metrics.size.y - UiBridge.y(100);
-
         Button button = new Button(cx, y, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
             @Override
@@ -55,7 +57,9 @@ public class FirstScene extends GameScene {
                 scene.push();
             }
         });
-        GameObject Logo = new BitmapObject(cx,y - 600, 1000, 400, R.mipmap.logo);
+
+        Logo = new BitmapObject(cx,y - 600, 1000, 400, R.mipmap.logo);
+        Logo.setPaintAlpha(x);
         gameWorld.add(Layer.ui.ordinal(),Logo);
         gameWorld.add(Layer.ui.ordinal(), button);
     }
