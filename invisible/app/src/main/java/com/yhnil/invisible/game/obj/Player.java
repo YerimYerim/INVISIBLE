@@ -10,6 +10,7 @@ import com.yhnil.invisible.framework.obj.ShapeObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.framework.util.CollisionHelper;
 import com.yhnil.invisible.framework.util.Vector;
+import com.yhnil.invisible.game.obj.sobj.Core;
 import com.yhnil.invisible.game.obj.sobj.DangerZone;
 import com.yhnil.invisible.game.obj.sobj.Stone;
 import com.yhnil.invisible.game.scene.OverScene;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 
 public class Player extends ShapeObject implements CircleCollidable{
     private Joystick joystick = null;
+    private Core core = null;
     public ArrayList<Stone> stones = new ArrayList<>();
     private float dps = 45;
 
@@ -28,9 +30,11 @@ public class Player extends ShapeObject implements CircleCollidable{
         setColor(Color.GRAY);
     }
 
-    public void connectJoystick(Joystick joystick)
-    {
+    public void connectJoystick(Joystick joystick) {
         this.joystick = joystick;
+    }
+    public void connectCcore(Core core) {
+        this.core = core;
     }
 
     public void update() {
@@ -63,28 +67,23 @@ public class Player extends ShapeObject implements CircleCollidable{
         myDegree = (myDegree + 360) % 360;
 
         float gap = Math.abs(other - myDegree) % 360;
-        if(dangerZone.lightState == DangerZone.LightState.Stay) {
-            if(gap < 30 || gap > 330) {
-                if(getColor() != dangerZone.getColor()){
+        if (dangerZone.lightState == DangerZone.LightState.Stay) {
+            if (gap < 30 || gap > 330) {
+                if (getColor() != dangerZone.getColor()) {
                     OverScene scene = new OverScene();
                     scene.push();
-                }
-                else if (stones.size() == 6) {
-                    for(Stone stone : stones)
+                } else if (stones.size() == 6) {
+
+                    for (Stone stone : stones)
                         stone.remove();
                     stones.clear();
                 }
             }
         }
 
-        ArrayList<GameObject> core = SecondScene.get().getGameWorld().objectsAtLayer(SecondScene.Layer.corestone.ordinal());
-        for (GameObject obj : core) {
-            if (!(obj instanceof CircleCollidable))
-                continue;
-            if (CollisionHelper.collides(this, (CircleCollidable) obj)) {
-                x -= joystick.getDirection().x;
-                y -= joystick.getDirection().y;
-            }
+        if (CollisionHelper.collides(this, (CircleCollidable) core)) {
+            x -= joystick.getDirection().x;
+            y -= joystick.getDirection().y;
         }
     }
 

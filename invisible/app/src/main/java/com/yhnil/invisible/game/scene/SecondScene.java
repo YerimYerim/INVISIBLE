@@ -77,6 +77,7 @@ public class SecondScene extends GameScene {
 
 
         player = new Player(0, 50);
+        player.connectCcore(core);
         gameWorld.add(Layer.player.ordinal(), player);
 
         joystick = new Joystick();
