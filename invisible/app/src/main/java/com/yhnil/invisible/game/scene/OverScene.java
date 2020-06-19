@@ -38,8 +38,8 @@ public class OverScene extends GameScene {
         int cx = UiBridge.metrics.center.x;
         int y = UiBridge.metrics.size.y - UiBridge.y(100);
         int y2 = UiBridge.metrics.size.y - UiBridge.y(300);
-        Button button = new Button(cx, y, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
-        Button Manu = new Button(cx, y2, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button button = new Button(cx, y, R.mipmap.start, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button Manu = new Button(cx, y2, R.mipmap.manu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
