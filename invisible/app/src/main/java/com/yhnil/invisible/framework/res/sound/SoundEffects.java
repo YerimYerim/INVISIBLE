@@ -5,6 +5,8 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 
+import com.yhnil.invisible.R;
+
 import java.util.HashMap;
 
 public class SoundEffects {
@@ -13,7 +15,7 @@ public class SoundEffects {
     private SoundPool soundPool;
     private HashMap<Integer, Integer> soundIdMap = new HashMap<>();
     private static final int[] SOUND_IDS = {
-//        R.raw.hadouken
+        R.raw.corebreak,R.raw.stoneeat
     };
 
     public static SoundEffects get() {
@@ -22,7 +24,7 @@ public class SoundEffects {
         }
         return singleton;
     }
-    private SoundEffects() {
+    public SoundEffects() {
         AudioAttributes audioAttributes;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             audioAttributes = new AudioAttributes.Builder()

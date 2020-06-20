@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
+import com.yhnil.invisible.framework.res.bitmap.SharedBitmap;
+import com.yhnil.invisible.framework.res.sound.SoundEffects;
 
 public class GameView extends View {
     private static final String TAG = GameView.class.getSimpleName();
@@ -28,6 +30,7 @@ public class GameView extends View {
     private void init() {
         UiBridge.setView(this);
         timer = new GameTimer(FPS_SECONDS, 1);
+        SoundEffects.get().loadAll(getContext());
         postFrameCallback();
     }
 

@@ -1,14 +1,17 @@
 package com.yhnil.invisible.game.obj;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 
+import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.iface.CircleCollidable;
 import com.yhnil.invisible.framework.main.GameObject;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.obj.ShapeObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
+import com.yhnil.invisible.framework.res.sound.SoundEffects;
 import com.yhnil.invisible.framework.util.CollisionHelper;
 import com.yhnil.invisible.framework.util.Vector;
 import com.yhnil.invisible.game.obj.sobj.Core;
@@ -24,7 +27,7 @@ public class Player extends ShapeObject implements CircleCollidable{
     private Core core = null;
     public ArrayList<Stone> stones = new ArrayList<>();
     private float dps = 45;
-
+    private SoundEffects soundEffects;
     public Player(float x, float y) {
         super(x, y);
         setCircle(10);
@@ -77,6 +80,7 @@ public class Player extends ShapeObject implements CircleCollidable{
                 } else if (stones.size() == 6 &&CollisionHelper.collides(this, (CircleCollidable) core) ) {
                     isInLight = true;
                     core.coreStones[core.dangerZoneIndex].setColor(Color.GRAY);
+                    SoundEffects.get().play(R.raw.corebreak);
                 }
             }
         }
@@ -112,7 +116,7 @@ public class Player extends ShapeObject implements CircleCollidable{
                 if(((Stone) obj).state == Stone.StoneState.Normal) {
                     SecondScene.get().scoreObject.add(5);
                     setColor(((ShapeObject) obj).getColor());
-
+                    SoundEffects.get().play(R.raw.stoneeat);
                     boolean isContain = false;
                     for(Stone stone : stones)
                         if(stone.getColor() == ((Stone) obj).getColor()){

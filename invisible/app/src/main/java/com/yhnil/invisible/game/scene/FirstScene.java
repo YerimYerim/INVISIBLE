@@ -1,6 +1,8 @@
 package com.yhnil.invisible.game.scene;
 
+import android.content.Context;
 import android.graphics.RectF;
+import android.media.MediaPlayer;
 import android.util.Log;
 
 import com.yhnil.invisible.R;
@@ -12,8 +14,11 @@ import com.yhnil.invisible.framework.obj.BitmapObject;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Button;
 
+import static com.yhnil.invisible.R.raw.manu;
+
 public class FirstScene extends GameScene {
     private static final String TAG = FirstScene.class.getSimpleName();
+   // private MediaPlayer mp1 = MediaPlayer.create(g, manu);
 
     public enum Layer {
         bg, enemy, player, ui, COUNT
