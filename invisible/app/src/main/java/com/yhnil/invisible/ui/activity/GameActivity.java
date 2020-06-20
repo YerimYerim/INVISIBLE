@@ -6,6 +6,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.view.GameView;
@@ -20,8 +23,14 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         UiBridge.setActivity(this);
         super.onCreate(savedInstanceState);
-       // setContentView(new GameView(this));
         setContentView(new GameView(this));
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
         new IntroScene().run();
     }
 
