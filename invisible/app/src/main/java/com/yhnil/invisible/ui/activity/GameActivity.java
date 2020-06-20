@@ -10,6 +10,7 @@ import com.yhnil.invisible.framework.input.sensor.GyroSensor;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.view.GameView;
+import com.yhnil.invisible.game.scene.IntroScene;
 import com.yhnil.invisible.game.scene.ManuScene;
 
 public class GameActivity extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
        // setContentView(new GameView(this));
         setContentView(new GameView(this));
-        new ManuScene().run();
+        new IntroScene().run();
     }
 
     private long lastBackPressedOn;
