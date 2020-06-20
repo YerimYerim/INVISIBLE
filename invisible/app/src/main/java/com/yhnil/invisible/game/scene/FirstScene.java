@@ -13,12 +13,16 @@ import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.BitmapObject;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Button;
+import com.yhnil.invisible.framework.res.sound.SoundMusic;
+import com.yhnil.invisible.framework.view.GameView;
 
 import static com.yhnil.invisible.R.raw.manu;
 
 public class FirstScene extends GameScene {
     private static final String TAG = FirstScene.class.getSimpleName();
-   // private MediaPlayer mp1 = MediaPlayer.create(g, manu);
+    public MediaPlayer mediaPlayer;
+    private SoundMusic soundMusic;
+    // private MediaPlayer mp1 = MediaPlayer.create(g, manu);
 
     public enum Layer {
         bg, enemy, player, ui, COUNT
@@ -47,8 +51,15 @@ public class FirstScene extends GameScene {
         super.enter();
         initObjects();
     }
+    @Override
+    public void exit() {
+        mediaPlayer.release();
+        super.exit();
 
+    }
     private void initObjects() {
+        mediaPlayer = GameView.soundMusic.play(manu);
+        mediaPlayer.start();
         x = 0;
         timer = new GameTimer(255, (int) (255/5.0f));
         int cx = UiBridge.metrics.center.x + UiBridge.metrics.center.x /2;

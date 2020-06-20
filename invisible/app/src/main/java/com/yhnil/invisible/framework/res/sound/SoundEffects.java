@@ -1,13 +1,13 @@
 package com.yhnil.invisible.framework.res.sound;
 
-import android.content.Context;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.SoundPool;
+        import android.content.Context;
+        import android.media.AudioAttributes;
+        import android.media.AudioManager;
+        import android.media.SoundPool;
 
-import com.yhnil.invisible.R;
+        import com.yhnil.invisible.R;
 
-import java.util.HashMap;
+        import java.util.HashMap;
 
 public class SoundEffects {
     private static final String TAG = SoundEffects.class.getSimpleName();
@@ -15,7 +15,7 @@ public class SoundEffects {
     private SoundPool soundPool;
     private HashMap<Integer, Integer> soundIdMap = new HashMap<>();
     private static final int[] SOUND_IDS = {
-        R.raw.corebreak,R.raw.stoneeat
+            R.raw.corebreak,R.raw.stoneeat
     };
 
     public static SoundEffects get() {

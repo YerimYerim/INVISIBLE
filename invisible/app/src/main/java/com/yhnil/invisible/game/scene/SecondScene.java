@@ -13,6 +13,7 @@ import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
+import com.yhnil.invisible.framework.res.sound.SoundMusic;
 import com.yhnil.invisible.framework.view.GameView;
 import com.yhnil.invisible.game.obj.Player;
 import com.yhnil.invisible.game.obj.sobj.Core;
@@ -39,7 +40,6 @@ public class SecondScene extends GameScene {
 
     private GameTimer timer;
     private static SecondScene instance;
-
     @Override
     protected int getLayerCount() {
         return Layer.COUNT.ordinal();
@@ -67,12 +67,14 @@ public class SecondScene extends GameScene {
 
     @Override
     public void exit() {
-        Log.d("",""+"나가진다");
+        mediaPlayer.release();
         super.exit();
 
     }
 
     private void initObjects() {
+        mediaPlayer = GameView.soundMusic.play(R.raw.ingame);
+        mediaPlayer.start();
         RectF rbox = new RectF(UiBridge.x(-52), UiBridge.y(0), UiBridge.x(-20), UiBridge.y(62));
         scoreObject = new ScoreObject(R.mipmap.number_64x84, rbox);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
