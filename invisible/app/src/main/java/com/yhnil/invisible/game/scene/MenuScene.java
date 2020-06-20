@@ -14,19 +14,15 @@ import com.yhnil.invisible.framework.view.GameView;
 import static com.yhnil.invisible.R.raw.manu;
 
 public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
-    private static final String TAG = MenuScene.class.getSimpleName();
     public MediaPlayer mediaPlayer;
-    private SoundMusic soundMusic;
-
-    // private MediaPlayer mp1 = MediaPlayer.create(g, manu);
 
     public enum Layer {
-        bg, enemy, player, ui, COUNT
+        ui, COUNT
     }
+    enum State { First, Increase, Decrease, Coount};
+    State state = State.First;
 
-    private ScoreObject scoreObject;
     private GameTimer timer = null;
-    private  int x;
     BitmapObject Logo;
     @Override
     protected int getLayerCount() {
@@ -36,8 +32,25 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
     @Override
     public void update() {
         super.update();
-        if(timer.getRawIndex() < 255)
-            Logo.setPaintAlpha(Math.min(timer.getIndex(), 255));
+        int alpha = Math.min(timer.getRawIndex(), 255);
+        switch (state){
+            case First:
+                if (timer.done())
+                    state = State.Decrease;
+                break;
+            case Increase:
+                alpha = 127 + alpha / 2;
+                if (timer.done())
+                    state = State.Decrease;
+                break;
+            case Decrease:
+                alpha = 255 - alpha / 2;
+                if (timer.done())
+                    state = State.Increase;
+                break;
+        }
+
+        Logo.setPaintAlpha(alpha);
         if (timer.done())
             timer.reset();
     }
@@ -51,14 +64,13 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
     public void exit() {
         mediaPlayer.release();
         super.exit();
-
     }
 
     private void initObjects() {
         mediaPlayer = GameView.soundMusic.play(manu);
         mediaPlayer.start();
-        x = 0;
-        timer = new GameTimer(255, (int) (255/5.0f));
+
+        timer = new GameTimer(255, (int) (255/2.0f));
         int cx = UiBridge.metrics.center.x + UiBridge.metrics.center.x /2;
         int y = UiBridge.metrics.size.y - UiBridge.y(100);
         Button button = new Button(cx, y, R.mipmap.start18, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
@@ -73,7 +85,6 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
         int logox = UiBridge.metrics.center.x;
         int y2 = UiBridge.metrics.size.y - UiBridge.y(500);
         Logo = new BitmapObject(logox,y2, 1000, 400, R.mipmap.logo);
-        Logo.setPaintAlpha(x);
         gameWorld.add(Layer.ui.ordinal(),Logo);
         gameWorld.add(Layer.ui.ordinal(), button);
     }
