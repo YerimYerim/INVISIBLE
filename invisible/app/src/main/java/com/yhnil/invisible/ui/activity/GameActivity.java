@@ -6,12 +6,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.yhnil.invisible.framework.input.sensor.GyroSensor;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.view.GameView;
 import com.yhnil.invisible.game.scene.IntroScene;
-import com.yhnil.invisible.game.scene.ManuScene;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -47,16 +45,10 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (GyroSensor.isCreated()) {
-            GyroSensor.get().register();
-        }
     }
 
     @Override
     protected void onPause() {
-        if (GyroSensor.isCreated()) {
-            GyroSensor.get().unregister();
-        }
         super.onPause();
     }
 
