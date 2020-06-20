@@ -14,19 +14,15 @@ import com.yhnil.invisible.framework.view.GameView;
 import static com.yhnil.invisible.R.raw.manu;
 
 public class IntroScene extends com.yhnil.invisible.framework.main.GameScene {
-    private static final String TAG = IntroScene.class.getSimpleName();
     public MediaPlayer mediaPlayer;
-    private SoundMusic soundMusic;
-
-    // private MediaPlayer mp1 = MediaPlayer.create(g, manu);
 
     public enum Layer {
-        bg, enemy, player, ui, COUNT
+        ui, COUNT
     }
+    enum State { First, Second, Count };
+    State state = State.First;
 
-    private ScoreObject scoreObject;
     private GameTimer timer = null;
-    private  int x;
     BitmapObject Logo;
     @Override
     protected int getLayerCount() {
@@ -38,8 +34,15 @@ public class IntroScene extends com.yhnil.invisible.framework.main.GameScene {
         super.update();
         if(timer.getRawIndex() < 255)
             Logo.setPaintAlpha(Math.min(timer.getIndex(), 255));
-        if (timer.done())
+        if (timer.done()){
             timer.reset();
+            if(state == State.First)
+                state = State.Second;
+            else{
+                MenuScene scene = new MenuScene();
+                scene.push();
+            }
+        }
     }
 
     @Override
@@ -51,27 +54,13 @@ public class IntroScene extends com.yhnil.invisible.framework.main.GameScene {
     public void exit() {
         mediaPlayer.release();
         super.exit();
-
     }
 
     private void initObjects() {
-        x = 0;
-        timer = new GameTimer(255, (int) (255/5.0f));
-        int cx = UiBridge.metrics.center.x + UiBridge.metrics.center.x /2;
-        int y = UiBridge.metrics.size.y - UiBridge.y(100);
-        Button button = new Button(cx, y, R.mipmap.start18, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
-        button.setOnClickRunnable(new Runnable() {
-            @Override
-            public void run() {
-                ManuScene scene = new ManuScene();
-                scene.push();
-            }
-        });
-        int logox = UiBridge.metrics.center.x;
-        int y2 = UiBridge.metrics.size.y - UiBridge.y(500);
-        Logo = new BitmapObject(logox,y2, 1000, 400, R.mipmap.logo);
-        Logo.setPaintAlpha(x);
+        timer = new GameTimer(255, (int) (255/3.0f));
+
+        Logo = new BitmapObject(UiBridge.metrics.center.x, UiBridge.metrics.center.y, 1000, 400, R.mipmap.logo);
+
         gameWorld.add(Layer.ui.ordinal(),Logo);
-        gameWorld.add(Layer.ui.ordinal(), button);
     }
 }

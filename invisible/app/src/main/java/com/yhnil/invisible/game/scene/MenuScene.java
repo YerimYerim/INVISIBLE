@@ -13,8 +13,8 @@ import com.yhnil.invisible.framework.view.GameView;
 
 import static com.yhnil.invisible.R.raw.manu;
 
-public class ManuScene extends com.yhnil.invisible.framework.main.GameScene {
-    private static final String TAG = ManuScene.class.getSimpleName();
+public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
+    private static final String TAG = MenuScene.class.getSimpleName();
     public MediaPlayer mediaPlayer;
     private SoundMusic soundMusic;
 
