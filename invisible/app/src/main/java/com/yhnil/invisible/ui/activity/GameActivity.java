@@ -2,6 +2,7 @@ package com.yhnil.invisible.ui.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.view.GameView;
@@ -23,7 +25,10 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         UiBridge.setActivity(this);
         super.onCreate(savedInstanceState);
-        setContentView(new GameView(this));
+        setContentView(R.layout.activity_game);
+
+        FrameLayout game = findViewById(R.id.game);
+        game.addView(new GameView(this));
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
