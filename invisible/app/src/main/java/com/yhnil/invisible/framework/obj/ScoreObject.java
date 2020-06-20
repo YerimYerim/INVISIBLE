@@ -81,6 +81,12 @@ public class ScoreObject extends GameObject {
 
             score /= 10;
         }
+        if (displayedScore == 0){
+            int digit = score % 10;
+            srcRect.left = digitWidth * digit;
+            srcRect.right = srcRect.left + digitWidth;
+            canvas.drawBitmap(sbmp.getBitmap(), srcRect, rect, null);
+        }
     }
 
     public void reset() {
