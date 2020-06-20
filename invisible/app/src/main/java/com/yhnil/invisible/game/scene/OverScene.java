@@ -43,7 +43,6 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
             public void run() {
                GameScene gameScene = new GameScene();
                pop();
-               pop();
                gameScene.push();
             }
         });
@@ -52,6 +51,9 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
             public void run() {
                 pop();
                 pop();
+                MenuScene menuScene = new MenuScene();
+                menuScene.push();
+
             }
         });
         gameWorld.add(Layer.ui.ordinal(), Manu);

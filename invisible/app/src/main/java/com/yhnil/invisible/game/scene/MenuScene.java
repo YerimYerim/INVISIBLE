@@ -65,9 +65,10 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
         button.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
-                mediaPlayer.release();
                 GameScene scene = new GameScene();
+                pop();
                 scene.push();
+
             }
         });
         int logox = UiBridge.metrics.center.x;

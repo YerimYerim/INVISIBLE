@@ -65,7 +65,6 @@ public class GameScene extends com.yhnil.invisible.framework.main.GameScene {
     public void exit() {
         mediaPlayer.release();
         super.exit();
-
     }
 
     private void initObjects() {
@@ -84,7 +83,6 @@ public class GameScene extends com.yhnil.invisible.framework.main.GameScene {
         dangerZone = new DangerZone(0, 0);
         core.connectDangerZone(dangerZone);
         gameWorld.add(Layer.light.ordinal(), dangerZone);
-
 
         player = new Player(0, 50);
         player.connectCcore(core);
