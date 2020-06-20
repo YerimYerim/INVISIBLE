@@ -4,16 +4,12 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.RectF;
 import android.media.MediaPlayer;
-import android.util.Log;
-import android.view.View;
 
 import com.yhnil.invisible.R;
-import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
-import com.yhnil.invisible.framework.res.sound.SoundMusic;
 import com.yhnil.invisible.framework.view.GameView;
 import com.yhnil.invisible.game.obj.Player;
 import com.yhnil.invisible.game.obj.sobj.Core;
@@ -22,8 +18,8 @@ import com.yhnil.invisible.game.obj.sobj.DangerZone;
 import com.yhnil.invisible.game.obj.sobj.PlayGround;
 import com.yhnil.invisible.game.obj.sobj.Stone;
 
-public class SecondScene extends GameScene {
-    private static final String TAG = SecondScene.class.getSimpleName();
+public class GameScene extends com.yhnil.invisible.framework.main.GameScene {
+    private static final String TAG = GameScene.class.getSimpleName();
     private Joystick joystick;
     public ScoreObject scoreObject;
     public DangerZone dangerZone;
@@ -39,7 +35,7 @@ public class SecondScene extends GameScene {
     private Player player;
 
     private GameTimer timer;
-    private static SecondScene instance;
+    private static GameScene instance;
     @Override
     protected int getLayerCount() {
         return Layer.COUNT.ordinal();
@@ -80,7 +76,7 @@ public class SecondScene extends GameScene {
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
         timer = new GameTimer(3, 1);
         feverTimer = new GameTimer(1 ,1);
-        gameWorld.add(SecondScene.Layer.bg.ordinal(), new PlayGround(0, 0));
+        gameWorld.add(GameScene.Layer.bg.ordinal(), new PlayGround(0, 0));
 
         core = new Core(0, 0);
         gameWorld.add(Layer.corestone.ordinal(), core);
@@ -112,12 +108,12 @@ public class SecondScene extends GameScene {
         {
             CoreStone coreStone = new CoreStone(0, 0,color);
             core.connectCoreStone(coreStone, index++);
-            gameWorld.add(SecondScene.Layer.corestone.ordinal(), coreStone);
+            gameWorld.add(GameScene.Layer.corestone.ordinal(), coreStone);
         }
 
     }
 
-    public static SecondScene get() {
+    public static GameScene get() {
         return instance;
     }
 }

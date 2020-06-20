@@ -1,13 +1,8 @@
 package com.yhnil.invisible.game.scene;
 
-import android.content.Context;
-import android.graphics.RectF;
 import android.media.MediaPlayer;
-import android.util.Log;
 
 import com.yhnil.invisible.R;
-import com.yhnil.invisible.framework.main.GameObject;
-import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.BitmapObject;
@@ -18,10 +13,11 @@ import com.yhnil.invisible.framework.view.GameView;
 
 import static com.yhnil.invisible.R.raw.manu;
 
-public class FirstScene extends GameScene {
-    private static final String TAG = FirstScene.class.getSimpleName();
+public class IntroScene extends com.yhnil.invisible.framework.main.GameScene {
+    private static final String TAG = IntroScene.class.getSimpleName();
     public MediaPlayer mediaPlayer;
     private SoundMusic soundMusic;
+
     // private MediaPlayer mp1 = MediaPlayer.create(g, manu);
 
     public enum Layer {
@@ -57,9 +53,8 @@ public class FirstScene extends GameScene {
         super.exit();
 
     }
+
     private void initObjects() {
-        mediaPlayer = GameView.soundMusic.play(manu);
-        mediaPlayer.start();
         x = 0;
         timer = new GameTimer(255, (int) (255/5.0f));
         int cx = UiBridge.metrics.center.x + UiBridge.metrics.center.x /2;
@@ -68,7 +63,7 @@ public class FirstScene extends GameScene {
         button.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
-                SecondScene scene = new SecondScene();
+                ManuScene scene = new ManuScene();
                 scene.push();
             }
         });

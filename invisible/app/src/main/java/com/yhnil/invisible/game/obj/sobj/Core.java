@@ -7,7 +7,6 @@ import com.yhnil.invisible.framework.iface.CircleCollidable;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.obj.ShapeObject;
 import com.yhnil.invisible.framework.util.Vector;
-import com.yhnil.invisible.game.scene.SecondScene;
 
 import java.util.Random;
 

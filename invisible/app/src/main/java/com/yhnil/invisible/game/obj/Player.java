@@ -1,13 +1,11 @@
 package com.yhnil.invisible.game.obj;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.iface.CircleCollidable;
 import com.yhnil.invisible.framework.main.GameObject;
-import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.obj.ShapeObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
@@ -18,7 +16,7 @@ import com.yhnil.invisible.game.obj.sobj.Core;
 import com.yhnil.invisible.game.obj.sobj.DangerZone;
 import com.yhnil.invisible.game.obj.sobj.Stone;
 import com.yhnil.invisible.game.scene.OverScene;
-import com.yhnil.invisible.game.scene.SecondScene;
+import com.yhnil.invisible.game.scene.GameScene;
 
 import java.util.ArrayList;
 
@@ -27,7 +25,6 @@ public class Player extends ShapeObject implements CircleCollidable{
     private Core core = null;
     public ArrayList<Stone> stones = new ArrayList<>();
     private float dps = 45;
-    private SoundEffects soundEffects;
     public Player(float x, float y) {
         super(x, y);
         setCircle(10);
@@ -63,7 +60,7 @@ public class Player extends ShapeObject implements CircleCollidable{
     }
 
     private void checkDangerZoneCollision() {
-        DangerZone dangerZone = SecondScene.get().dangerZone;
+        DangerZone dangerZone = GameScene.get().dangerZone;
         float myDegree = (float) (Math.atan2(y, x) / Math.PI * 180.f);
         float other = dangerZone.getDegree();
 
@@ -88,7 +85,7 @@ public class Player extends ShapeObject implements CircleCollidable{
         if (CollisionHelper.collides(this, (CircleCollidable) core)) {
             if(isInLight){
                 {
-                    SecondScene.get().scoreObject.add(100);
+                    GameScene.get().scoreObject.add(100);
                     core.grayZoneIndex++;
                 }
                 for (Stone stone : stones)
@@ -106,7 +103,7 @@ public class Player extends ShapeObject implements CircleCollidable{
     }
 
     private void checkStoneCollision() {
-        ArrayList<GameObject> items = SecondScene.get().getGameWorld().objectsAtLayer(SecondScene.Layer.stone.ordinal());
+        ArrayList<GameObject> items = GameScene.get().getGameWorld().objectsAtLayer(GameScene.Layer.stone.ordinal());
 
         for (GameObject obj : items) {
             if (!(obj instanceof CircleCollidable))
@@ -114,7 +111,7 @@ public class Player extends ShapeObject implements CircleCollidable{
             if (CollisionHelper.collides(this, (CircleCollidable) obj))
             {
                 if(((Stone) obj).state == Stone.StoneState.Normal) {
-                    SecondScene.get().scoreObject.add(5);
+                    GameScene.get().scoreObject.add(5);
                     setColor(((ShapeObject) obj).getColor());
                     SoundEffects.get().play(R.raw.stoneeat);
                     boolean isContain = false;
@@ -136,7 +133,7 @@ public class Player extends ShapeObject implements CircleCollidable{
         }
     }
     private void checkPlayGroundCollision() {
-        ArrayList<GameObject> items = SecondScene.get().getGameWorld().objectsAtLayer(SecondScene.Layer.bg.ordinal());
+        ArrayList<GameObject> items = GameScene.get().getGameWorld().objectsAtLayer(GameScene.Layer.bg.ordinal());
 
         for (GameObject obj : items) {
             if (!(obj instanceof CircleCollidable)) {

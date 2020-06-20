@@ -15,7 +15,7 @@ public class SoundEffects {
     private SoundPool soundPool;
     private HashMap<Integer, Integer> soundIdMap = new HashMap<>();
     private static final int[] SOUND_IDS = {
-            R.raw.corebreak,R.raw.stoneeat
+            R.raw.corebreak,R.raw.stoneeat,R.raw.manu
     };
 
     public static SoundEffects get() {

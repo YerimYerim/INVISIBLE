@@ -1,13 +1,11 @@
 package com.yhnil.invisible.game.scene;
 
 import com.yhnil.invisible.R;
-import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
-import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Button;
 
-public class OverScene extends GameScene {
+public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
     private static final String TAG = OverScene.class.getSimpleName();
     public enum Layer {
         bg, enemy, player, ui, COUNT
@@ -43,10 +41,10 @@ public class OverScene extends GameScene {
         button.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
-               SecondScene secondScene = new SecondScene();
+               GameScene gameScene = new GameScene();
                pop();
                pop();
-               secondScene.push();
+               gameScene.push();
             }
         });
         Manu.setOnClickRunnable(new Runnable() {

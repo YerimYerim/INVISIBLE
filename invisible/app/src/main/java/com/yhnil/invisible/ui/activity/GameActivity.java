@@ -2,7 +2,6 @@ package com.yhnil.invisible.ui.activity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +10,7 @@ import com.yhnil.invisible.framework.input.sensor.GyroSensor;
 import com.yhnil.invisible.framework.main.GameScene;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.view.GameView;
-import com.yhnil.invisible.game.scene.FirstScene;
+import com.yhnil.invisible.game.scene.ManuScene;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -24,7 +23,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
        // setContentView(new GameView(this));
         setContentView(new GameView(this));
-        new FirstScene().run();
+        new ManuScene().run();
     }
 
     private long lastBackPressedOn;
