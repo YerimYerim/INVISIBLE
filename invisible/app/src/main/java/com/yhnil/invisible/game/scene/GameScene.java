@@ -21,7 +21,7 @@ import com.yhnil.invisible.game.obj.sobj.Stone;
 public class GameScene extends com.yhnil.invisible.framework.main.GameScene {
     private static final String TAG = GameScene.class.getSimpleName();
     private Joystick joystick;
-    public ScoreObject scoreObject;
+    public static ScoreObject scoreObject;
     public DangerZone dangerZone;
     public Core core;
     private GameTimer feverTimer;

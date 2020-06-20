@@ -73,6 +73,7 @@ public class Player extends ShapeObject implements CircleCollidable{
             if (gap < 30 || gap > 330) {
                 if (getColor() != dangerZone.getColor()) {
                     OverScene scene = new OverScene();
+                    scene.getScore(GameScene.scoreObject);
                     scene.push();
                 } else if (stones.size() == 6 &&CollisionHelper.collides(this, (CircleCollidable) core) ) {
                     isInLight = true;

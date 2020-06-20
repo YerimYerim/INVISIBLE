@@ -11,7 +11,7 @@ import com.yhnil.invisible.framework.res.bitmap.SharedBitmap;
 public class ScoreObject extends GameObject {
     private static final String TAG = ScoreObject.class.getSimpleName();
     private final SharedBitmap sbmp;
-    private final int digitWidth;
+    private int digitWidth;
     private RectF rightmostRect;
     private RectF rect = new RectF();
     private Rect srcRect = new Rect();
@@ -32,6 +32,20 @@ public class ScoreObject extends GameObject {
 
     public ScoreObject(int resId, RectF rightmostRect) {
         sbmp = SharedBitmap.load(resId, false);
+        digitWidth = sbmp.getWidth() / 10;
+        int digitHeight = sbmp.getHeight();
+        this.rightmostRect = new RectF(rightmostRect);
+        if (this.rightmostRect.bottom == 0) {
+            float width = this.rightmostRect.width();
+            float height = width / digitWidth * digitHeight;
+            this.rightmostRect.bottom = this.rightmostRect.top + height;
+        }
+        srcRect.top = 0;
+        srcRect.bottom = digitHeight;
+        scoreAnimator.setDuration(300);
+    }
+
+    public void setRect(RectF rightmostRect ) {
         digitWidth = sbmp.getWidth() / 10;
         int digitHeight = sbmp.getHeight();
         this.rightmostRect = new RectF(rightmostRect);
