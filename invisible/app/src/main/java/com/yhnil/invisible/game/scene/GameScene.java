@@ -1,6 +1,7 @@
 package com.yhnil.invisible.game.scene;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.RectF;
 import android.media.MediaPlayer;
@@ -8,6 +9,7 @@ import android.media.MediaPlayer;
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
+import com.yhnil.invisible.framework.obj.BitmapObject;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.framework.view.GameView;
@@ -70,8 +72,8 @@ public class GameScene extends com.yhnil.invisible.framework.main.GameScene {
     private void initObjects() {
         mediaPlayer = GameView.soundMusic.play(R.raw.ingame);
         mediaPlayer.start();
-        RectF rbox = new RectF(UiBridge.x(-52), UiBridge.y(0), UiBridge.x(-20), UiBridge.y(62));
-        scoreObject = new ScoreObject(R.mipmap.number_64x84, rbox);
+        RectF rbox = new RectF(UiBridge.x(-62), UiBridge.y(10), UiBridge.x(-20), UiBridge.y(62));
+        scoreObject = new ScoreObject(R.mipmap.number, rbox);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
         timer = new GameTimer(3, 1);
         feverTimer = new GameTimer(1 ,1);
