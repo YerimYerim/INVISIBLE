@@ -22,7 +22,6 @@ import com.yhnil.invisible.game.scene.IntroScene;
 public class GameActivity extends AppCompatActivity {
 
     private static final long BACKKEY_INTERVAL_MSEC = 1000;
-    private GameView gameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +46,15 @@ public class GameActivity extends AppCompatActivity {
         ad.addView(adView);
 
         AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+
+        FrameLayout bAd = findViewById(R.id.bottomAd);
+        adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+        bAd.addView(adView);
+
         adView.loadAd(adRequest);
 
         new IntroScene().run();
