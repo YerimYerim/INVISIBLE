@@ -53,7 +53,7 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
         mediaPlayer.start();
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
         Button button = new Button(cx, y, R.mipmap.start, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
-        Button Manu = new Button(cx, y2, R.mipmap.manu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button Menu = new Button(cx, y2, R.mipmap.manu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
@@ -62,7 +62,7 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
                gameScene.push();
             }
         });
-        Manu.setOnClickRunnable(new Runnable() {
+        Menu.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
                 pop();
@@ -71,7 +71,7 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
 
             }
         });
-        gameWorld.add(Layer.ui.ordinal(), Manu);
+        gameWorld.add(Layer.ui.ordinal(), Menu);
         gameWorld.add(Layer.ui.ordinal(), button);
     }
 
