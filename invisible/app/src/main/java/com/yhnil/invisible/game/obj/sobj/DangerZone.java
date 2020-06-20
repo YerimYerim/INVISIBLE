@@ -20,7 +20,6 @@ public class DangerZone extends ShapeObject {
         super(x, y);
         setColor(Color.MAGENTA);
         setSector(100);
-
         timer = new GameTimer(255, (int) (255 / startingTime));
     }
 

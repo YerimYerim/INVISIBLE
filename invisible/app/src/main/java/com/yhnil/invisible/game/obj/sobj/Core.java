@@ -7,6 +7,7 @@ import com.yhnil.invisible.framework.iface.CircleCollidable;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.obj.ShapeObject;
 import com.yhnil.invisible.framework.util.Vector;
+import com.yhnil.invisible.game.scene.SecondScene;
 
 import java.util.Random;
 
@@ -20,6 +21,7 @@ public class Core extends ShapeObject implements CircleCollidable{
     public CoreStone coreStones[] = new CoreStone[6];
     public int dangerZoneIndex;
     public int grayZoneIndex = 0;
+    public GameTimer timer;
     int colors[] = {
             Color.RED,
             Color.GREEN,
@@ -49,15 +51,29 @@ public class Core extends ShapeObject implements CircleCollidable{
         float dt = GameTimer.getTimeDiffSeconds();
         degree += (dps * dt) % 360;
         setDegree(degree);
+        if( grayZoneIndex == 6 && timer == null)
+        {
+            timer = new GameTimer(10,1);
+        }
+        if( grayZoneIndex == 6 && timer.done()) {
+            coreStones = null;
+            int index = 0;
+            coreStones = new CoreStone[6];
+            for (int color : colors) {
+                CoreStone coreStone = new CoreStone(0, 0, color);
+                connectCoreStone(coreStone, index++);
+            }
+            timer  = null;
+        }
         // coreStone update
         int index = 0;
         for(CoreStone coreStone : coreStones)
             if(coreStone != null) {
                 coreStone.setDegree(degree + 60 * index++);
             }
-        Log.d("fdfd",""+grayZoneIndex);
+        Log.d("fdfd",""+this.grayZoneIndex);
         // dangerZone update
-        if(dangerZone != null && grayZoneIndex<6) {
+        if(dangerZone != null && grayZoneIndex!=6 ) {
             if(dangerZone.lightState == DangerZone.LightState.None) {
                 dangerZoneIndex = random.nextInt(6);
                 while(coreStones[dangerZoneIndex].getColor()==Color.GRAY)

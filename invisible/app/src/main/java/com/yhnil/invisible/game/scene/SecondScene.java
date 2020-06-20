@@ -23,6 +23,7 @@ public class SecondScene extends GameScene {
     public ScoreObject scoreObject;
     public DangerZone dangerZone;
     public Core core;
+    private GameTimer feverTimer;
     public enum Layer {
         bg, corestone, light, stone, player, ui, joystick, COUNT
     }
@@ -44,6 +45,10 @@ public class SecondScene extends GameScene {
             gameWorld.add(Layer.stone.ordinal(), new Stone(0, 0));
             timer.reset();
         }
+        if (feverTimer.done()&& core.grayZoneIndex==6){
+            gameWorld.add(Layer.stone.ordinal(), new Stone(0, 0));
+            feverTimer.reset();
+        }
     }
 
     @Override
@@ -57,14 +62,15 @@ public class SecondScene extends GameScene {
     public void exit() {
         Log.d("",""+"나가진다");
         super.exit();
+
     }
 
     private void initObjects() {
         RectF rbox = new RectF(UiBridge.x(-52), UiBridge.y(0), UiBridge.x(-20), UiBridge.y(62));
         scoreObject = new ScoreObject(R.mipmap.number_64x84, rbox);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
-        timer = new GameTimer(1, 1);
-
+        timer = new GameTimer(3, 1);
+        feverTimer = new GameTimer(1 ,1);
         gameWorld.add(SecondScene.Layer.bg.ordinal(), new PlayGround(0, 0));
 
         core = new Core(0, 0);

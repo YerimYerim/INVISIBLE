@@ -73,7 +73,7 @@ public class ShapeObject extends GameObject {
     public void setSector(float radius) {
         shapeType = ShapeType.ShapeSector;
         this.radius = radius;
-        paint.setColor(Color.YELLOW);
+        paint.setColor(Color.GRAY);
     }
 
     public void setColor(int color){
