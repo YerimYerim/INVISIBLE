@@ -20,6 +20,8 @@ import com.yhnil.invisible.game.scene.GameScene;
 
 import java.util.ArrayList;
 
+import static com.yhnil.invisible.framework.main.GameScene.pop;
+
 public class Player extends ShapeObject implements CircleCollidable{
     private Joystick joystick = null;
     private Core core = null;
@@ -74,6 +76,7 @@ public class Player extends ShapeObject implements CircleCollidable{
                 if (getColor() != dangerZone.getColor()) {
                     OverScene scene = new OverScene();
                     scene.getScore(GameScene.scoreObject);
+                    pop();
                     scene.push();
                 } else if (stones.size() == 6 &&CollisionHelper.collides(this, (CircleCollidable) core) ) {
                     isInLight = true;

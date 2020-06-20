@@ -56,7 +56,6 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
             @Override
             public void run() {
                 pop();
-                pop();
                 MenuScene menuScene = new MenuScene();
                 menuScene.push();
 
