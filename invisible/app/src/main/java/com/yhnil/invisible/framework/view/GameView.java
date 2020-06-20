@@ -33,7 +33,6 @@ public class GameView extends View {
         SoundEffects.get().loadAll(getContext());
         postFrameCallback();
     }
-
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
@@ -65,7 +64,6 @@ public class GameView extends View {
             timer.reset();
         }
     }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return GameScene.getTop().onTouchEvent(event);

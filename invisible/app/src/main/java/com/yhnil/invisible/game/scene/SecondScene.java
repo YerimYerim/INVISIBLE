@@ -1,8 +1,11 @@
 package com.yhnil.invisible.game.scene;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.media.MediaPlayer;
 import android.util.Log;
+import android.view.View;
 
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.main.GameScene;
@@ -10,6 +13,7 @@ import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
+import com.yhnil.invisible.framework.view.GameView;
 import com.yhnil.invisible.game.obj.Player;
 import com.yhnil.invisible.game.obj.sobj.Core;
 import com.yhnil.invisible.game.obj.sobj.CoreStone;
@@ -24,6 +28,9 @@ public class SecondScene extends GameScene {
     public DangerZone dangerZone;
     public Core core;
     private GameTimer feverTimer;
+    private MediaPlayer mediaPlayer;
+    private  Context context;
+
     public enum Layer {
         bg, corestone, light, stone, player, ui, joystick, COUNT
     }
