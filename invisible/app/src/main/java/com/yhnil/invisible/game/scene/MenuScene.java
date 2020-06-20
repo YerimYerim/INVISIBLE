@@ -80,11 +80,10 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
                 GameScene scene = new GameScene();
                 pop();
                 scene.push();
-
             }
         });
         int logox = UiBridge.metrics.center.x;
-        int y2 = UiBridge.metrics.size.y - UiBridge.y(500);
+        int y2 = UiBridge.metrics.size.y - UiBridge.y(350);
         Logo = new BitmapObject(logox,y2, 1000, 400, R.mipmap.logo);
         gameWorld.add(Layer.ui.ordinal(),Logo);
         gameWorld.add(Layer.ui.ordinal(), button);
