@@ -56,15 +56,16 @@ public class Core extends ShapeObject implements CircleCollidable{
             timer = new GameTimer(10,1);
         }
         if( grayZoneIndex == 6 && timer.done()) {
-            coreStones = null;
             int index = 0;
-            coreStones = new CoreStone[6];
             for (int color : colors) {
-                CoreStone coreStone = new CoreStone(0, 0, color);
-                connectCoreStone(coreStone, index++);
+                coreStones[index].setColor(color);
+                ++index;
             }
             timer  = null;
+            grayZoneIndex= 0;
         }
+
+
         // coreStone update
         int index = 0;
         for(CoreStone coreStone : coreStones)
