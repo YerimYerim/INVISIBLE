@@ -62,6 +62,9 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
     }
 
     private void initObjects() {
+        timer = new GameTimer(2, 1);
+        int cx = UiBridge.metrics.center.x;
+        int y = UiBridge.metrics.size.y - UiBridge.y(100);
         mediaPlayer = GameView.soundMusic.play(R.raw.ending);
         mediaPlayer.setLooping(false);
         mediaPlayer.start();
@@ -76,8 +79,8 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
         bestScore = new ScoreObject(R.mipmap.number, bestScoreBox);
         gameWorld.add(Layer.ui.ordinal(), bestScore);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
-
-        Button button = new Button(cx + UiBridge.x(50), y, R.mipmap.restart_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button button = new Button(cx + UiBridge.x(50), y, 200,200, R.mipmap.restart_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button Menu = new Button(cx - UiBridge.x(50), y,200,200, R.mipmap.menu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
 
             @Override
@@ -88,9 +91,6 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
                gameScene.push();
             }
         });
-        gameWorld.add(Layer.ui.ordinal(), button);
-
-        Button Menu = new Button(cx - UiBridge.x(50), y, R.mipmap.menu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         Menu.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
@@ -102,6 +102,7 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
             }
         });
         gameWorld.add(Layer.ui.ordinal(), Menu);
+        gameWorld.add(Layer.ui.ordinal(), button);
     }
 
     public void getScore(ScoreObject Scoreobject) {

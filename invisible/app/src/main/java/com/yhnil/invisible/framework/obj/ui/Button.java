@@ -48,7 +48,6 @@ public class Button extends BitmapObject implements Touchable {
                     captureTouch();
                     capturing = true;
                     pressed = true;
-
                     if (onClickRunnable != null && runOnDown) {
                         onClickRunnable.run();
                     }
