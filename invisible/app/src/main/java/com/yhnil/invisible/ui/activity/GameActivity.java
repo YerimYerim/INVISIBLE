@@ -22,6 +22,7 @@ import com.yhnil.invisible.game.scene.IntroScene;
 public class GameActivity extends AppCompatActivity {
 
     private static final long BACKKEY_INTERVAL_MSEC = 1000;
+    private GameView gameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,8 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         FrameLayout game = findViewById(R.id.game);
-        game.addView(new GameView(this));
+        gameView = new GameView(this);
+        game.addView(gameView);
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -63,18 +65,18 @@ public class GameActivity extends AppCompatActivity {
     private long lastBackPressedOn;
     @Override
     public void onBackPressed() {
-        long now = System.currentTimeMillis();
-        long elapsed = now - lastBackPressedOn;
-        if (elapsed <= BACKKEY_INTERVAL_MSEC) {
-            handleBackPressed();
-            return;
-        }
-        Log.d("BackKey", "elapsed="+elapsed);
-        Toast.makeText(this,
-                "Press Back key twice quickly to exit",
-                Toast.LENGTH_SHORT)
-                .show();
-        lastBackPressedOn = now;
+        //long now = System.currentTimeMillis();
+        //long elapsed = now - lastBackPressedOn;
+        //if (elapsed <= BACKKEY_INTERVAL_MSEC) {
+        //    handleBackPressed();
+        //    return;
+        //}
+        //Log.d("BackKey", "elapsed="+elapsed);
+        //Toast.makeText(this,
+        //        "Press Back key twice quickly to exit",
+        //        Toast.LENGTH_SHORT)
+        //        .show();
+        //lastBackPressedOn = now;
     }
 
     @Override
@@ -89,5 +91,11 @@ public class GameActivity extends AppCompatActivity {
 
     public void handleBackPressed() {
         GameScene.getTop().onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        gameView.onDestory();
     }
 }
