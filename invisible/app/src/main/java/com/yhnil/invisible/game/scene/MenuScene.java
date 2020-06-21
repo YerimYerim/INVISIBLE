@@ -111,9 +111,7 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
         button_exit.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
-                GameScene scene = new GameScene();
-                pop();
-                scene.push();
+                System.exit(0);
             }
         });
 
