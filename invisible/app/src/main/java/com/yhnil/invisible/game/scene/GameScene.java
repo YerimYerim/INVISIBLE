@@ -115,7 +115,7 @@ public class GameScene extends com.yhnil.invisible.framework.main.GameScene {
             gameWorld.add(GameScene.Layer.corestone.ordinal(), coreStone);
         }
 
-        Button button = new Button(10, 10, R.mipmap.start_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button button = new Button(10, 10, R.mipmap.pause, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
