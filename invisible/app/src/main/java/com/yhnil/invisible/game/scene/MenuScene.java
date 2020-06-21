@@ -49,8 +49,8 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
                     state = State.Increase;
                 break;
         }
-
         Logo.setPaintAlpha(alpha);
+
         if (timer.done())
             timer.reset();
     }
@@ -81,7 +81,7 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
                 scene.push();
             }
         });
-        Button exit = new Button(cx + UiBridge.x(100), y +UiBridge.y(100) , R.mipmap.exit, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button exit = new Button(cx + cx, y +UiBridge.y(100) , R.mipmap.exit, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         exit.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
