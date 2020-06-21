@@ -74,10 +74,6 @@ public class GameActivity extends AppCompatActivity {
         gameView.setPause(true);
     }
 
-    public void handleBackPressed() {
-        GameScene.getTop().onBackPressed();
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
