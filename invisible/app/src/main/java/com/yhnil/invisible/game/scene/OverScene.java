@@ -15,6 +15,7 @@ import com.yhnil.invisible.framework.view.GameView;
 public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
     private static final String TAG = OverScene.class.getSimpleName();
     public ScoreObject scoreObject;
+    public ScoreObject bestScore;
     public enum Layer {
         bg, enemy, player, ui, COUNT
     }
@@ -54,6 +55,9 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
         mediaPlayer.start();
         BitmapObject score_image = new BitmapObject(cx , y - UiBridge.y(200), UiBridge.x(200), UiBridge.y(200), R.mipmap.score_image);
         gameWorld.add(Layer.ui.ordinal(),score_image);
+        RectF bestScoreBox = new RectF(UiBridge.metrics.center.x, y , UiBridge.metrics.center.x+UiBridge.x(32) ,y+ UiBridge.y(50));
+        bestScore = new ScoreObject(R.mipmap.number,bestScoreBox);
+        gameWorld.add(Layer.ui.ordinal(), bestScore);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
         Button button = new Button(cx + UiBridge.x(50), y, R.mipmap.restart_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         Button Menu = new Button(cx - UiBridge.x(50), y, R.mipmap.menu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
