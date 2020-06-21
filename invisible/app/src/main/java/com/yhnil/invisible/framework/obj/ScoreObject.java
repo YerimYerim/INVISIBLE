@@ -17,7 +17,7 @@ public class ScoreObject extends GameObject {
     private Rect srcRect = new Rect();
     private ObjectAnimator scoreAnimator = ObjectAnimator.ofInt(this, "displayedScore", 0, 1);
 
-    enum Align {Left, Center, Right, Count};
+    public enum Align {Left, Center, Right, Count};
     Align align = Align.Right;
 
     public int getDisplayedScore() {
