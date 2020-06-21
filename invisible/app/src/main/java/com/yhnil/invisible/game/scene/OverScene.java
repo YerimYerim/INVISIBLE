@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
+import com.yhnil.invisible.framework.obj.BitmapObject;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Button;
 import com.yhnil.invisible.framework.view.GameView;
@@ -47,13 +48,14 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
         timer = new GameTimer(2, 1);
         int cx = UiBridge.metrics.center.x;
         int y = UiBridge.metrics.size.y - UiBridge.y(100);
-        int y2 = UiBridge.metrics.size.y - UiBridge.y(300);
         mediaPlayer = GameView.soundMusic.play(R.raw.ending);
         mediaPlayer.setLooping(false);
         mediaPlayer.start();
+        BitmapObject score_image = new BitmapObject(cx , y - UiBridge.y(200), UiBridge.x(200), UiBridge.y(200), R.mipmap.score_image);
+        gameWorld.add(Layer.ui.ordinal(),score_image);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
-        Button button = new Button(cx, y, R.mipmap.start, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
-        Button Menu = new Button(cx, y2, R.mipmap.manu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button button = new Button(cx + UiBridge.x(50), y, R.mipmap.restart_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button Manu = new Button(cx - UiBridge.x(50), y, R.mipmap.menu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
@@ -62,7 +64,7 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
                gameScene.push();
             }
         });
-        Menu.setOnClickRunnable(new Runnable() {
+        Manu.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
                 pop();
@@ -71,13 +73,14 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
 
             }
         });
-        gameWorld.add(Layer.ui.ordinal(), Menu);
+        gameWorld.add(Layer.ui.ordinal(), Manu);
         gameWorld.add(Layer.ui.ordinal(), button);
     }
 
     public void getScore(ScoreObject Scoreobject) {
         scoreObject = Scoreobject;
-        RectF rbox = new RectF(UiBridge.metrics.center.x-UiBridge.x(16), UiBridge.y(124), UiBridge.metrics.center.x+UiBridge.x(16), UiBridge.y(186));
+        int y = UiBridge.metrics.size.y - UiBridge.y(300);
+        RectF rbox = new RectF(UiBridge.metrics.center.x-UiBridge.x(16), y, UiBridge.metrics.center.x+UiBridge.x(16),y+ UiBridge.y(50));
         scoreObject.setRect(rbox);
     }
 }
