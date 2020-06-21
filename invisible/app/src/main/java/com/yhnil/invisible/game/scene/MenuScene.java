@@ -79,7 +79,7 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
         startPos.x = UiBridge.metrics.center.x - UiBridge.x(50);
         startPos.y = UiBridge.metrics.center.y + UiBridge.y(150);
         Button button_start = new Button(startPos.x, startPos.y, 500, 500,
-                R.mipmap.start_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+                R.mipmap.start, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button_start.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
@@ -91,7 +91,7 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
         Point exitPos = new Point();
         exitPos.x = startPos.x * 2;
         exitPos.y = startPos.y + UiBridge.y(100);
-        Button button_exit = new Button(exitPos.x, exitPos.y, 600, 200,
+        Button button_exit = new Button(exitPos.x, exitPos.y, 450, 150,
                 R.mipmap.exit, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button_exit.setOnClickRunnable(new Runnable() {
             @Override
