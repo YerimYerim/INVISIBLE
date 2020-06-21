@@ -1,6 +1,7 @@
 package com.yhnil.invisible.framework.main;
 
 import android.graphics.Canvas;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -17,7 +18,6 @@ public abstract class GameScene {
         int topIndex = sceneStack.size() - 1;
         drawSceneAt(topIndex, canvas);
     }
-
     protected static void drawSceneAt(int stackIndex, Canvas canvas) {
         GameScene scene = sceneStack.get(stackIndex);
         if (scene.isTransparent() && stackIndex > 0) {

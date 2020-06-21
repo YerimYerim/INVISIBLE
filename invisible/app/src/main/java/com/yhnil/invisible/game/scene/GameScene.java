@@ -29,7 +29,7 @@ public class GameScene extends com.yhnil.invisible.framework.main.GameScene {
     public DangerZone dangerZone;
     public Core core;
     private GameTimer feverTimer;
-    private MediaPlayer mediaPlayer;
+    public MediaPlayer mediaPlayer;
     private  Context context;
 
     public enum Layer {
@@ -48,6 +48,7 @@ public class GameScene extends com.yhnil.invisible.framework.main.GameScene {
     @Override
     public void update() {
         super.update();
+
         if (timer.done()) {
             gameWorld.add(Layer.stone.ordinal(), new Stone(0, 0));
             timer.reset();

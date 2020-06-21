@@ -73,7 +73,7 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
         int y = UiBridge.metrics.size.y - UiBridge.y(100);
         BitmapObject score_image = new BitmapObject(cx , y - UiBridge.y(200), UiBridge.x(200), UiBridge.y(200), R.mipmap.score_image);
         gameWorld.add(Layer.ui.ordinal(), score_image);
-        RectF bestScoreBox = new RectF(UiBridge.metrics.center.x, y- UiBridge.y(450), UiBridge.metrics.center.x+UiBridge.x(32),y- UiBridge.y(400));
+        RectF bestScoreBox = new RectF(UiBridge.metrics.center.x - UiBridge.x(16), y- UiBridge.y(400), UiBridge.metrics.center.x+UiBridge.x(16),y- UiBridge.y(350));
         bestScore = new ScoreObject(R.mipmap.number, bestScoreBox);
         BitmapObject bestScoreImage = new BitmapObject(UiBridge.metrics.center.x , y -UiBridge.y(400), UiBridge.x(200),UiBridge.y(200),R.mipmap.bestscore);
         gameWorld.add(Layer.ui.ordinal(),bestScoreImage);
