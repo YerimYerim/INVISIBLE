@@ -18,6 +18,8 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
     private static final String TAG = OverScene.class.getSimpleName();
     public ScoreObject scoreObject;
     public ScoreObject bestScore;
+    private int soundPosition;
+
     public enum Layer {
         bg, enemy, player, ui, COUNT
     }
@@ -40,6 +42,20 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
     public void exit() {
         mediaPlayer.release();
         super.exit();
+    }
+
+    @Override
+    public void onPause() {
+        mediaPlayer.pause();
+        soundPosition = mediaPlayer.getCurrentPosition();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        mediaPlayer.seekTo(soundPosition);
+        mediaPlayer.start();
+        super.onResume();
     }
 
     @Override
@@ -112,7 +128,7 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
         scoreObject = Scoreobject;
         int cx = UiBridge.metrics.center.x;
         int cy = UiBridge.metrics.center.y;
-        RectF rbox = new RectF(cx, cy + UiBridge.y(5), cx+UiBridge.x(32),cy+ UiBridge.y(55));
+        RectF rbox = new RectF(cx, cy - UiBridge.y(25), cx+UiBridge.x(32),cy+ UiBridge.y(25));
         scoreObject.setRect(rbox);
     }
 }

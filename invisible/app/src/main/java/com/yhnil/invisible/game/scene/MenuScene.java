@@ -16,6 +16,7 @@ import static com.yhnil.invisible.R.raw.manu;
 
 public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
     public MediaPlayer mediaPlayer;
+    private int soundPosition;
 
     public enum Layer {
         ui, COUNT
@@ -65,6 +66,20 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
     public void exit() {
         mediaPlayer.release();
         super.exit();
+    }
+
+    @Override
+    public void onPause() {
+        mediaPlayer.pause();
+        soundPosition = mediaPlayer.getCurrentPosition();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        mediaPlayer.seekTo(soundPosition);
+        mediaPlayer.start();
+        super.onResume();
     }
 
     private void initObjects() {

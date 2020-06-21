@@ -31,6 +31,7 @@ public class GameScene extends com.yhnil.invisible.framework.main.GameScene {
     private GameTimer feverTimer;
     public MediaPlayer mediaPlayer;
     private  Context context;
+    private int soundPosition;
 
     public enum Layer {
         bg, corestone, light, stone, player, ui, joystick, COUNT
@@ -70,6 +71,23 @@ public class GameScene extends com.yhnil.invisible.framework.main.GameScene {
     public void exit() {
         mediaPlayer.release();
         super.exit();
+    }
+
+    @Override
+    public void onPause() {
+        mediaPlayer.pause();
+        soundPosition = mediaPlayer.getCurrentPosition();
+
+        DialogScene scene = new DialogScene();
+        scene.push();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        mediaPlayer.seekTo(soundPosition);
+        mediaPlayer.start();
+        super.onResume();
     }
 
     private void initObjects() {

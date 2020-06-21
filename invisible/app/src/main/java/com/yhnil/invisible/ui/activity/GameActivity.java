@@ -82,11 +82,13 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        gameView.setPause(false);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        gameView.setPause(true);
     }
 
     public void handleBackPressed() {

@@ -79,4 +79,8 @@ public class GameView extends View {
         while(GameScene.getTop() != null)
             GameScene.pop();
     }
+
+    public void setPause(boolean b) {
+        GameScene.setPause(b);
+    }
 }

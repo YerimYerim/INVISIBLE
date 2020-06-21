@@ -12,6 +12,7 @@ public abstract class GameScene {
     private static ArrayList<GameScene> sceneStack = new ArrayList<>();
 
     protected static GameScene topGameScene;
+    private static boolean isPaused = false;
 
     public static void drawScenes(Canvas canvas) {
         //getTop().draw(canvas);
@@ -24,6 +25,17 @@ public abstract class GameScene {
             drawSceneAt(stackIndex - 1, canvas);
         }
         scene.draw(canvas);
+    }
+
+    public static void setPause(boolean b) {
+        isPaused = b;
+        if(isPaused){
+            for(GameScene scene : sceneStack)
+                scene.onPause();
+        }else{
+            for(GameScene scene : sceneStack)
+                scene.onResume();
+        }
     }
 
     public GameWorld getGameWorld() {
@@ -105,6 +117,8 @@ public abstract class GameScene {
     public void exit() { Log.v(TAG, "exit() - " + getClass().getSimpleName()) ;}
     public void pause() { Log.v(TAG, "pause() - " + getClass().getSimpleName());  }
     public void resume() { Log.v(TAG, "resume() - " + getClass().getSimpleName()); }
+    public void onPause() { Log.v(TAG, "onPause() - " + getClass().getSimpleName());  }
+    public void onResume() { Log.v(TAG, "onResume() - " + getClass().getSimpleName()); }
 
     public boolean onTouchEvent(MotionEvent event) {
         return gameWorld.onTouchEvent(event);
