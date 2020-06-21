@@ -1,5 +1,7 @@
 package com.yhnil.invisible.game.scene;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.RectF;
 import android.media.MediaPlayer;
 
@@ -44,23 +46,38 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
     public void enter() {
         super.enter();
         initObjects();
+
+        Context context = UiBridge.getView().getContext();
+        SharedPreferences prefs = context.getSharedPreferences("Highscore", Context.MODE_PRIVATE);
+        int score = prefs.getInt("score", 0);
+        bestScore.reset();
+        bestScore.add(score);
+
+        if(bestScore.getScoreValue() < scoreObject.getScoreValue()) {
+            SharedPreferences.Editor editor = prefs.edit();
+
+            editor.putInt("score", scoreObject.getScoreValue());
+            editor.commit();
+        }
     }
 
     private void initObjects() {
-        timer = new GameTimer(2, 1);
-        int cx = UiBridge.metrics.center.x;
-        int y = UiBridge.metrics.size.y - UiBridge.y(100);
         mediaPlayer = GameView.soundMusic.play(R.raw.ending);
         mediaPlayer.setLooping(false);
         mediaPlayer.start();
+
+        timer = new GameTimer(2, 1);
+
+        int cx = UiBridge.metrics.center.x;
+        int y = UiBridge.metrics.size.y - UiBridge.y(100);
         BitmapObject score_image = new BitmapObject(cx , y - UiBridge.y(200), UiBridge.x(200), UiBridge.y(200), R.mipmap.score_image);
-        gameWorld.add(Layer.ui.ordinal(),score_image);
+        gameWorld.add(Layer.ui.ordinal(), score_image);
         RectF bestScoreBox = new RectF(UiBridge.metrics.center.x, y , UiBridge.metrics.center.x+UiBridge.x(32) ,y+ UiBridge.y(50));
-        bestScore = new ScoreObject(R.mipmap.number,bestScoreBox);
+        bestScore = new ScoreObject(R.mipmap.number, bestScoreBox);
         gameWorld.add(Layer.ui.ordinal(), bestScore);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
+
         Button button = new Button(cx + UiBridge.x(50), y, R.mipmap.restart_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
-        Button Menu = new Button(cx - UiBridge.x(50), y, R.mipmap.menu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
 
             @Override
@@ -71,6 +88,9 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
                gameScene.push();
             }
         });
+        gameWorld.add(Layer.ui.ordinal(), button);
+
+        Button Menu = new Button(cx - UiBridge.x(50), y, R.mipmap.menu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         Menu.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
@@ -82,7 +102,6 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
             }
         });
         gameWorld.add(Layer.ui.ordinal(), Menu);
-        gameWorld.add(Layer.ui.ordinal(), button);
     }
 
     public void getScore(ScoreObject Scoreobject) {
