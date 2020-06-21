@@ -49,8 +49,8 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
                     state = State.Increase;
                 break;
         }
-
         Logo.setPaintAlpha(alpha);
+
         if (timer.done())
             timer.reset();
     }
@@ -69,12 +69,20 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
     private void initObjects() {
         mediaPlayer = GameView.soundMusic.play(manu);
         mediaPlayer.start();
-
         timer = new GameTimer(255, (int) (255/2.0f));
-        int cx = UiBridge.metrics.center.x + UiBridge.metrics.center.x /2;
-        int y = UiBridge.metrics.size.y - UiBridge.y(100);
-        Button button = new Button(cx, y, R.mipmap.start18, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        int cx = UiBridge.metrics.center.x - UiBridge.x(50);
+        int y = UiBridge.metrics.size.y - UiBridge.y(150);
+        Button button = new Button(cx, y, R.mipmap.start_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
+            @Override
+            public void run() {
+                GameScene scene = new GameScene();
+                pop();
+                scene.push();
+            }
+        });
+        Button exit = new Button(cx + cx, y +UiBridge.y(100) , R.mipmap.exit, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        exit.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
                 GameScene scene = new GameScene();
@@ -86,6 +94,7 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
         int y2 = UiBridge.metrics.size.y - UiBridge.y(350);
         Logo = new BitmapObject(logox,y2, 1000, 400, R.mipmap.logo);
         gameWorld.add(Layer.ui.ordinal(),Logo);
+        gameWorld.add(Layer.ui.ordinal(), exit);
         gameWorld.add(Layer.ui.ordinal(), button);
     }
 }

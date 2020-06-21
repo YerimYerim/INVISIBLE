@@ -19,7 +19,6 @@ public class Button extends BitmapObject implements Touchable {
 
     public Button(float x, float y, int resId, int bgNormalResId, int bgPressResId) {
         super(x, y, 0, 0, resId);
-
         this.bgNormal = (NinePatchDrawable) UiBridge.getResources().getDrawable(bgNormalResId);
         this.bgPress = (NinePatchDrawable) UiBridge.getResources().getDrawable(bgPressResId);
         int left = (int)this.x - this.width / 2, top = (int)this.y - this.height / 2;
@@ -29,8 +28,6 @@ public class Button extends BitmapObject implements Touchable {
 
     @Override
     public void draw(Canvas canvas) {
-        NinePatchDrawable bg = pressed ? bgPress : bgNormal;
-        bg.draw(canvas);
         super.draw(canvas);
     }
 
@@ -73,5 +70,9 @@ public class Button extends BitmapObject implements Touchable {
     public void setOnClickRunnable(boolean runOnDown, Runnable runnable) {
         this.runOnDown = runOnDown;
         this.onClickRunnable = runnable;
+    }
+    public void setAlpha(int alpha)
+    {
+        setPaintAlpha(alpha);
     }
 }
