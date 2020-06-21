@@ -32,7 +32,7 @@ public class DialogScene extends com.yhnil.invisible.framework.main.GameScene {
 
         gameWorld.add(Layer.bg.ordinal(), new BitmapObject(cx, cy, screenWidth, screenHeight, R.mipmap.black_transparent));
 
-        Button button = new Button(cx, cy, R.mipmap.btn_start_game, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button button = new Button(cx, cy, R.mipmap.unpause, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
