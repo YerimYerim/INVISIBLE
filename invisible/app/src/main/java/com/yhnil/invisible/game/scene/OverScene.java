@@ -70,17 +70,20 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
         timer = new GameTimer(2, 1);
 
         int cx = UiBridge.metrics.center.x;
-        int y = UiBridge.metrics.size.y - UiBridge.y(100);
-        BitmapObject score_image = new BitmapObject(cx , y - UiBridge.y(200), UiBridge.x(200), UiBridge.y(200), R.mipmap.score_image);
+        int cy = UiBridge.metrics.center.y;
+        BitmapObject score_image = new BitmapObject(cx , cy + UiBridge.y(30), UiBridge.x(200), UiBridge.y(200), R.mipmap.score_image);
         gameWorld.add(Layer.ui.ordinal(), score_image);
-        RectF bestScoreBox = new RectF(UiBridge.metrics.center.x, y- UiBridge.y(450), UiBridge.metrics.center.x+UiBridge.x(32),y- UiBridge.y(400));
+
+        RectF bestScoreBox = new RectF(cx, cy- UiBridge.y(195), cx+UiBridge.x(32),cy- UiBridge.y(145));
         bestScore = new ScoreObject(R.mipmap.number, bestScoreBox);
-        BitmapObject bestScoreImage = new BitmapObject(UiBridge.metrics.center.x , y -UiBridge.y(400), UiBridge.x(200),UiBridge.y(200),R.mipmap.bestscore);
-        gameWorld.add(Layer.ui.ordinal(),bestScoreImage);
+        BitmapObject bestScoreImage = new BitmapObject(cx , cy - UiBridge.y(170), UiBridge.x(200),UiBridge.y(200),R.mipmap.bestscore);
+        gameWorld.add(Layer.ui.ordinal(), bestScoreImage);
+
         gameWorld.add(Layer.ui.ordinal(), bestScore);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
-        Button button = new Button(cx + UiBridge.x(50), y, 200,200, R.mipmap.restart_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
-        Button Menu = new Button(cx - UiBridge.x(50), y,200,200, R.mipmap.menu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+
+        Button button = new Button(cx + UiBridge.x(50), cy+UiBridge.y(200), 200,200, R.mipmap.restart_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button Menu = new Button(cx - UiBridge.x(50), cy+UiBridge.y(200),200,200, R.mipmap.menu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
 
             @Override
@@ -107,8 +110,9 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
 
     public void getScore(ScoreObject Scoreobject) {
         scoreObject = Scoreobject;
-        int y = UiBridge.metrics.size.y - UiBridge.y(300);
-        RectF rbox = new RectF(UiBridge.metrics.center.x, y, UiBridge.metrics.center.x+UiBridge.x(32),y+ UiBridge.y(50));
+        int cx = UiBridge.metrics.center.x;
+        int cy = UiBridge.metrics.center.y;
+        RectF rbox = new RectF(cx, cy + UiBridge.y(5), cx+UiBridge.x(32),cy+ UiBridge.y(55));
         scoreObject.setRect(rbox);
     }
 }
