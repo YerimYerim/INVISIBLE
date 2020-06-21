@@ -63,8 +63,6 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
 
     private void initObjects() {
         timer = new GameTimer(2, 1);
-        int cx = UiBridge.metrics.center.x;
-        int y = UiBridge.metrics.size.y - UiBridge.y(100);
         mediaPlayer = GameView.soundMusic.play(R.raw.ending);
         mediaPlayer.setLooping(false);
         mediaPlayer.start();
