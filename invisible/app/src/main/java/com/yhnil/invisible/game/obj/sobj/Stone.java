@@ -29,7 +29,6 @@ public class Stone extends ShapeObject implements CircleCollidable {
     };
     public Stone(float x, float y) {
         super(x, y);
-        Log.d("" ,"스톤 생성" );
         long seed = System.currentTimeMillis();
         Random rand = new Random(seed);
 

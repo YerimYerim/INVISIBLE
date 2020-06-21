@@ -98,7 +98,6 @@ public class Player extends ShapeObject implements CircleCollidable{
             }else{
                 double distance = Math.sqrt(x * x + y * y);
                 distance = 18+getRadius() - distance;
-                Log.d("D", "dd"+ distance);
                 float radian = (float) (Math.atan2(y, x));
                 x += distance * Math.cos(radian);
                 y += distance * Math.sin(radian);
@@ -148,7 +147,6 @@ public class Player extends ShapeObject implements CircleCollidable{
                // y += joystick.getDirection().y;
                 double distance = Math.sqrt(x * x + y * y);
                 distance -= obj.getRadius()-getRadius();
-                Log.d("D", "dd"+ distance);
                 float radian = (float) (Math.atan2(y, x));
                 x -= distance * Math.cos(radian);
                 y -= distance * Math.sin(radian);

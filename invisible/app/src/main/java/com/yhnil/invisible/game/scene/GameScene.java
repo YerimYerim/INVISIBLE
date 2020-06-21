@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.RectF;
 import android.media.MediaPlayer;
+import android.util.Log;
 
 import com.yhnil.invisible.R;
 import com.yhnil.invisible.framework.main.GameTimer;

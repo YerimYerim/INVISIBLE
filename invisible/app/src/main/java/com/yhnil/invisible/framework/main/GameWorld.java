@@ -19,7 +19,6 @@ public class GameWorld {
     public GameWorld(int layerCount) {
         layers = new ArrayList<>(layerCount);
         for (int i = 0; i < layerCount; i++) {
-            Log.d(TAG, "Adding layer " + i);
             layers.add(new ArrayList<GameObject>());
         }
     }
@@ -51,7 +50,6 @@ public class GameWorld {
         ArrayList<GameObject> objects = layers.get(layerIndex);
         int index = objects.indexOf(obj);
         if (index >= 0) {
-            Log.e(TAG, "Duplicated: " + index + " / " + objects.size() + " : " + obj);
             return;
         }
 
@@ -86,11 +84,9 @@ public class GameWorld {
     }
 
     public void captureTouch(Touchable obj) {
-        Log.d(TAG, "Capture: " + obj);
         capturingObject = obj;
     }
     public void releaseTouch() {
-        Log.d(TAG, "Release: " + capturingObject);
         capturingObject = null;
     }
     public boolean onTouchEvent(MotionEvent event) {

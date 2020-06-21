@@ -71,7 +71,7 @@ public class Core extends ShapeObject implements CircleCollidable{
             if(coreStone != null) {
                 coreStone.setDegree(degree + 60 * index++);
             }
-        Log.d("fdfd",""+this.grayZoneIndex);
+
         // dangerZone update
         if(dangerZone != null && grayZoneIndex!=6 ) {
             if(dangerZone.lightState == DangerZone.LightState.None) {
