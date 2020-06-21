@@ -59,7 +59,7 @@ public class GameView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        GameScene.getTop().draw(canvas);
+        GameScene.drawScenes(canvas);
     }
 
     public void update() {

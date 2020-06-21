@@ -10,7 +10,6 @@ import com.yhnil.invisible.framework.iface.Touchable;
 import java.util.ArrayList;
 
 public class GameWorld {
-    private static final String TAG = GameWorld.class.getSimpleName();
     protected RecyclePool recyclePool = new RecyclePool();
     protected ArrayList<ArrayList<GameObject>> layers;
     protected ArrayList<GameObject> trash = new ArrayList<>();

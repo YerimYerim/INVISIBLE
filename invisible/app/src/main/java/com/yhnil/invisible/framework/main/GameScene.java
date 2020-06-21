@@ -12,11 +12,35 @@ public abstract class GameScene {
 
     protected static GameScene topGameScene;
 
+    public static void drawScenes(Canvas canvas) {
+        //getTop().draw(canvas);
+        int topIndex = sceneStack.size() - 1;
+        drawSceneAt(topIndex, canvas);
+    }
+
+    protected static void drawSceneAt(int stackIndex, Canvas canvas) {
+        GameScene scene = sceneStack.get(stackIndex);
+        if (scene.isTransparent() && stackIndex > 0) {
+            drawSceneAt(stackIndex - 1, canvas);
+        }
+        scene.draw(canvas);
+    }
+
     public GameWorld getGameWorld() {
         return gameWorld;
     }
 
     protected GameWorld gameWorld;
+
+    public boolean isTransparent() {
+        return transparent;
+    }
+
+    public void setTransparent(boolean transparent) {
+        this.transparent = transparent;
+    }
+
+    protected boolean transparent;
 
     abstract protected int getLayerCount();
     protected GameScene() {

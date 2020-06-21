@@ -12,6 +12,7 @@ import com.yhnil.invisible.framework.main.GameTimer;
 import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.BitmapObject;
 import com.yhnil.invisible.framework.obj.ScoreObject;
+import com.yhnil.invisible.framework.obj.ui.Button;
 import com.yhnil.invisible.framework.obj.ui.Joystick;
 import com.yhnil.invisible.framework.view.GameView;
 import com.yhnil.invisible.game.obj.Player;
@@ -73,9 +74,11 @@ public class GameScene extends com.yhnil.invisible.framework.main.GameScene {
     private void initObjects() {
         mediaPlayer = GameView.soundMusic.play(R.raw.ingame);
         mediaPlayer.start();
+
         RectF rbox = new RectF(UiBridge.x(-62), UiBridge.y(10), UiBridge.x(-20), UiBridge.y(62));
         scoreObject = new ScoreObject(R.mipmap.number, rbox);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
+
         timer = new GameTimer(3, 1);
         feverTimer = new GameTimer(1 ,1);
         gameWorld.add(GameScene.Layer.bg.ordinal(), new PlayGround(0, 0));
@@ -112,6 +115,15 @@ public class GameScene extends com.yhnil.invisible.framework.main.GameScene {
             gameWorld.add(GameScene.Layer.corestone.ordinal(), coreStone);
         }
 
+        Button button = new Button(10, 10, R.mipmap.start18, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        button.setOnClickRunnable(new Runnable() {
+            @Override
+            public void run() {
+                DialogScene scene = new DialogScene();
+                scene.push();
+            }
+        });
+        gameWorld.add(Layer.ui.ordinal(), button);
     }
 
     public static GameScene get() {

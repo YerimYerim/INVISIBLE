@@ -69,7 +69,7 @@ public class Joystick extends GameObject implements Touchable {
                 down = false;
                 dPos.x = 0;
                 dPos.y = 0;
-                return true;
+                return false;
         }
         return false;
     }
