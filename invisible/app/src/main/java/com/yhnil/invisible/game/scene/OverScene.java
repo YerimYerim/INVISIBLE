@@ -56,7 +56,7 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
         gameWorld.add(Layer.ui.ordinal(),score_image);
         gameWorld.add(Layer.ui.ordinal(), scoreObject);
         Button button = new Button(cx + UiBridge.x(50), y, R.mipmap.restart_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
-        Button Manu = new Button(cx - UiBridge.x(50), y, R.mipmap.menu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button Menu = new Button(cx - UiBridge.x(50), y, R.mipmap.menu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
 
             @Override
@@ -67,7 +67,7 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
                gameScene.push();
             }
         });
-        Manu.setOnClickRunnable(new Runnable() {
+        Menu.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
                 pop();
@@ -77,14 +77,14 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
 
             }
         });
-        gameWorld.add(Layer.ui.ordinal(), Manu);
+        gameWorld.add(Layer.ui.ordinal(), Menu);
         gameWorld.add(Layer.ui.ordinal(), button);
     }
 
     public void getScore(ScoreObject Scoreobject) {
         scoreObject = Scoreobject;
         int y = UiBridge.metrics.size.y - UiBridge.y(300);
-        RectF rbox = new RectF(UiBridge.metrics.center.x-UiBridge.x(16), y, UiBridge.metrics.center.x+UiBridge.x(16),y+ UiBridge.y(50));
+        RectF rbox = new RectF(UiBridge.metrics.center.x, y, UiBridge.metrics.center.x+UiBridge.x(32),y+ UiBridge.y(50));
         scoreObject.setRect(rbox);
     }
 }

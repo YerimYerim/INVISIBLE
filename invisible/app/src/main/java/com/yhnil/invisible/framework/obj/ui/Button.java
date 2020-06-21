@@ -29,8 +29,6 @@ public class Button extends BitmapObject implements Touchable {
 
     @Override
     public void draw(Canvas canvas) {
-        NinePatchDrawable bg = pressed ? bgPress : bgNormal;
-        bg.draw(canvas);
         super.draw(canvas);
     }
 

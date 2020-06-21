@@ -69,11 +69,10 @@ public class MenuScene extends com.yhnil.invisible.framework.main.GameScene {
     private void initObjects() {
         mediaPlayer = GameView.soundMusic.play(manu);
         mediaPlayer.start();
-
         timer = new GameTimer(255, (int) (255/2.0f));
-        int cx = UiBridge.metrics.center.x + UiBridge.metrics.center.x /2;
+        int cx = UiBridge.metrics.center.x - UiBridge.x(50);
         int y = UiBridge.metrics.size.y - UiBridge.y(100);
-        Button button = new Button(cx, y, R.mipmap.start18, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
+        Button button = new Button(cx, y, R.mipmap.start_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
             @Override
             public void run() {
