@@ -17,6 +17,9 @@ public class ScoreObject extends GameObject {
     private Rect srcRect = new Rect();
     private ObjectAnimator scoreAnimator = ObjectAnimator.ofInt(this, "displayedScore", 0, 1);
 
+    enum Align {Left, Center, Right, Count};
+    Align align = Align.Right;
+
     public int getDisplayedScore() {
         return displayedScore;
     }
@@ -61,7 +64,6 @@ public class ScoreObject extends GameObject {
 
     @Override
     public void update() {
-
     }
 
     @Override
@@ -69,6 +71,11 @@ public class ScoreObject extends GameObject {
         rect.set(rightmostRect);
         float width = rect.width();
         int score = this.displayedScore;
+        if(align == Align.Center){
+            int cnt = (int) (Math.log10(score)+1);
+            rect.left += (width * cnt) / 2;
+            rect.right += (width * cnt) / 2;
+        }
         while (score > 0) {
             int digit = score % 10;
             srcRect.left = digitWidth * digit;
@@ -97,5 +104,9 @@ public class ScoreObject extends GameObject {
         scoreAnimator.setIntValues(this.targetScore, newScore);
         scoreAnimator.start();
         this.targetScore = newScore;
+    }
+
+    public void setAlign(Align align) {
+        this.align = align;
     }
 }
