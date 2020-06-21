@@ -62,23 +62,6 @@ public class GameActivity extends AppCompatActivity {
         new IntroScene().run();
     }
 
-    private long lastBackPressedOn;
-    @Override
-    public void onBackPressed() {
-        //long now = System.currentTimeMillis();
-        //long elapsed = now - lastBackPressedOn;
-        //if (elapsed <= BACKKEY_INTERVAL_MSEC) {
-        //    handleBackPressed();
-        //    return;
-        //}
-        //Log.d("BackKey", "elapsed="+elapsed);
-        //Toast.makeText(this,
-        //        "Press Back key twice quickly to exit",
-        //        Toast.LENGTH_SHORT)
-        //        .show();
-        //lastBackPressedOn = now;
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
