@@ -75,11 +75,6 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
             editor.putInt("score", scoreObject.getScoreValue());
             editor.commit();
         }
-
-        scoreObject.reset();
-        scoreObject.add(500);
-        bestScore.reset();
-        bestScore.add(5000);
     }
 
     private void initObjects() {
@@ -94,7 +89,7 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
         int cy = UiBridge.metrics.center.y;
         BitmapObject score_image = new BitmapObject(cx , cy - UiBridge.y(30), UiBridge.x(300), UiBridge.y(300), R.mipmap.score_image_);
 
-        RectF bestScoreBox = new RectF(cx-UiBridge.x(32), cy- UiBridge.y(195), cx,cy- UiBridge.y(145));
+        RectF bestScoreBox = new RectF(cx-UiBridge.x(16), cy- UiBridge.y(205), cx,cy- UiBridge.y(180));
         bestScore = new ScoreObject(R.mipmap.number, bestScoreBox);
         bestScore.setAlign(ScoreObject.Align.Center);
         BitmapObject bestScoreImage = new BitmapObject(cx , cy - UiBridge.y(170), UiBridge.x(200),UiBridge.y(200),R.mipmap.bestscore);
@@ -134,7 +129,7 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
         scoreObject = Scoreobject;
         int cx = UiBridge.metrics.center.x;
         int cy = UiBridge.metrics.center.y;
-        RectF rbox = new RectF(cx-UiBridge.x(32), cy - UiBridge.y(25), cx,cy+ UiBridge.y(25));
+        RectF rbox = new RectF(cx-UiBridge.x(32), cy - UiBridge.y(35), cx,cy+ UiBridge.y(15));
         scoreObject.setRect(rbox);
         scoreObject.setAlign(ScoreObject.Align.Center);
     }

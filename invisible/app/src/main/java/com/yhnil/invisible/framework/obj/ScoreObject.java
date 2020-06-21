@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.yhnil.invisible.framework.main.GameObject;
 import com.yhnil.invisible.framework.res.bitmap.SharedBitmap;
@@ -73,6 +74,8 @@ public class ScoreObject extends GameObject {
         int score = this.displayedScore;
         if(align == Align.Center){
             int cnt = (int) (Math.log10(score)+1);
+            if(displayedScore == 0)
+                cnt = 1;
             rect.left += (width * cnt) / 2;
             rect.right += (width * cnt) / 2;
         }
@@ -80,7 +83,6 @@ public class ScoreObject extends GameObject {
             int digit = score % 10;
             srcRect.left = digitWidth * digit;
             srcRect.right = srcRect.left + digitWidth;
-//            Log.d(TAG, "digit=" + digit + " src=" + srcRect + " dst=" + rect);
             canvas.drawBitmap(sbmp.getBitmap(), srcRect, rect, null);
 
             rect.left -= width;
@@ -89,7 +91,7 @@ public class ScoreObject extends GameObject {
             score /= 10;
         }
         if (displayedScore == 0){
-            int digit = score % 10;
+            int digit = 0;
             srcRect.left = digitWidth * digit;
             srcRect.right = srcRect.left + digitWidth;
             canvas.drawBitmap(sbmp.getBitmap(), srcRect, rect, null);
