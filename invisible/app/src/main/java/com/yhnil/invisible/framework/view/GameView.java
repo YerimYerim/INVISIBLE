@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.media.MediaPlayer;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Choreographer;
 import android.view.MotionEvent;
 import android.view.View;
@@ -67,7 +66,6 @@ public class GameView extends View {
         GameScene.getTop().update();
         frameCount++;
         if (timer.done()) {
-            Log.d(TAG, "Frame Count /s = " + ((float) frameCount / FPS_SECONDS));// + " Total Objects = " + GameScene.get().getAllObjectCount());
             frameCount = 0;
             timer.reset();
         }
@@ -75,5 +73,10 @@ public class GameView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return GameScene.getTop().onTouchEvent(event);
+    }
+
+    public void onDestory() {
+        while(GameScene.getTop() != null)
+            GameScene.pop();
     }
 }
