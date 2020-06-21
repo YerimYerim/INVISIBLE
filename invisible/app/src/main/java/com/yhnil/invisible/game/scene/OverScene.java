@@ -9,6 +9,7 @@ import com.yhnil.invisible.framework.main.UiBridge;
 import com.yhnil.invisible.framework.obj.BitmapObject;
 import com.yhnil.invisible.framework.obj.ScoreObject;
 import com.yhnil.invisible.framework.obj.ui.Button;
+import com.yhnil.invisible.framework.res.sound.SoundEffects;
 import com.yhnil.invisible.framework.view.GameView;
 
 public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
@@ -57,10 +58,12 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
         Button button = new Button(cx + UiBridge.x(50), y, R.mipmap.restart_, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         Button Manu = new Button(cx - UiBridge.x(50), y, R.mipmap.menu, R.mipmap.blue_round_btn, R.mipmap.red_round_btn);
         button.setOnClickRunnable(new Runnable() {
+
             @Override
             public void run() {
                GameScene gameScene = new GameScene();
                pop();
+               SoundEffects.get().play(R.raw.stoneeat);
                gameScene.push();
             }
         });
@@ -69,6 +72,7 @@ public class OverScene extends com.yhnil.invisible.framework.main.GameScene {
             public void run() {
                 pop();
                 MenuScene menuScene = new MenuScene();
+                SoundEffects.get().play(R.raw.stoneeat);
                 menuScene.push();
 
             }
